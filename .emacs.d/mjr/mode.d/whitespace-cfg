@@ -1,0 +1,5 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(setq show-ws-toggle-show-hard-spaces t)
+(setq show-ws-toggle-show-tabs t)
+(setq show-ws-toggle-show-trailing-whitespace t)

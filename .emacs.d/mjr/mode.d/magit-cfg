@@ -1,0 +1,25 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(autoload 'magit-status  "magit" nil t)
+(global-set-key "\C-cvc" 'magit-status)
+
+(add-hook 'magit-log-edit-mode-hook
+          '(lambda () (progn
+                   (turn-on-orgstruct++)
+                   (turn-on-flyspell))))
+
+(defun mjr/quit-or-kill-window ()
+  (interactive)
+  (if (eq (length (window-list))
+          1)
+      (quit-window)
+    (kill-buffer-and-window)))
+
+(add-hook 'magit-mode-hook
+          '(lambda ()
+             (define-key magit-mode-map "q" 'mjr/quit-or-kill-window)))
+
+(add-hook 'vc-annotate-mode-hook
+          '(lambda ()
+             (define-key vc-annotate-mode-map "q" 'mjr/quit-or-kill-window)))
+

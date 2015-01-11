@@ -1,0 +1,4 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(setq ispell-program-name "aspell"
+      ispell-dictionary   "british")

@@ -1,0 +1,7 @@
+; -*- mode: Emacs-Lisp;-*-
+
+;; emacsclient
+(add-hook 'server-switch-hook
+          (lambda ()
+            (turn-on-orgstruct++)
+            (turn-off-auto-fill)))

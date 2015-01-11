@@ -1,0 +1,12 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(require 'jira)
+(setq jira-url "http://jira.net-a-porter.com/rpc/xmlrpc")
+
+;;;; Browse Jira URL
+(defun jira-browse-tkt ()
+  (interactive)
+  (let ((tkt (thing-at-point 'symbol)))
+    (browse-url
+     (format "http://jira.net-a-porter.com/browse/%s" tkt))))
+

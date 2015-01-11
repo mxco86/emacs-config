@@ -1,0 +1,21 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(autoload 'w3m "w3m-load" nil t)
+
+(if (mjr/system-type-is "darwin")
+    (setq browse-url-browser-function
+          'browse-url-default-macosx-browser)) 
+
+(if (mjr/system-type-is "gnu/linux")
+    ;; browse url in conkeror
+    (setq browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "conkeror"))
+
+(global-set-key "\C-xm" 'browse-url-at-point)
+
+;; browse url in w3m
+;;(setq browse-url-browser-function 'w3m-browse-url)
+;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;;(setq w3m-use-cookies t)
+
+(provide 'mjr-web)

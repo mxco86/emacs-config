@@ -1,0 +1,324 @@
+; -*- mode: Emacs-Lisp;-*-
+
+;;; org-cfg --- org mode configuration for mryall
+
+;; Copyright (C) 2007
+
+;; Author: Matthew Ryall <mryall@mexico86.net>
+;; Maintainer: Matthew Ryall <mryall@mexico86.net>
+;; Created: 28 Nov 2007
+;; Version: 0.4
+;; Keywords: org
+
+;; mobileorg setup
+(defun mo-setup-darwin ()
+  (progn
+    (setq org-mobile-inbox-for-pull "~/org/flagged.org")
+    (setq org-mobile-directory "~/Dropbox/MobileOrg")
+    (setq org-mobile-use-encryption t)
+    (setq org-mobile-encryption-password "matt1943")
+    (setq org-mobile-force-id-on-agenda-items nil)))
+
+;; per-host config
+(if (mjr/system-type-is "darwin")
+    (progn
+      (setq org-directory "~/org")
+      (mo-setup-darwin))
+  (progn
+    (setq org-directory "~/org")))
+
+;; yas trigger and turn on flyspell mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            ;; yasnippet
+            (make-variable-buffer-local 'yas/trigger-key)
+            (setq yas/trigger-key [tab])
+            (define-key yas/keymap [tab] 'yas/next-field-group)
+            (turn-on-flyspell)))
+
+;; files and directories
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+;; keybindings
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(define-key global-map "\C-cc" 'org-todo)
+(setq org-CUA-compatible t)
+(setq org-replace-disputed-keys t)
+(setq org-disputed-keys
+      (quote (([(shift up)] . [(meta p)])
+              ([(shift down)] . [(meta n)])
+              ([(shift left)] . [(meta \[)])
+              ([(shift right)] . [(meta \])])
+              ([(control shift right)] . [(meta shift +)])
+              ([(control shift left)] . [(meta shift -)]))))
+(setq org-special-ctrl-a/e t)
+(setq org-special-ctrl-k t)
+
+;; bulleted headings
+(setq org-insert-heading-respect-content t)
+(setq org-yank-adjusted-subtrees t)
+(setq org-hide-leading-stars t)
+(setq org-odd-levels-only t)
+
+;; visibility cycling
+(setq org-cycle-include-plain-lists t)
+(setq org-cycle-separator-lines 1)
+
+;; timestamps
+(setq org-time-stamp-rounding-minutes (quote (1 5)))
+
+;; linking behaviour
+(setq org-return-follows-link t)
+
+;; logging and archiving
+(setq org-log-into-drawer "LOGBOOK")
+(setq org-archive-location "%s_arch::")
+
+;;; TODO Keywords
+(setq org-use-fast-todo-selection t
+      org-enforce-todo-dependencies t
+      org-enforce-todo-checkbox-dependencies t
+      org-hierarchical-checkbox-statistics nil
+      org-hierarchical-todo-statistics nil)
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "STARTED" "|" "DONE(d)" "CANCELLED(c)")
+        (sequence "TASK(f)" "|" "DONE(d)")
+        (sequence "MTG")
+        (sequence "MAYBE(m)" "|" "CANCELLED(c)")))
+
+(setq org-tags-exclude-from-inheritance '("prj")
+      org-stuck-projects '("+prj/-MAYBE-DONE"
+                           ("TODO" "TASK") ()))
+
+(setq org-todo-keyword-faces
+      '(("TODO" . (:foreground "red3" :weight bold))
+        ("MAYBE" . (:foreground "sea green"))
+        ("DONE" . (:foreground "light sea green"))
+        ("CANCELLED" . (:foreground "forest green"))
+        ("TASK" . (:foreground "MediumPurple3"))))
+
+;;; tags
+(setq org-tag-alist (quote ((:startgroup)
+                            ("@Work" . ?w)
+                            ("@Home" . ?h)
+                            (:endgroup))))
+(setq org-fast-tag-selection-single-key t)
+(setq org-agenda-tags-todo-honor-ignore-options t)
+
+;;; agenda
+(setq calendar-date-style 'american)
+(setq org-agenda-columns-add-appointments-to-effort-sum t)
+(setq org-agenda-default-appointment-duration 60)
+(setq org-agenda-todo-list-sublevels nil)
+(setq org-read-date-popup-calendar nil)
+(setq org-agenda-window-frame-fractions (quote (0.25 . 0.5)))
+(setq org-agenda-window-setup 'other-window)
+(setq org-agenda-start-on-weekday 1)
+(setq org-extend-today-until 0)
+(setq org-agenda-include-diary nil)
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-scheduled-if-deadline-is-shown   t
+      org-agenda-skip-deadline-prewarning-if-scheduled t)
+
+(setq org-agenda-custom-commands
+      '(("p" "Projects" todo "PROJ")
+        ("n" "Next" todo "NEXT")))
+
+(setq org-agenda-exporter-settings
+      '((ps-number-of-columns 2)
+        (ps-landscape-mode t)
+        (org-agenda-add-entry-text-maxlines 5)
+        (htmlize-output-type 'css)))
+
+(setq org-agenda-sorting-strategy
+      '(time-up todo-state-down habit-down))
+
+(setq org-agenda-time-grid
+      '((daily today)
+        "----------------"
+        (800 1000 1200 1400 1600 1800)))
+
+;; ical
+(setq org-icalendar-force-UID t)
+
+;; org-capture
+(require 'org-capture)
+;;(require 'org-exchange-capture)
+(setq org-default-notes-file (concat org-directory "~/general.org"))
+(define-key global-map "\C-cc" 'org-capture)
+(setq org-capture-templates
+      '(("T" "Ad-Hoc Task" entry
+         (file+headline "~/todo.org" "Ad-Hoc Tasks")
+         "* TODO %^{Task Description: }\n")
+        ("N" "Reference Note" entry
+         (file+headline "~/general.org" "To File")
+         "* %^{Task Description: }\n")))
+
+;;; clocking
+(setq org-clock-persist 'history)
+(setq org-clock-persistence-insinuate)
+(setq org-clock-history-length 35)
+(setq org-clock-in-resume t)
+(setq org-clock-in-switch-to-state "STARTED")
+(setq org-clock-into-drawer t)
+(setq org-clock-out-remove-zero-time-clocks t)
+(setq org-clock-out-when-done '("DONE"))
+
+;; refiling
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-completion-use-ido t)
+(setq org-refile-targets
+      '((org-agenda-files :maxlevel . 5)
+        (nil :maxlevel . 5)))
+
+;; appointments
+;;(appt-activate t)
+;;(org-agenda-to-appt)
+
+;; exporting
+;; (require 'org-publish)
+;; (setq org-export-html-style-include-default nil)
+;; (setq org-export-html-style nil)
+;; (setq org-export-html-auto-postamble nil)
+;; (setq org-export-html-postamble "<br /><div id=\"postamble\"><p class=\"author\"> Author: Matthew Ryall
+;; <a href=\"mailto:matt.ryall@net-a-porter.com\">&lt;matt.ryall@net-a-porter.com&gt;</a>
+;; </p>
+;; <p class=\"date\"> Date: 2009-10-09 12:08:45 BST</p>
+;; </div>")
+
+;; (setq org-export-html-preamble "<div id=\"header\">NET-A-PORTER.COM</div>")
+
+;; (setq org-publish-project-alist
+;;       '(("workorgs"
+;;          :base-directory "~/org-work/todo"
+;;          :base-extension "org"
+;;          :publishing-directory "~/private/work"
+;;          :recursive t
+;;          :publishing-function org-publish-org-to-html
+;;          :headline-levels 3
+;;          :auto-preamble t
+;;          :auto-postamble nil
+;;          :auto-index t
+;;          )
+;;         ("workstatic"
+;;          :base-directory "~/org-work/todo"
+;;          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
+;;          :publishing-directory "~/private/work"
+;;          :recursive t
+;;          :publishing-function org-publish-attachment
+;;          )
+;;         ("work" :components ("workorgs" "workstatic"))))
+
+;; latex export
+;; (require 'org-latex)
+;; (add-to-list 'org-export-latex-classes
+;;             '("nap-article"
+;;               "\\documentclass[7pt,a4paper]{article}
+;; \\usepackage[T1]{fontenc}
+;; \\usepackage{fouriernc}
+;; \\usepackage{graphicx}
+;; \\usepackage{longtable}
+;; \\usepackage{float}
+;; \\usepackage{wrapfig}
+;; \\usepackage{soul}
+;; \\usepackage{amssymb}
+;; \\usepackage{rotating}
+;; \\usepackage[svgnames]{xcolor}
+;; \\usepackage[colorlinks=true,linkcolor=MidnightBlue]{hyperref}
+;; \\usepackage{fancyhdr}
+;; \\pagestyle{fancy}
+;; \\rhead{NET-A-PORTER.COM}
+;; \\lhead{}
+;; \\cfoot{\\thepage}
+;; \\rfoot{}
+;; \\pdfpagewidth 8.3in
+;; \\pdfpageheight 11.7in
+;; \\setlength\\topmargin{0in}
+;; \\setlength\\headheight{0in}
+;; \\setlength\\headwidth{6in}
+;; \\setlength\\headsep{.2in}
+;; \\setlength\\topskip{.5in}
+;; \\setlength\\textheight{9.2in}
+;; \\setlength\\textwidth{6in}
+;; \\setlength\\evensidemargin{0in}
+;; \\setlength\\oddsidemargin{0in}"
+;;               ("\\section{%s}" . "\\section*{%s}")
+;;               ("\\subsection{%s}" . "\\subsection*{%s}")
+;;               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+;;               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+;; (add-to-list 'org-export-latex-classes
+;;              '("nap-presentation"
+;;                "\\documentclass[10pt]{beamer}
+;; \\usepackage[utf8]{inputenc}
+;; \\usepackage[T1]{fontenc}
+;; \\usepackage{graphicx}
+;; \\usepackage{longtable}
+;; \\usepackage{float}
+;; \\usepackage{wrapfig}
+;; \\usepackage{listing}
+;; \\usepackage{soul}
+;; \\usepackage{amssymb}
+;; \\usepackage{hyperref}"
+;;                org-beamer-sectioning))
+
+;; ;; Xetex export
+;; (setq org-latex-to-pdf-process
+;;       '("xelatex -interaction nonstopmode %f"
+;;         "xelatex -interaction nonstopmode %f"))
+
+;; (setf org-export-latex-classes
+;;        (remove-if #'(lambda (x) (equalp x "nap-article"))
+;;                   org-export-latex-classes
+;;                   :key #'car))
+
+;; org-babel
+;;(require 'org-babel)
+;;(require 'org-babel-init)
+;;(require 'org-babel-R)
+;;(require 'org-babel-clojure)
+;;(require 'org-babel-dot)
+;;(org-babel-load-library-of-babel)
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((emacs-lisp . t)
+;;    (ledger . t)))
+
+;; ess
+;;(setq ess-etc-directory "~/.emacs.d/stats/ess/etc")
+;;(require 'ess-site)
+
+;; org->markup functions
+(defun org-convert-to-confluence ()
+  (interactive)
+  (org-export-as-html 3 t nil "*org-confluence*" nil nil)
+  (switch-to-buffer "*org-confluence*")
+  (shell-command-on-region (point-min) (point-max)
+                           "~/shared/bin/html2confluence.pl"
+                           t t nil nil))
+
+(defun org-convert-to-oddmuse ()
+  (interactive)
+  (org-export-as-html 3 t nil "*org-confluence*" nil nil)
+  (switch-to-buffer "*org-confluence*")
+  (shell-command-on-region (point-min) (point-max)
+                           "~/shared/bin/html2oddmuse"
+                           t t nil nil))
+
+;; org-contacts
+;; (require 'org-contacts)
+;; (setq org-contacts-files '("~/contacts.org"))
+;; (add-to-list 'org-capture-templates
+;;              '("c"
+;;                "Contacts"
+;;                entry
+;;                (file+headline "~/contacts.org" "To File")
+;;                "* %(org-contacts-template-name)
+;;   :PROPERTIES:
+;;   :EMAIL: %(org-contacts-template-email)
+;;   :END:"))

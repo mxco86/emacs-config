@@ -1,0 +1,34 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(autoload 'confluence-get-page "confluence" nil t)
+(global-set-key "\C-xwf" 'confluence-get-page)
+
+(require 'confluence)
+
+(eval-after-load 'confluence
+  (progn
+    (setq confluence-url "http://confluence.net-a-porter.com/rpc/xmlrpc")
+    (setq confluence-save-credentials t)))
+
+;;;; Maintain visual line state
+(setq mjr/confluence-visual-line nil)
+
+(defun mjr/confluence-visual-line-on ()
+  (interactive)
+  (visual-line-mode 1)
+  (setq mjr/confluence-visual-line t))
+
+(defun mjr/confluence-visual-line-off ()
+  (interactive)
+  (visual-line-mode -1)
+  (setq mjr/confluence-visual-line nil))
+
+;;;; Setup hook
+(add-hook 'confluence-mode-hook
+          '(lambda ()
+             (local-set-key "\C-xw" confluence-prefix-map)
+             (turn-on-flyspell)
+             (turn-on-orgstruct++)
+             (turn-on-orgtbl)
+             (turn-off-auto-fill)
+             (if mjr/confluence-visual-line (visual-line-mode))))

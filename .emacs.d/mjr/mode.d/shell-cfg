@@ -1,0 +1,4 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(setq explicit-shell-file-name "/bin/zsh")
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)

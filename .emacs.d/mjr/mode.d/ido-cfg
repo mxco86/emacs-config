@@ -1,0 +1,5 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(ido-mode t)
+(ido-everywhere 1)
+(setq ido-enable-flex-matching t)

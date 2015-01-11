@@ -1,0 +1,14 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(autoload 'paredit-mode
+  "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
+;; Enable paredit mode for lisp modes
+(mapcar (lambda (hook)
+          (add-hook hook '(lambda () (paredit-mode 1))))
+        '(lisp-mode-hook
+          slime-repl-mode-hook
+          lisp-interaction-mode-hook
+          emacs-lisp-mode-hook))

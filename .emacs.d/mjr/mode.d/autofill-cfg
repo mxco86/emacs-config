@@ -1,0 +1,4 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(setq-default auto-fill-function 'do-auto-fill)

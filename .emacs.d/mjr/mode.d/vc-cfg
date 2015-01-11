@@ -1,0 +1,3 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(setq vc-follow-symlinks t)

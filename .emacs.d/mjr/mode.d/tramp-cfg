@@ -1,0 +1,7 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(setq tramp-default-method "ssh")
+(setq shell-prompt-pattern " ")
+
+(add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))

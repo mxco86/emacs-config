@@ -1,0 +1,7 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(require 'color-theme)
+(color-theme-initialize)
+;;(color-theme-sanityinc-solarized-dark)
+(color-theme-solarized-dark)
+

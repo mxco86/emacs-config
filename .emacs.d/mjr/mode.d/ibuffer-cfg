@@ -1,0 +1,51 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(require 'ibuffer) 
+
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+               ("Emacs"
+                (or
+                 (mode . help-mode)
+                 (mode . grep-mode)
+                 (mode . completion-list-mode)
+                 (name . "\\*scratch\\*")
+                 (name . "\\*Messages\\*")))
+               ("Org"
+                (mode . org-mode))
+               ("Wiki"
+                (mode . confluence-mode))
+               ("Programming"
+                (or
+                 (name . "\\*inferior-lisp\\*")
+                 (name . "*slime*")
+                 (mode . perl-mode)
+                 (mode . cperl-mode)
+                 (mode . java-mode)
+                 (mode . python-mode)
+                 (mode . c-mode)
+                 (mode . lisp-mode)
+                 (mode . js2-mode)
+                 (mode . emacs-lisp-mode)))
+               ("IRC"
+                (or
+                 (mode . rcirc-mode)
+                 (mode . rcirc-notify-mode)))
+               ("Source Ctrl"
+                (name . "*magit*"))
+               ("Gnus"
+                (or
+                 (mode . message-mode)
+                 (mode . bbdb-mode)
+                 (mode . mail-mode)
+                 (mode . gnus-group-mode)
+                 (mode . gnus-summary-mode)
+                 (mode . gnus-article-mode)
+                 (name . "^\\.bbdb$")
+                 (name . "^\\.newsrc-dribble")))))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
