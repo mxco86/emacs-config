@@ -9,8 +9,9 @@
 ;; server info
 (setq bitlbee-host "local-bitlbee")
 (setq rcirc-server-alist
-      '(("irc.nap" :channels ("#idlechat" "#backend" "#plack"
-                               "#seaview" "#cando" "#payments" "#arch"))))
+      '(("irc.nap" :channels ("#idlechat" "#backend" "#android" "#techops"
+                              "#openstack" "#incident" "#release" "#commando"
+                              "#cando" "#payments" "#arch" "#build"))))
 
 ;; log everything
 (setq rcirc-log-flag t)

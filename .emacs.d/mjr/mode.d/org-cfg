@@ -311,14 +311,14 @@
                            t t nil nil))
 
 ;; org-contacts
-;; (require 'org-contacts)
-;; (setq org-contacts-files '("~/contacts.org"))
-;; (add-to-list 'org-capture-templates
-;;              '("c"
-;;                "Contacts"
-;;                entry
-;;                (file+headline "~/contacts.org" "To File")
-;;                "* %(org-contacts-template-name)
-;;   :PROPERTIES:
-;;   :EMAIL: %(org-contacts-template-email)
-;;   :END:"))
+(require 'org-contacts)
+(setq org-contacts-files '("~/contacts.org"))
+(add-to-list 'org-capture-templates
+             '("c"
+               "Contacts"
+               entry
+               (file+headline "~/contacts.org" "To File")
+               "* %(org-contacts-template-name)
+  :PROPERTIES:
+  :EMAIL: %(org-contacts-template-email)
+  :END:"))

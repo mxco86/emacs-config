@@ -7,7 +7,7 @@
 
 (eval-after-load 'confluence
   (progn
-    (setq confluence-url "http://confluence.net-a-porter.com/rpc/xmlrpc")
+    (setq confluence-url "https://confluence.nap/rpc/xmlrpc")
     (setq confluence-save-credentials t)))
 
 ;;;; Maintain visual line state
