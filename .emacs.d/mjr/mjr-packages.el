@@ -15,7 +15,8 @@
         when (not (package-installed-p p)) do (return nil)
         finally (return t)))
 
-;; If not all packages are installed, check one by one and install the missing ones.
+;; If not all packages are installed, check one by one and install the missing
+;; ones.
 (unless (packages-installed-p)
   ; check for new packages (package versions)
   (message "%s" "Emacs is now refreshing its package database...")

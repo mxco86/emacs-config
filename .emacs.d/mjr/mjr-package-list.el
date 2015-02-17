@@ -4,7 +4,6 @@
 (defvar required-packages
   '( magit
      yasnippet
-     org
      pretty-lambdada
      paredit
      auto-complete
@@ -19,6 +18,7 @@
      jira
      git-commit-mode
      framemove
+     org-plus-contrib
      )
   "a list of packages to ensure are installed at launch.")
 
