@@ -69,6 +69,25 @@
         (rcirc-join-channels rcirc-proc '("&bitlbee"))))
     (switch-to-buffer (concat "&bitlbee@" bitlbee-host))))
 
+
+(defun th-rcirc-notification (process sender response target text)
+  (let ((my-nick (rcirc-nick process)))
+    (when (and (string= response "PRIVMSG")
+               (not (string= sender my-nick))
+               (or
+                ;; BitlBee IM messages
+                (string-match "localhost" (format "%s" process))
+                ;; Messages that mention my name
+                (string-match my-nick text)))
+      (th-notifications-add (concat "rcirc: " target)))))
+
+(add-hook 'rcirc-print-hooks 'th-rcirc-notification)
+
+(defun th-notifications-add (str)
+  (interactive "sNotification: ")
+  (start-process "notifications-add" nil
+                 "stumpish" "notifications-add" str))
+
 ;;
 
 (provide 'mjr-irc)
