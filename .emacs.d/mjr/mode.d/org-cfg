@@ -283,16 +283,11 @@
 ;;                   :key #'car))
 
 ;; org-babel
-;;(require 'org-babel)
-;;(require 'org-babel-init)
-;;(require 'org-babel-R)
-;;(require 'org-babel-clojure)
-;;(require 'org-babel-dot)
-;;(org-babel-load-library-of-babel)
-;; (org-babel-do-load-languages
-;;  'org-babel-load-languages
-;;  '((emacs-lisp . t)
-;;    (ledger . t)))
+(set 'org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((emacs-lisp . t)
+                             (perl . t)
+                             (sql . t)))
 
 ;; ess
 ;;(setq ess-etc-directory "~/.emacs.d/stats/ess/etc")
