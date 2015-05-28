@@ -56,6 +56,10 @@
 (require 'pretty-lambdada)
 (pretty-lambda-for-modes)
 
+;;;; Delete trailing whitespace
+(add-to-list 'write-file-functions
+             'delete-trailing-whitespace)
+
 ;;;; font
 (defun mjr/dejavu ()
   "Normal font family and size"
