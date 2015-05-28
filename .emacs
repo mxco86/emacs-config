@@ -22,8 +22,7 @@
 (require 'mjr-util)
 (require 'mjr-setup)
 (require 'mjr-keymap)
+(require 'mjr-backup)
 
-;; load mode specific configs 
+;; load mode specific configs
 (mjr/load-mode-cfg)
-
-
