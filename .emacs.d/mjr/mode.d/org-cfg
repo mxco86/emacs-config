@@ -214,7 +214,7 @@
 ;;         ("work" :components ("workorgs" "workstatic"))))
 
 ;; latex export
-;; (require 'org-latex)
+(require 'ox-latex)
 ;; (add-to-list 'org-export-latex-classes
 ;;             '("nap-article"
 ;;               "\\documentclass[7pt,a4paper]{article}
@@ -267,10 +267,15 @@
 ;; \\usepackage{hyperref}"
 ;;                org-beamer-sectioning))
 
-;; ;; Xetex export
-;; (setq org-latex-to-pdf-process
-;;       '("xelatex -interaction nonstopmode %f"
-;;         "xelatex -interaction nonstopmode %f"))
+(add-to-list 'org-latex-classes
+             '("nap-presentation"
+               "\\documentclass[10pt]{beamer}\n\\usepackage[utf8]{inputenc}\n                \\usepackage[T1]{fontenc}\n                \\usepackage{graphicx}\n                \\usepackage{longtable}\n\\usepackage{float}\n\\usepackage{wrapfig}\n\\usepackage{listing}\n\\usepackage{soul}\n\\usepackage{amssymb}\n\\usepackage{hyperref}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
+
+;; Xetex export
+(setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"))
 
 ;; (setf org-export-latex-classes
 ;;        (remove-if #'(lambda (x) (equalp x "nap-article"))
