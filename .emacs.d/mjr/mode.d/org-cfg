@@ -159,13 +159,16 @@
 
 ;;; clocking
 (setq org-clock-persist 'history)
-(setq org-clock-persistence-insinuate)
+(setq org-clock-persistence-insinuate t)
 (setq org-clock-history-length 35)
 (setq org-clock-in-resume t)
 (setq org-clock-in-switch-to-state "STARTED")
 (setq org-clock-into-drawer t)
 (setq org-clock-out-remove-zero-time-clocks t)
 (setq org-clock-out-when-done '("DONE"))
+(setq org-time-clocksum-use-effort-durations t)
+(setq org-time-clocksum-format
+      '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
 
 ;; refiling
 (setq org-refile-use-outline-path 'file)
