@@ -3,7 +3,5 @@
 (require 'color-theme)
 (color-theme-initialize)
 ;;(color-theme-sanityinc-solarized-light)
-(color-theme-sanityinc-solarized-dark)
-;;(color-theme-solarized)
-
-
+;;(color-theme-sanityinc-solarized-dark)
+(color-theme-solarized)

@@ -16,7 +16,7 @@
      smooth-scrolling
      confluence
      jira
-     git-commit-mode
+     ;;git-commit-mode
      framemove
      org-plus-contrib
      )

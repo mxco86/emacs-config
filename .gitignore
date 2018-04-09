@@ -3,3 +3,5 @@
 elpa
 .*~
 .emacs.d/ac-comphist.dat
+.emacs.d/smex-items
+.emacs.d/ido.last
