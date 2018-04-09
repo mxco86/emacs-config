@@ -170,6 +170,13 @@
 (setq org-time-clocksum-use-effort-durations t)
 (setq org-time-clocksum-format
       '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+(setq org-duration-units
+      `(("min" . 1)
+        ("h" . 60)
+        ("d" . ,(* 60 8))
+        ("w" . ,(* 60 8 5))
+        ("m" . ,(* 60 8 5 4))
+        ("y" . ,(* 60 8 5 4 10))))
 
 ;; refiling
 (setq org-refile-use-outline-path 'file)
@@ -291,6 +298,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages '((emacs-lisp . t)
                              (perl . t)
+                             (shell . t)
                              (sql . t)))
 
 ;; ess
