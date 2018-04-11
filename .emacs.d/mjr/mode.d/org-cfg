@@ -335,3 +335,7 @@
   :PROPERTIES:
   :EMAIL: %(org-contacts-template-email)
   :END:"))
+
+;; Enable org-habit
+(setq org-modules (quote (org-habit)))
+(setq org-habit-graph-column 50)
