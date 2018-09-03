@@ -31,9 +31,13 @@
                                (number-to-string value))))
 
 (defun mjr/font-size (font value)
-  (interactive "sFont Name: 
+  (interactive "sFont Name:
 nText Size: ")
   (mjr/init-font-size (selected-frame) font value))
+
+(defun mjr/set-font ()
+  (interactive)
+  (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" 16))
 
 ;; system identification
 (defun mjr/system-type-is (system)
@@ -48,7 +52,7 @@ nText Size: ")
 ;; org mode/wiki function
 (defun mjr/org-tbl-to-conf (start end)
   (interactive "r")
-  (save-restriction 
+  (save-restriction
     (narrow-to-region start end)
     (goto-char (point-min))
     (while (replace-regexp "--+" ""))

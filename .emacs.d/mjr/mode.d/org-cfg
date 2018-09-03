@@ -108,7 +108,7 @@
 (setq org-agenda-tags-todo-honor-ignore-options t)
 
 ;;; agenda
-(setq org-agenda-files '("~/Dropbox/org/"))
+(setq org-agenda-files '("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org"))
 (setq calendar-date-style 'american)
 (setq org-agenda-columns-add-appointments-to-effort-sum t)
 (setq org-agenda-default-appointment-duration 60)
