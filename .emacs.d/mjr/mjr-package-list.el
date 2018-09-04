@@ -7,18 +7,19 @@
      pretty-lambdada
      paredit
      auto-complete
-     cperl-mode 
+     cperl-mode
      smex
      color-theme
      color-theme-solarized
      color-theme-buffer-local
-     browse-kill-ring     
+     browse-kill-ring
      smooth-scrolling
-     confluence
-     jira
+     ;;confluence
+     ;;jira
      ;;git-commit-mode
      framemove
      org-plus-contrib
+     tide
      )
   "a list of packages to ensure are installed at launch.")
 
