@@ -16,6 +16,7 @@
 (depends-on "exec-path-from-shell")
 (depends-on "f")
 (depends-on "flycheck")
+(depends-on "flycheck-yamllint")
 (depends-on "git-commit")
 (depends-on "json-mode")
 (depends-on "json-reformat")
