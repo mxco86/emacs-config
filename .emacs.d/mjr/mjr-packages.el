@@ -1,5 +1,11 @@
 ;; Package setup
 
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(cask-initialize)
+
+(require 'pallet)
+(pallet-mode t)
+
 ;; Package install
 (require 'package)
 (package-initialize)
@@ -17,15 +23,15 @@
 
 ;; If not all packages are installed, check one by one and install the missing
 ;; ones.
-(unless (packages-installed-p)
-  ; check for new packages (package versions)
-  (message "%s" "Emacs is now refreshing its package database...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ; install the missing packages
-  (dolist (p required-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
-;;
+;; (unless (packages-installed-p)
+;;   ; check for new packages (package versions)
+;;   (message "%s" "Emacs is now refreshing its package database...")
+;;   (package-refresh-contents)
+;;   (message "%s" " done.")
+;;   ; install the missing packages
+;;   (dolist (p required-packages)
+;;     (when (not (package-installed-p p))
+;;       (package-install p))))
+;; ;;
 
 (provide 'mjr-packages)

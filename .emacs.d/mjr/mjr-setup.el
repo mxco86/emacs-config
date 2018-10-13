@@ -1,6 +1,6 @@
 ; -*- mode: Emacs-Lisp;-*-
 
-;; emacs startup and general config 
+;; emacs startup and general config
 
 ;;;; be quiet
 (setq inhibit-startup-message  t)
@@ -34,16 +34,16 @@
 (setq next-line-add-newlines t)
 
 ;;;; frame size
-(if (mjr/system-type-is "darwin")
-    (set-frame-size (car (visible-frame-list))
-                    (/ (x-display-pixel-width) 9)
-                    (/ (x-display-pixel-height) 18)))
+;; (if (mjr/system-type-is "darwin")
+;;     (set-frame-size (car (visible-frame-list))
+;;                     (/ (x-display-pixel-width) 9)
+;;                     (/ (x-display-pixel-height) 18)))
 
 ;;;; executable path
-(if (mjr/system-type-is "darwin")
-    (progn
-      (add-to-list 'exec-path "/usr/local/git/bin")
-      (add-to-list 'exec-path "/usr/local/bin")))
+;; (if (mjr/system-type-is "darwin")
+;;     (progn
+;;       (add-to-list 'exec-path "/usr/local/git/bin")
+;;       (add-to-list 'exec-path "/usr/local/bin")))
 
 ;;;; disabled commands
 (put 'downcase-region 'disabled nil)
@@ -53,8 +53,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;;; lambda symbol
-(require 'pretty-lambdada)
-(pretty-lambda-for-modes)
+;;(require 'pretty-lambdada)
+;;(pretty-lambda-for-modes)
 
 ;;;; Delete trailing whitespace
 (add-to-list 'write-file-functions
@@ -71,4 +71,3 @@
 (mjr/dejavu)
 
 (provide 'mjr-setup)
-

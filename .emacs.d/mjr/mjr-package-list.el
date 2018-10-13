@@ -4,7 +4,7 @@
 (defvar required-packages
   '( magit
      yasnippet
-     pretty-lambdada
+     ;;pretty-lambdada
      paredit
      auto-complete
      cperl-mode
@@ -17,7 +17,7 @@
      ;;confluence
      ;;jira
      ;;git-commit-mode
-     framemove
+     ;;framemove
      org-plus-contrib
      tide
      )

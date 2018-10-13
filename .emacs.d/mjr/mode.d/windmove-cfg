@@ -2,12 +2,8 @@
 
 ;; window and frame navigation
 (require 'windmove)
-(require 'framemove)
 
 (windmove-default-keybindings)
-
-(setq framemove-hook-into-windmove t
-      windmove-wrap-around nil)
 
 (global-set-key (kbd "M-P") 'windmove-up)
 (global-set-key (kbd "M-N") 'windmove-down)
