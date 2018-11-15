@@ -1,0 +1,5 @@
+; -*- mode: Emacs-Lisp;-*-
+
+(add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
+(add-hook 'json-mode-hook 'prettier-js-mode)
+(add-hook 'json-mode-hook 'flycheck-mode)
