@@ -1,5 +1,7 @@
 ; -*- mode: Emacs-Lisp;-*-
 
+(add-hook 'yaml-mode-hook 'flycheck-mode)
+
 (require 'flycheck-yamllint)
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))

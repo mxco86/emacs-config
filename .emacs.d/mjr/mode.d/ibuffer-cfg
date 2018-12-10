@@ -1,6 +1,6 @@
 ; -*- mode: Emacs-Lisp;-*-
 
-(require 'ibuffer) 
+(require 'ibuffer)
 
 (setq ibuffer-saved-filter-groups
       (quote (("default"
@@ -9,12 +9,11 @@
                  (mode . help-mode)
                  (mode . grep-mode)
                  (mode . completion-list-mode)
+                 (mode . emacs-lisp-mode)
                  (name . "\\*scratch\\*")
                  (name . "\\*Messages\\*")))
                ("Org"
                 (mode . org-mode))
-               ("Wiki"
-                (mode . confluence-mode))
                ("Programming"
                 (or
                  (name . "\\*inferior-lisp\\*")
@@ -26,23 +25,15 @@
                  (mode . c-mode)
                  (mode . lisp-mode)
                  (mode . js2-mode)
-                 (mode . emacs-lisp-mode)))
-               ("IRC"
+                 (mode . typescript-mode)
+                 (mode . js-mode)
+                 (mode . web-mode)))
+               ("Data/Config"
                 (or
-                 (mode . rcirc-mode)
-                 (mode . rcirc-notify-mode)))
+                 (name . "JSON")
+                 (name . "YAML")))
                ("Source Ctrl"
-                (name . "*magit*"))
-               ("Gnus"
-                (or
-                 (mode . message-mode)
-                 (mode . bbdb-mode)
-                 (mode . mail-mode)
-                 (mode . gnus-group-mode)
-                 (mode . gnus-summary-mode)
-                 (mode . gnus-article-mode)
-                 (name . "^\\.bbdb$")
-                 (name . "^\\.newsrc-dribble")))))))
+                (name . "*magit*"))))))
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()

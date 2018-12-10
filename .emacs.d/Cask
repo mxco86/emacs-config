@@ -39,6 +39,7 @@
 (depends-on "smooth-scrolling")
 (depends-on "tide")
 (depends-on "typescript-mode")
+(depends-on "web-mode")
 (depends-on "with-editor")
 (depends-on "xml-rpc")
 (depends-on "xref-js2")
