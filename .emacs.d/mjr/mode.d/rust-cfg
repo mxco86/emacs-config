@@ -5,9 +5,9 @@
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook
           (lambda () (add-hook 'before-save-hook
-                               #'rust-format-buffer nil 'local)))
+                               'rust-format-buffer nil 'local)))
 
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'flycheck-mode-hook 'flycheck-rust-setup)
 
 (custom-set-variables '(racer-cmd "~/.cargo/bin/racer")) ;; Rustup binaries PATH
 (custom-set-variables '(racer-rust-src-path "/Users/mryall/Src/rust/rust/src")) ;; Rust source code PATH
