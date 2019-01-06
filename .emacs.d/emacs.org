@@ -23,6 +23,9 @@
 #+BEGIN_SRC emacs-lisp
 
   ;; Load basic utilities and config
+  (defvar setup-conf-dir "~/.emacs.d/mjr/")
+  (org-babel-load-file (concat setup-conf-dir "setup.org"))
+
   (require 'mjr-util)
   (require 'mjr-setup)
   (require 'mjr-keymap)
@@ -36,7 +39,6 @@
 #+BEGIN_SRC emacs-lisp
 
   ;; load mode specific configs
-  (defvar mode-conf-dir "~/.emacs.d/mjr/mode.d/")
   (defun mjr/load-literate-cfg ()
     "Load literate config files using org-babel."
     (let ((cfg-conf-dir "~/.emacs.d/cfg/"))

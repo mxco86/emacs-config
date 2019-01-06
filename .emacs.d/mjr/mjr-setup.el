@@ -2,12 +2,12 @@
 
 ;; emacs startup and general config
 
-;;;; be quiet
-(setq inhibit-startup-message  t)
+;; be quiet
+;;(setq inhibit-startup-message  t)
 
 ;;;; clear the furniture
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+;;(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+;;(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (if (mjr/system-type-is "gnu/linux")
     (progn
@@ -68,6 +68,6 @@
 
 (global-set-key "\C-c\C-ff" 'mjr/dejavu)
 
-(mjr/dejavu)
+(mjr/set-font)
 
 (provide 'mjr-setup)
