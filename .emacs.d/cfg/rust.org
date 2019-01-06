@@ -1,0 +1,24 @@
+
+* Rust Programming
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package rust-mode
+    :ensure t
+    :config
+    (add-hook 'rust-mode-hook 'cargo-minor-mode)
+
+    (custom-set-variables '(rust-format-on-save t))
+    (custom-set-variables '(racer-cmd "~/.cargo/bin/racer")) ;; Rustup binaries PATH
+    (custom-set-variables '(racer-rust-src-path "/Users/mryall/Src/rust/rust/src")) ;; Rust source code PATH
+
+    (add-hook 'rust-mode-hook #'racer-mode)
+    (add-hook 'racer-mode-hook #'eldoc-mode)
+    (add-hook 'racer-mode-hook #'company-mode))
+
+  (use-package flycheck-rust
+    :ensure t
+    :config
+    (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+
+#+END_SRC

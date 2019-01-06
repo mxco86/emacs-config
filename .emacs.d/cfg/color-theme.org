@@ -1,5 +1,5 @@
 * Color Theme Configuration
-  Use solarized
+  - Use solarized
 
 #+BEGIN_SRC emacs-lisp
 
