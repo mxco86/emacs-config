@@ -7,4 +7,5 @@ elpa
 .emacs.d/ido.last
 .cask
 network-security.data
-cfg/*.el
+.emacs.d/cfg/*.el
+.emacs.d/emacs.el

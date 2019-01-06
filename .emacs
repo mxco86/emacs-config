@@ -1,8 +1,11 @@
-;;; package --- mryall's .emacs
+;;; Package --- mryall's .emacs
 
 ;;; Last Modified: 20190106
 
 ;;; Commentary:
+;;
+;; Bootstrap the required libraries to enable a literate Emacs configuration
+;;
 
 ;;; Code:
 

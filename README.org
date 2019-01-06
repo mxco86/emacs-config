@@ -1,0 +1,10 @@
+
+* My Emacs Config
+
+* Config Organisation and Documentation
+
+* Org-Mode, Org-Babel and Elisp Source Blocks
+
+* How does this work?
+  - Bootstrap elisp file is here: [.emacs]
+  - Literate config starts here: [.emacs.d/emacs.org]
