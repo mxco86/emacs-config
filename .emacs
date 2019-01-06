@@ -1,35 +1,33 @@
-;; Matthew Ryall's .emacs
-;;
-;; Last Modified: 20150103
-;;
+;;; package --- mryall's .emacs
 
-;; add lisp directories
+;;; Last Modified: 20190106
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;;; Commentary:
+
+;;; Code:
+
+;; Bootstrap 'package', 'use-package' and 'org-mode'
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives
+      (append package-archives
+              '(("melpa" . "https://melpa.milkbox.net/packages/")
+		("org" . "https://orgmode.org/elpa/"))))
+
 (package-initialize)
 
-(let* ((elisp-dir "~/.emacs.d/site-lisp")
-       (mjr-elisp-dir "~/.emacs.d/mjr")
-         (default-directory elisp-dir))
-  (add-to-list 'load-path elisp-dir)
-  (add-to-list 'load-path mjr-elisp-dir)
-  (normal-top-level-add-subdirs-to-load-path))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-;; yum!
-(require 'cl)
+(eval-when-compile
+  (require 'use-package))
 
-;; Package setup
-(require 'mjr-package-list)
-(require 'mjr-packages)
+(unless (package-installed-p 'org-plus-contrib)
+  (package-refresh-contents)
+  (package-install 'org-plus-contrib))
 
-;; Load basic utilities and config
-(require 'mjr-util)
-(require 'mjr-setup)
-(require 'mjr-keymap)
-(require 'mjr-backup)
+;; Load Org-Babel defined config
+(org-babel-load-file (concat user-emacs-directory "emacs.org"))
 
-;; load mode specific configs
-(mjr/load-mode-cfg)
+;;; .emacs ends here

@@ -1,0 +1,10 @@
+
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package smex
+    :ensure t
+    :config
+    (smex-initialize))
+
+#+END_SRC

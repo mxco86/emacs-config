@@ -1,0 +1,14 @@
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package paredit
+    :ensure t
+    :config
+    (mapcar (lambda (hook)
+              (add-hook hook '(lambda () (paredit-mode 1))))
+            '(lisp-mode-hook
+              slime-repl-mode-hook
+              lisp-interaction-mode-hook
+              emacs-lisp-mode-hook)))
+
+#+END_SRC

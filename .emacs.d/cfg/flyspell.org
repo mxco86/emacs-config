@@ -1,0 +1,10 @@
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package flyspell
+    :ensure t
+    :config
+    (setq ispell-program-name "aspell"
+          ispell-dictionary   "british"))
+
+#+END_SRC

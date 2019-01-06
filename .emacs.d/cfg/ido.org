@@ -1,0 +1,11 @@
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package ido
+    :ensure t
+    :config
+    (ido-mode t)
+    (ido-everywhere 1)
+    (setq ido-enable-flex-matching t))
+
+#+END_SRC
