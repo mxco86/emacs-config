@@ -6,5 +6,5 @@
 * Org-Mode, Org-Babel and Elisp Source Blocks
 
 * How does this work?
-  - Bootstrap elisp file is here: [.emacs]
-  - Literate config starts here: [.emacs.d/emacs.org]
+  - Bootstrap elisp file is here: [[file:.emacs]]
+  - Literate config starts here: [[file:.emacs.d/emacs.org]]
