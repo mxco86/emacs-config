@@ -8,3 +8,4 @@
 * How does this work?
   - Bootstrap elisp file is here: [[file:.emacs]]
   - Literate config starts here: [[file:.emacs.d/emacs.org]]
+  - Mode-specific configs are here: [[file:.emacs.d/cfg/]]
