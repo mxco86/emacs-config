@@ -4,7 +4,9 @@
   (use-package flyspell
     :ensure t
     :config
-    (setq ispell-program-name "aspell"
-          ispell-dictionary   "british"))
+    (setq-default ispell-program-name "aspell"
+                  ispell-dictionary   "british"))
+
+  (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 #+END_SRC
