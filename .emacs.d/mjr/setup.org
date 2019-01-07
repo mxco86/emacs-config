@@ -3,24 +3,36 @@
 ** Frame and Buffer Behavour
    - I prefer sparse frames so remove as much as we can
 
-#+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp
 
-  ;; be quiet
-  (setq inhibit-startup-message  t)
+     ;; be quiet
+     (setq-default inhibit-startup-message  t)
 
-  ;; clear the furniture
-  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+     ;; clear the furniture
+     (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+     (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+     (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-#+END_SRC
+   #+END_SRC
 
 ** Custom
   - Place all Custom variables in their own file
 
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 
-(setq custom-file "~/.emacs-custom.el")
-(load custom-file 'noerror)
+      (setq-default custom-file "~/.emacs-custom.el")
+      (load custom-file 'noerror)
 
-#+END_SRC
+    #+END_SRC
+
+*** External Program Execution
+    - Ensure we can execute programs located at various paths
+
+    #+BEGIN_SRC emacs-lisp
+
+      (use-package exec-path-from-shell
+      :ensure t
+      :config
+      (exec-path-from-shell-initialize))
+
+    #+END_SRC
