@@ -1,37 +1,51 @@
 
 * Org-Mode Config
-** List Setup
-   #+BEGIN_SRC emacs-lisp
+*** List Setup
+    #+BEGIN_SRC emacs-lisp
 
-     (setq-default org-odd-levels-only t)
-     (setq-default org-hide-leading-stars t)
-     (setq-default org-insert-heading-respect-content t)
+      (setq-default org-odd-levels-only t)
+      (setq-default org-hide-leading-stars t)
+      (setq-default org-insert-heading-respect-content t)
 
-   #+END_SRC
+    #+END_SRC
 
-** Keybindings
-   #+BEGIN_SRC emacs-lisp
+*** Keybindings
+    #+BEGIN_SRC emacs-lisp
 
-     (define-key global-map "\C-ca" 'org-agenda)
+      (define-key global-map "\C-ca" 'org-agenda)
 
-   #+END_SRC
+    #+END_SRC
 
-** Fix Conflicts and Disputed Keys
-   #+BEGIN_SRC emacs-lisp
+*** Fix Conflicts and Disputed Keys
+    #+BEGIN_SRC emacs-lisp
 
-     ;; Make windmove work in Org mode:
-     (add-hook 'org-shiftup-final-hook 'windmove-up)
-     (add-hook 'org-shiftleft-final-hook 'windmove-left)
-     (add-hook 'org-shiftdown-final-hook 'windmove-down)
-     (add-hook 'org-shiftright-final-hook 'windmove-right)
+      ;; Make windmove work in Org mode:
+      (add-hook 'org-shiftup-final-hook 'windmove-up)
+      (add-hook 'org-shiftleft-final-hook 'windmove-left)
+      (add-hook 'org-shiftdown-final-hook 'windmove-down)
+      (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-     (setq-default org-replace-disputed-keys t)
+      (setq-default org-replace-disputed-keys t)
 
-   #+END_SRC
+    #+END_SRC
 
 *** Org-Agenda
     #+BEGIN_SRC emacs-lisp
 
       (setq-default org-agenda-files '("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org"))
+
+    #+END_SRC
+
+*** Hooks
+    #+BEGIN_SRC emacs-lisp
+
+      (add-hook 'org-mode-hook 'turn-on-flyspell)
+
+    #+END_SRC
+
+*** Org-Babel
+    #+BEGIN_SRC emacs-lisp
+
+      (setq-default org-src-tab-acts-natively t)
 
     #+END_SRC
