@@ -1,5 +1,5 @@
 
-* Org-Mode Config
+* Org-Mode Configuration
 *** List Setup
     #+BEGIN_SRC emacs-lisp
 
@@ -9,6 +9,13 @@
 
     #+END_SRC
 
+*** Behaviours
+    #+begin_src emacs-lisp
+
+      (setq org-return-follows-link t)
+
+    #+end_src
+
 *** Keybindings
     #+BEGIN_SRC emacs-lisp
 
@@ -16,7 +23,7 @@
 
     #+END_SRC
 
-*** Fix Conflicts and Disputed Keys
+*** Fix Conflicts, Disputed Keys and Behaviour
     #+BEGIN_SRC emacs-lisp
 
       ;; Make windmove work in Org mode:
@@ -26,6 +33,8 @@
       (add-hook 'org-shiftright-final-hook 'windmove-right)
 
       (setq-default org-replace-disputed-keys t)
+      (setq-default org-special-ctrl-a/e t)
+      (setq-default org-special-ctrl-k t)
 
     #+END_SRC
 
