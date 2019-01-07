@@ -1,0 +1,26 @@
+
+* Typescript Development
+
+  #+begin_src emacs-lisp
+
+       (use-package tide
+         :ensure t
+         :config
+
+         (defun setup-tide-mode ()
+           (interactive)
+           (tide-setup)
+           (flycheck-mode 1)
+           (custom-set-variables '(flycheck-check-syntax-automatically '(save mode-enabled)))
+           (eldoc-mode +1)
+           (tide-hl-identifier-mode +1)
+           (company-mode +1))
+
+         (setq-default company-tooltip-align-annotations t)
+         (setq-default typescript-indent-level 2)
+         (add-hook 'before-save-hook 'tide-format-before-save)
+         (add-hook 'typescript-mode-hook #'setup-tide-mode)
+         (add-hook 'typescript-mode-hook #'prettier-js-mode)
+         (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
+
+  #+end_src
