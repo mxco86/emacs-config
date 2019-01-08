@@ -16,7 +16,7 @@
       in place on an item
     #+begin_src emacs-lisp
 
-      (setq org-return-follows-link t)
+      (setq-default org-return-follows-link t)
       (setq-default org-special-ctrl-a/e t)
       (setq-default org-special-ctrl-k t)
       (setq-default org-insert-heading-respect-content t)
