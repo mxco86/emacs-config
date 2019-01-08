@@ -1,18 +1,25 @@
 
 * Org-Mode Configuration
 *** List Setup
+    - Extend the sub-items bullet count by two (1,3,5 characters etc.) to give
+      a more pronounced tree
+    - Make bulleted sub-items appear to be indented
     #+BEGIN_SRC emacs-lisp
 
       (setq-default org-odd-levels-only t)
       (setq-default org-hide-leading-stars t)
-      (setq-default org-insert-heading-respect-content t)
 
     #+END_SRC
 
 *** Behaviours
+    - Ensure keyboard navigation works sensibly in headings and when tags are
+      in place on an item
     #+begin_src emacs-lisp
 
       (setq org-return-follows-link t)
+      (setq-default org-special-ctrl-a/e t)
+      (setq-default org-special-ctrl-k t)
+      (setq-default org-insert-heading-respect-content t)
 
     #+end_src
 
@@ -33,8 +40,6 @@
       (add-hook 'org-shiftright-final-hook 'windmove-right)
 
       (setq-default org-replace-disputed-keys t)
-      (setq-default org-special-ctrl-a/e t)
-      (setq-default org-special-ctrl-k t)
 
     #+END_SRC
 
@@ -48,7 +53,7 @@
 *** Hooks
     #+BEGIN_SRC emacs-lisp
 
-      (add-hook 'org-mode-hook 'turn-on-flyspell)
+      (add-hook 'org-mode-hook '(lambda () (turn-on-flyspell) (auto-fill-mode t)))
 
     #+END_SRC
 
