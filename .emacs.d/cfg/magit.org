@@ -1,0 +1,9 @@
+
+* Magit Configuration
+  #+begin_src emacs-lisp
+    (use-package magit
+      :ensure t
+      :config
+      )
+
+  #+end_src
