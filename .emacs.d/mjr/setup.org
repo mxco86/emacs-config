@@ -1,6 +1,6 @@
 
 * Emacs Setup
-** Frame and Buffer Behavour
+** Frame and Buffer Behaviour
    - I prefer sparse frames so remove as much as we can
 
    #+BEGIN_SRC emacs-lisp
@@ -16,14 +16,17 @@
    #+END_SRC
 
 ** Custom
-  - Place all Custom variables in their own file
+  - Place all custom-defined variables in their own file
+  - Store the custom variable file in the local machine's home directory
+    outside of version control
+  - This enables us to keep machine-specific config here
 
-    #+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 
-      (setq-default custom-file "~/.emacs-custom.el")
-      (load custom-file 'noerror)
+    (setq-default custom-file "~/.emacs-custom.el")
+    (load custom-file 'noerror)
 
-    #+END_SRC
+  #+END_SRC
 
 *** External Program Execution
     - Ensure we can execute programs located at various paths
