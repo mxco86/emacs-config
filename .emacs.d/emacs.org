@@ -1,52 +1,53 @@
 
 * Main Emacs Config
-** Add Old-Style Library Directories
-  - Add load directories for mode-specific configs
+*** Load Paths and Library Directories
+    - Add load directories for mode-specific configs
+    #+BEGIN_SRC emacs-lisp
 
-#+BEGIN_SRC emacs-lisp
+      ;; add lisp directories
+      (let* ((elisp-dir "~/.emacs.d/site-lisp")
+             (mjr-elisp-dir "~/.emacs.d/mjr")
+             (default-directory elisp-dir))
+        (add-to-list 'load-path elisp-dir)
+        (add-to-list 'load-path mjr-elisp-dir)
+        (normal-top-level-add-subdirs-to-load-path))
 
-  ;; add lisp directories
-  (let* ((elisp-dir "~/.emacs.d/site-lisp")
-         (mjr-elisp-dir "~/.emacs.d/mjr")
-         (default-directory elisp-dir))
-    (add-to-list 'load-path elisp-dir)
-    (add-to-list 'load-path mjr-elisp-dir)
-    (normal-top-level-add-subdirs-to-load-path))
+    #+END_SRC
+***** TODO Move the setup code into this file
 
-#+END_SRC
+*** General Emacs Setup
+    - Utilities
+    - Keymaps
+    - Backup and autosave files and directories
 
-** General Emacs Setup
-   - Utilities
-   - Keymaps
-   - Backup and autosave files and directories
+    #+BEGIN_SRC emacs-lisp
 
-#+BEGIN_SRC emacs-lisp
+      ;; Load basic utilities and config
+      (defvar setup-conf-dir "~/.emacs.d/mjr/")
+      (org-babel-load-file (concat setup-conf-dir "setup.org"))
 
-  ;; Load basic utilities and config
-  (defvar setup-conf-dir "~/.emacs.d/mjr/")
-  (org-babel-load-file (concat setup-conf-dir "setup.org"))
+      (require 'mjr-util)
+      (require 'mjr-setup)
+      (require 'mjr-keymap)
+      (require 'mjr-backup)
 
-  (require 'mjr-util)
-  (require 'mjr-setup)
-  (require 'mjr-keymap)
-  (require 'mjr-backup)
+     #+END_SRC
 
-#+END_SRC
+*** Literate Library Directories
+***** Add load directories for mode-specific literate configs
+      #+BEGIN_SRC emacs-lisp
 
-** Add Literate Library Directories
-  - Add load directories for mode-specific literate configs
+        ;; load mode specific configs
+        (defun mjr/load-literate-cfg ()
+          "Load literate config files using org-babel."
+          (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
+            (mapcar #'(lambda (conf-file)
+                        (org-babel-load-file (concat cfg-conf-dir conf-file)))
+                    (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
 
-#+BEGIN_SRC emacs-lisp
+        (mjr/load-literate-cfg)
+        ;;(mjr/load-mode-cfg)
 
-  ;; load mode specific configs
-  (defun mjr/load-literate-cfg ()
-    "Load literate config files using org-babel."
-    (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
-      (mapcar #'(lambda (conf-file)
-                  (org-babel-load-file (concat cfg-conf-dir conf-file)))
-              (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
-
-  (mjr/load-literate-cfg)
-  ;;(mjr/load-mode-cfg)
-
-#+END_SRC
+      #+END_SRC
+***** TODO Create a TOC for the linked org files
+      - [ ] Add the list of loaded org files into this buffer (as a TOC)
