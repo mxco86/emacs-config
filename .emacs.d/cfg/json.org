@@ -1,0 +1,11 @@
+
+#+begin_src emacs-lisp
+
+  (use-package json-mode
+    :ensure t
+    :config
+    (add-hook 'json-mode-hook 'prettier-js-mode)
+    (add-hook 'json-mode-hook 'flycheck-mode)
+    (setq-default js-indent-level 2))
+
+#+end_src
