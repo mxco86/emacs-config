@@ -8,9 +8,9 @@
   :config
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
-  (setq-default '(rust-format-on-save t))
-  (setq-default '(racer-cmd "~/.cargo/bin/racer")) ;; Rustup binaries PATH
-  (setq-default '(racer-rust-src-path "/Users/mryall/Src/rust/rust/src")) ;; Rust source code PATH
+  (setq-default rust-format-on-save t)
+  (setq-default racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+  (setq-default racer-rust-src-path "/Users/mryall/Src/rust/rust/src") ;; Rust source code PATH
 
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'eldoc-mode)
