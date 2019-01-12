@@ -27,7 +27,6 @@
       (org-babel-load-file (concat setup-conf-dir "setup.org"))
 
       (require 'mjr-util)
-      (require 'mjr-setup)
       (require 'mjr-keymap)
       (require 'mjr-backup)
 
