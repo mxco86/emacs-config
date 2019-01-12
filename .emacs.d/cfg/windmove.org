@@ -1,19 +1,8 @@
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 
-  (use-package windmove
-    :ensure t
-    :config
-    (windmove-default-keybindings)
+(use-package windmove
+  :ensure t
+  :config
+  (windmove-default-keybindings))
 
-    (global-set-key (kbd "M-P") 'windmove-up)
-    (global-set-key (kbd "M-N") 'windmove-down)
-    (global-set-key (kbd "M-F") 'windmove-right)
-    (global-set-key (kbd "M-B") 'windmove-left)
-
-    (when (not (equal window-system 'x))
-      (progn (global-set-key (kbd "[1;2A") 'windmove-up)
-             (global-set-key (kbd "[1;2B") 'windmove-down)
-             (global-set-key (kbd "[1;2C") 'windmove-right)
-             (global-set-key (kbd "[1;2D") 'windmove-left))))
-
-#+END_SRC
+#+end_src

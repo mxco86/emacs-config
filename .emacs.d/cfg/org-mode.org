@@ -1,9 +1,9 @@
 
-* Org-Mode Configuration                                                :TOC_3:
+* Org-Mode Configuration                                              :TOC_3:
     - [[#list-setup][List Setup]]
     - [[#behaviours][Behaviours]]
     - [[#keybindings][Keybindings]]
-    - [[#fix-conflicts-disputed-keys-and-behaviour][Fix Conflicts, Disputed Keys and Behaviour]]
+    - [[#fix-conflicts-and-disputed-keys][Fix Conflicts and Disputed Keys]]
     - [[#org-agenda][Org-Agenda]]
     - [[#hooks][Hooks]]
     - [[#org-babel][Org-Babel]]
@@ -39,16 +39,17 @@
 
     #+END_SRC
 
-*** Fix Conflicts, Disputed Keys and Behaviour
+*** Fix Conflicts and Disputed Keys
     #+BEGIN_SRC emacs-lisp
 
-      ;; Make windmove work in Org mode:
-      (add-hook 'org-shiftup-final-hook 'windmove-up)
-      (add-hook 'org-shiftleft-final-hook 'windmove-left)
-      (add-hook 'org-shiftdown-final-hook 'windmove-down)
-      (add-hook 'org-shiftright-final-hook 'windmove-right)
+    ;; Make windmove work in Org mode:
+    (add-hook 'org-shiftup-final-hook 'windmove-up)
+    (add-hook 'org-shiftleft-final-hook 'windmove-left)
+    (add-hook 'org-shiftdown-final-hook 'windmove-down)
+    (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-      (setq-default org-replace-disputed-keys t)
+    (setq-default org-replace-disputed-keys t)
+    (setq-default org-support-shift-select 'always)
 
     #+END_SRC
 
