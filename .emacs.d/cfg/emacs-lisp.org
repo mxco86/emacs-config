@@ -1,0 +1,5 @@
+* Emacs Lisp Programming Configuration
+  #+begin_src emacs-lisp
+
+  (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
+  #+end_src
