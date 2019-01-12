@@ -1,5 +1,5 @@
 
-* Main Emacs Config                                                   :TOC_3:
+* Main Emacs Config                                                   :TOC_5:
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
     - [[#external-program-execution][External Program Execution]]
@@ -8,6 +8,7 @@
     - [[#function-aliases][Function Aliases]]
     - [[#global-key-mappings][Global Key Mappings]]
     - [[#literate-library-directories][Literate Library Directories]]
+        - [[#literate-configurations][Literate Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
 
 *** Frame and Buffer Behaviour
@@ -113,9 +114,44 @@
                   (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
 
       (mjr/load-literate-cfg)
-      ;;(mjr/load-mode-cfg)
+
+      (defun mjr/insert-literate-config-file-list ()
+        (interactive)
+        (let ((cfg-conf-dir "~/.emacs.d/cfg/")
+              (file-list nil))
+          (setq file-list (directory-files cfg-conf-dir nil "^[^.]\.*.org"))
+                (save-excursion
+                  (goto-char (point-min))
+                  (when (re-search-forward "[:]CFGLST:" (point-max) t)
+                    (let ((beg (point))
+                          (end
+                           (save-excursion
+                             (when (search-forward-regexp "^\\*" (point-max))
+                               (forward-line -1))
+                             (end-of-line)
+                             (point))))
+                      (delete-region beg end))
+                    (insert "\n")
+                    (mapcar '(lambda (file) (insert (format "      - [[file:cfg/%s]]\n" file))) file-list)))))
 
     #+END_SRC
+
+***** Literate Configurations                                        :CFGLST:
+      - [[file:cfg/color-theme.org]]
+      - [[file:cfg/company.org]]
+      - [[file:cfg/flycheck.org]]
+      - [[file:cfg/flyspell.org]]
+      - [[file:cfg/ibuffer.org]]
+      - [[file:cfg/ido.org]]
+      - [[file:cfg/json.org]]
+      - [[file:cfg/magit.org]]
+      - [[file:cfg/org-mode.org]]
+      - [[file:cfg/paredit.org]]
+      - [[file:cfg/rust.org]]
+      - [[file:cfg/smex.org]]
+      - [[file:cfg/typescript.org]]
+      - [[file:cfg/windmove.org]]
+      - [[file:cfg/yaml.org]]
 
 *** File Backups and Autosave
     #+begin_src emacs-lisp
