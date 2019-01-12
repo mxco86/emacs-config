@@ -73,9 +73,8 @@
 
 *** Org-Babel
     #+BEGIN_SRC emacs-lisp
-
-      (setq-default org-src-tab-acts-natively t)
-
+    (setq-default org-src-tab-acts-natively t)
+    (setq-default org-edit-src-content-indentation 0)
     #+END_SRC
 
 *** Generate Table of Contents
