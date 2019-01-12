@@ -75,6 +75,8 @@
     #+BEGIN_SRC emacs-lisp
     (setq-default org-src-tab-acts-natively t)
     (setq-default org-edit-src-content-indentation 0)
+    (setq-default org-src-window-setup 'current-window)
+    (setq-default org-edit-src-persistent-message nil)
     #+END_SRC
 
 *** Generate Table of Contents
