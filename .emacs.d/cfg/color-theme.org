@@ -1,7 +1,7 @@
 * Color Theme Configuration
   - Use solarized
 
-#+BEGIN_SRC emacs-lisp
+  #+BEGIN_SRC emacs-lisp
 
   (use-package color-theme
     :ensure t
@@ -13,4 +13,4 @@
     :config
     (color-theme-solarized))
 
-#+END_SRC
+  #+END_SRC
