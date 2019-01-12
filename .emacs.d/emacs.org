@@ -8,7 +8,7 @@
     - [[#function-aliases][Function Aliases]]
     - [[#global-key-mappings][Global Key Mappings]]
     - [[#literate-library-directories][Literate Library Directories]]
-        - [[#literate-configurations][Literate Configurations]]
+        - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
 
 *** Frame and Buffer Behaviour
@@ -72,11 +72,13 @@
 *** Font and Display
     #+begin_src emacs-lisp
 
-      (defun mjr/init-font-size (frame font value)
-        (set-frame-parameter frame 'font
-                             (concat font "-" (number-to-string value))))
+    (defun mjr/init-font-size (frame font value)
+      (set-frame-parameter frame 'font
+                           (concat font "-" (number-to-string value))))
 
-      (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" 16)
+    (defun mjr/set-font (size)
+      (interactive "nSize: ")
+      (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" size))
 
     #+end_src
 
@@ -105,38 +107,39 @@
     - Add load directories for mode-specific literate configs
     #+BEGIN_SRC emacs-lisp
 
-      ;; load mode specific configs
-      (defun mjr/load-literate-cfg ()
-        "Load literate config files using org-babel."
-        (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
-          (mapcar #'(lambda (conf-file)
-                      (org-babel-load-file (concat cfg-conf-dir conf-file)))
-                  (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
+    (defun mjr/load-literate-cfg ()
+      "Load literate config files using org-babel."
+      (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
+        (mapcar #'(lambda (conf-file)
+                    (org-babel-load-file (concat cfg-conf-dir conf-file)))
+                (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
 
-      (mjr/load-literate-cfg)
+    (mjr/load-literate-cfg)
 
-      (defun mjr/insert-literate-config-file-list ()
-        (interactive)
-        (let ((cfg-conf-dir "~/.emacs.d/cfg/")
-              (file-list nil))
-          (setq file-list (directory-files cfg-conf-dir nil "^[^.]\.*.org"))
-                (save-excursion
-                  (goto-char (point-min))
-                  (when (re-search-forward "[:]CFGLST:" (point-max) t)
-                    (let ((beg (point))
-                          (end
-                           (save-excursion
-                             (when (search-forward-regexp "^\\*" (point-max))
-                               (forward-line -1))
-                             (end-of-line)
-                             (point))))
-                      (delete-region beg end))
-                    (insert "\n")
-                    (mapcar '(lambda (file) (insert (format "      - [[file:cfg/%s]]\n" file))) file-list)))))
+    (defun mjr/insert-literate-config-file-list ()
+      (interactive)
+      (let ((cfg-conf-dir "~/.emacs.d/cfg/")
+            (file-list nil))
+        (setq file-list (directory-files cfg-conf-dir nil "^[^.]\.*.org"))
+        (save-excursion
+          (goto-char (point-min))
+          (when (re-search-forward "[:]CFGLST:" (point-max) t)
+            (let ((beg (point))
+                  (end
+                   (save-excursion
+                     (when (search-forward-regexp "^\\*" (point-max))
+                       (forward-line -1))
+                     (end-of-line)
+                     (point))))
+              (delete-region beg end))
+            (insert "\n")
+            (mapcar '(lambda (file) (insert (format "      - [[file:cfg/%s]]\n" file))) file-list)))))
+
+    (add-hook 'before-save-hook 'mjr/insert-literate-config-file-list nil t)
 
     #+END_SRC
 
-***** Literate Configurations                                        :CFGLST:
+***** Literate Mode Configurations                                   :CFGLST:
       - [[file:cfg/color-theme.org]]
       - [[file:cfg/company.org]]
       - [[file:cfg/flycheck.org]]
