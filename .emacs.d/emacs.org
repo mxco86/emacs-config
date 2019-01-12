@@ -1,6 +1,5 @@
 
 * Main Emacs Config                                                   :TOC_3:
-    - [[#load-paths-and-library-directories][Load Paths and Library Directories]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
     - [[#external-program-execution][External Program Execution]]
@@ -10,20 +9,6 @@
     - [[#global-key-mappings][Global Key Mappings]]
     - [[#literate-library-directories][Literate Library Directories]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
-
-*** Load Paths and Library Directories
-    - Add load directories for mode-specific configs
-    #+BEGIN_SRC emacs-lisp
-
-      ;; add lisp directories
-      (let* ((elisp-dir "~/.emacs.d/site-lisp")
-             (mjr-elisp-dir "~/.emacs.d/mjr")
-             (default-directory elisp-dir))
-        (add-to-list 'load-path elisp-dir)
-        (add-to-list 'load-path mjr-elisp-dir)
-        (normal-top-level-add-subdirs-to-load-path))
-
-    #+END_SRC
 
 *** Frame and Buffer Behaviour
     - I prefer sparse frames so remove as much as we can
