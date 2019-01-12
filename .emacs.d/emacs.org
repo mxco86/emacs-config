@@ -1,8 +1,15 @@
 
 * Main Emacs Config                                                   :TOC_3:
     - [[#load-paths-and-library-directories][Load Paths and Library Directories]]
-    - [[#general-emacs-setup][General Emacs Setup]]
+    - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
+    - [[#custom-variables][Custom Variables]]
+    - [[#external-program-execution][External Program Execution]]
+    - [[#buffer-behaviour][Buffer Behaviour]]
+    - [[#font-and-display][Font and Display]]
+    - [[#function-aliases][Function Aliases]]
+    - [[#global-key-mappings][Global Key Mappings]]
     - [[#literate-library-directories][Literate Library Directories]]
+    - [[#file-backups-and-autosave][File Backups and Autosave]]
 
 *** Load Paths and Library Directories
     - Add load directories for mode-specific configs
@@ -18,22 +25,98 @@
 
     #+END_SRC
 
-*** General Emacs Setup
-    - Utilities
-    - Keymaps
-    - Backup and autosave files and directories
-
+*** Frame and Buffer Behaviour
+    - I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
 
-      ;; Load basic utilities and config
-      (defvar setup-conf-dir "~/.emacs.d/mjr/")
-      (org-babel-load-file (concat setup-conf-dir "setup.org"))
+      ;; be quiet
+      (setq-default inhibit-startup-message  t)
 
-      (require 'mjr-util)
-      (require 'mjr-keymap)
-      (require 'mjr-backup)
+      ;; clear the furniture
+      (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+      (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+      (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-     #+END_SRC
+    #+END_SRC
+
+*** Custom Variables
+   - Place all custom-defined variables in their own file
+   - Store the custom variable file in the local machine's home directory
+     outside of version control
+   - This enables us to keep machine-specific config here
+   #+BEGIN_SRC emacs-lisp
+
+     (setq-default custom-file "~/.emacs-custom.el")
+     (load custom-file 'noerror)
+
+   #+END_SRC
+
+*** External Program Execution
+    - Ensure we can execute programs located at various paths by setting the
+      execution path from our shell
+    #+BEGIN_SRC emacs-lisp
+
+      (use-package exec-path-from-shell
+      :ensure t
+      :config
+      (exec-path-from-shell-initialize))
+
+    #+END_SRC
+
+*** Buffer Behaviour
+    #+begin_src emacs-lisp
+
+      (show-paren-mode t)
+      (setq line-number-mode t)
+      (setq column-number-mode t)
+      (global-font-lock-mode t)
+      (mouse-avoidance-mode 'exile)
+
+      (setq-default fill-column 78)
+      (setq-default truncate-lines t)
+      (setq-default indent-tabs-mode nil)
+      (setq-default ring-bell-function 'ignore)
+      (setq-default transient-mark-mode t)
+      (setq-default x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+      (setq-default next-line-add-newlines t)
+      (add-to-list 'write-file-functions 'delete-trailing-whitespace)
+
+    #+end_src
+
+*** Font and Display
+    #+begin_src emacs-lisp
+
+      (defun mjr/init-font-size (frame font value)
+        (set-frame-parameter frame 'font
+                             (concat font "-" (number-to-string value))))
+
+      (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" 16)
+
+    #+end_src
+
+*** Function Aliases
+    #+begin_src emacs-lisp
+
+      (fset 'yes-or-no-p 'y-or-n-p)
+
+    #+end_src
+
+*** Global Key Mappings
+    #+BEGIN_SRC emacs-lisp
+
+      (global-set-key "\C-x\C-m" 'smex)
+      (global-set-key "\C-c\C-m" 'smex)
+      (global-set-key "\C-w"     'backward-kill-word)
+      (global-set-key "\C-x\C-k" 'kill-region)
+      (global-set-key "\C-c\C-k" 'kill-region)
+      (global-set-key "\C-xr"    'query-replace-regexp)
+      (global-set-key "\C-xl"    'goto-line )
+      (global-set-key "\C-cb"    'bury-buffer )
+      (global-set-key "\C-cf"    'revert-buffer )
+      (global-set-key "\C-csw"   'flyspell-auto-correct-word )
+      (global-set-key "\r"       'newline-and-indent)
+
+    #+END_SRC
 
 *** Literate Library Directories
     - Add load directories for mode-specific literate configs
@@ -51,3 +134,34 @@
       ;;(mjr/load-mode-cfg)
 
     #+END_SRC
+
+*** File Backups and Autosave
+    #+begin_src emacs-lisp
+      ;; create a backup file directory
+      (defvar backup-dir
+        (concat "/tmp/emacs_backups/" (user-login-name) "/"))
+
+      (make-directory backup-dir t)
+
+      ;; put backups in one place
+      (setq backup-directory-alist (list (cons "." backup-dir)))
+
+      ;; put autosaves in one place
+      (defvar autosave-dir
+        (concat "/tmp/emacs_autosaves/" (user-login-name) "/"))
+
+      (make-directory autosave-dir t)
+
+      ;; do we need a filename?
+      (defun auto-save-file-name-p (filename)
+        (string-match "^#.*#$" (file-name-nondirectory filename)))
+
+      ;; create a filename for saving backups
+      (defun make-auto-save-file-name ()
+        (concat autosave-dir
+                (if buffer-file-name
+                    (concat "#"
+                            (file-name-nondirectory buffer-file-name) "#")
+                  (expand-file-name (concat "#%" (buffer-name) "#")))))
+
+    #+end_src
