@@ -80,6 +80,7 @@
       (interactive "nSize: ")
       (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" size))
 
+    (mjr/set-font 16)
     #+end_src
 
 *** Function Aliases
