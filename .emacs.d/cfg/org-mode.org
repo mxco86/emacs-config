@@ -65,20 +65,23 @@
       here instead of in the use-package definition
     #+BEGIN_SRC emacs-lisp
 
-      (add-hook 'org-mode-hook
-                '(lambda ()
-                   (turn-on-flyspell)
-                   (auto-fill-mode t)))
-
+    (add-hook 'org-mode-hook
+              '(lambda ()
+                 (turn-on-flyspell)
+                 (auto-fill-mode t)))
     #+END_SRC
 
 *** Org-Babel
-    #+BEGIN_SRC emacs-lisp
+    #+begin_src emacs-lisp
+
     (setq-default org-src-tab-acts-natively t)
     (setq-default org-edit-src-content-indentation 0)
     (setq-default org-src-window-setup 'current-window)
     (setq-default org-edit-src-persistent-message nil)
-    #+END_SRC
+
+    (define-advice org-edit-src-exit (:before (&rest _args))
+      (delete-trailing-whitespace))
+    #+end_src
 
 *** Generate Table of Contents
     - Automatically generates a table of contents for an org buffer based on
