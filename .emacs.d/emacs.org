@@ -52,20 +52,21 @@
 *** Buffer Behaviour
     #+begin_src emacs-lisp
 
-      (show-paren-mode t)
-      (setq line-number-mode t)
-      (setq column-number-mode t)
-      (global-font-lock-mode t)
-      (mouse-avoidance-mode 'exile)
+    (show-paren-mode t)
+    (setq line-number-mode t)
+    (setq column-number-mode t)
+    (global-font-lock-mode t)
+    (mouse-avoidance-mode 'exile)
 
-      (setq-default fill-column 78)
-      (setq-default truncate-lines t)
-      (setq-default indent-tabs-mode nil)
-      (setq-default ring-bell-function 'ignore)
-      (setq-default transient-mark-mode t)
-      (setq-default x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
-      (setq-default next-line-add-newlines t)
-      (add-to-list 'write-file-functions 'delete-trailing-whitespace)
+    (setq-default fill-column 78)
+    (setq-default split-width-threshold 120)
+    (setq-default truncate-lines t)
+    (setq-default indent-tabs-mode nil)
+    (setq-default ring-bell-function 'ignore)
+    (setq-default transient-mark-mode t)
+    (setq-default x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+    (setq-default next-line-add-newlines t)
+    (add-to-list 'write-file-functions 'delete-trailing-whitespace)
 
     #+end_src
 
