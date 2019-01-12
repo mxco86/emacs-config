@@ -89,8 +89,6 @@
 *** Global Key Mappings
     #+BEGIN_SRC emacs-lisp
 
-      (global-set-key "\C-x\C-m" 'smex)
-      (global-set-key "\C-c\C-m" 'smex)
       (global-set-key "\C-w"     'backward-kill-word)
       (global-set-key "\C-x\C-k" 'kill-region)
       (global-set-key "\C-c\C-k" 'kill-region)
@@ -98,7 +96,6 @@
       (global-set-key "\C-xl"    'goto-line )
       (global-set-key "\C-cb"    'bury-buffer )
       (global-set-key "\C-cf"    'revert-buffer )
-      (global-set-key "\C-csw"   'flyspell-auto-correct-word )
       (global-set-key "\r"       'newline-and-indent)
 
     #+END_SRC

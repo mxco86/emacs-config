@@ -5,8 +5,8 @@
     :ensure t
     :config
     (setq-default ispell-program-name "aspell"
-                  ispell-dictionary   "british"))
-
-  (add-hook 'text-mode-hook 'turn-on-flyspell)
+                  ispell-dictionary   "british")
+    (global-set-key "\C-csw" 'flyspell-auto-correct-word)
+    (add-hook 'text-mode-hook 'turn-on-flyspell))
 
 #+END_SRC
