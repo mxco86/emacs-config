@@ -1,11 +1,16 @@
 
 * My Emacs Config
+  This is my emacs configuration which is written as a set of org-mode files
+  and loaded via`org-babel-load-file`. I have a single top-level file for
+  general config and I like to split mode-specific config into their own
+  files, sometimes just with a simple `use-package` call to load the mode. I
+  do this to because it fits with my source control workflow when adding
+  subsequent mode config. It also helps me to remember which modes I have
+  configured and helps remind me to remove config for modes I am no longer
+  using. I have a small function to generate a list of the mode-specific
+  config files an add them into the main emacs.org file dynamically when I
+  edit the top-level file. Not a perfect system but good enough for me.
 
-* Config Organisation and Documentation
-
-* Org-Mode, Org-Babel and Elisp Source Blocks
-
-* How does this work?
   - Bootstrap elisp file is here: [[file:.emacs]]
   - Literate config starts here: [[file:.emacs.d/emacs.org]]
   - Mode-specific configs are here: [[file:.emacs.d/cfg/]]
