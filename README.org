@@ -1,9 +1,9 @@
 
 * My Emacs Config
   This is my emacs configuration which is written as a set of org-mode files
-  and loaded via`org-babel-load-file`. I have a single top-level file for
+  and loaded via ~org-babel-load-file~. I have a single top-level file for
   general config and I like to split mode-specific config into their own
-  files, sometimes just with a simple `use-package` call to load the mode. I
+  files, sometimes just with a simple ~use-package~ call to load the mode. I
   do this to because it fits with my source control workflow when adding
   subsequent mode config. It also helps me to remember which modes I have
   configured and helps remind me to remove config for modes I am no longer
