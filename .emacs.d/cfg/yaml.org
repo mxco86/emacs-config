@@ -1,17 +1,17 @@
 * YAML Configuration
   #+begin_src emacs-lisp
 
-    (use-package yaml-mode
-      :ensure t
-      :config
-      (add-hook 'yaml-mode-hook 'flycheck-mode))
+  (use-package yaml-mode
+    :ensure t
+    :config
+    (add-hook 'yaml-mode-hook 'flycheck-mode))
 
-    (use-package flycheck-yamllint
-      :ensure t
-      :defer t
-      :init
-      (progn
-        (eval-after-load 'flycheck
-          '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
-
+  (use-package flycheck-yamllint
+    :ensure t
+    :defer t
+    :ensure-system-package ("/usr/local/bin/yamllint" . "brew install yamllint")
+    :init
+    (progn
+      (eval-after-load 'flycheck
+        '(add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))))
   #+end_src
