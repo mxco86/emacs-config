@@ -1,5 +1,6 @@
 
 * Main Emacs Config                                                   :TOC_5:
+    - [[#use-package-extensions][Use Package Extensions]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
     - [[#external-program-execution][External Program Execution]]
@@ -10,6 +11,13 @@
     - [[#literate-library-directories][Literate Library Directories]]
         - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
+
+*** Use Package Extensions
+    - Enable Emacs to install dependent system packages
+    #+begin_src emacs-lisp
+    (use-package use-package-ensure-system-package
+      :ensure t)
+    #+end_src
 
 *** Frame and Buffer Behaviour
     - I prefer sparse frames so remove as much as we can
