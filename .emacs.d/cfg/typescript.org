@@ -32,19 +32,16 @@
 
     (use-package add-node-modules-path
       :ensure t
-      :defer t
       :config
       (add-hook 'typescript-mode-hook #'add-node-modules-path))
 
     (use-package npm-mode
       :ensure t
-      :defer t
       :config
       (add-hook 'typescript-mode-hook #'npm-mode))
 
     (use-package prettier-js
       :ensure t
-      :defer t
       :config
       (add-hook 'typescript-mode-hook #'prettier-js-mode))
     #+end_src
