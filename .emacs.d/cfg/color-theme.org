@@ -1,5 +1,6 @@
 * Color Theme Configuration
-  - Use solarized
+  Use the color-theme-based solarized. There are other implementations that
+  use load-theme, however, I don't like the faces and mode-line changes
 
   #+BEGIN_SRC emacs-lisp
 
