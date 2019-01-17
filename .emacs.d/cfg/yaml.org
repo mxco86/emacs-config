@@ -3,7 +3,7 @@
 
   (use-package yaml-mode
     :ensure t
-    :config
+    :init
     (add-hook 'yaml-mode-hook 'flycheck-mode))
 
   (use-package flycheck-yamllint

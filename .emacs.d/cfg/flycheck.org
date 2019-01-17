@@ -3,7 +3,7 @@
 
   (use-package flycheck
     :ensure t
-    :config
+    :init
     (add-hook 'after-init-hook #'global-flycheck-mode))
 
 #+END_SRC

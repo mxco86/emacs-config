@@ -3,9 +3,10 @@
 
 (use-package json-mode
   :ensure t
-  :config
+  :init
   (add-hook 'json-mode-hook #'prettier-js-mode)
   (add-hook 'json-mode-hook #'flycheck-mode)
   (add-hook 'json-mode-hook #'add-node-modules-path)
+  :config
   (setq-default js-indent-level 2))
 #+end_src
