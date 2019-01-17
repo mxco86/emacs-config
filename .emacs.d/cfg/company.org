@@ -1,10 +1,9 @@
-
 * Autocompletion
+  Use company for simple autocompletion in most contexts
   #+BEGIN_SRC emacs-lisp
 
   (use-package company
     :ensure t
-    :config
+    :init
     (add-hook 'after-init-hook 'global-company-mode))
-
   #+END_SRC
