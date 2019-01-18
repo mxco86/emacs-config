@@ -1,12 +1,16 @@
+* Flyspell Configuration
+Enable spell check on all text buffers. Flyspell for other modes is added in
+the specific mode configuration
 
 #+BEGIN_SRC emacs-lisp
 
-  (use-package flyspell
-    :ensure t
-    :config
-    (setq-default ispell-program-name "aspell"
-                  ispell-dictionary   "british")
-    (global-set-key "\C-csw" 'flyspell-auto-correct-word)
-    (add-hook 'text-mode-hook 'turn-on-flyspell))
-
+(use-package flyspell
+  :ensure t
+  :commands (turn-on-flyspell)
+  :ensure-system-package ("/usr/local/bin/aspell" . "brew install aspell")
+  :init (add-hook 'text-mode-hook 'turn-on-flyspell)
+  :config
+  (setq-default ispell-program-name "aspell"
+                ispell-dictionary   "british")
+  (global-set-key "\C-csw" 'flyspell-auto-correct-word))
 #+END_SRC

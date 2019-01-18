@@ -19,10 +19,11 @@
 
       (add-hook 'before-save-hook 'tide-format-before-save)
       (add-hook 'typescript-mode-hook #'setup-tide-mode)
-      (add-hook 'typescript-mode-hook #'flyspell-prog-mode))
+      (add-hook 'typescript-mode-hook #'flyspell-prog-mode)
       :config
       (setq-default company-tooltip-align-annotations t)
       (setq-default typescript-indent-level 2)
+      (setq-local flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
     #+end_src
 
 *** Node/Typescript Development

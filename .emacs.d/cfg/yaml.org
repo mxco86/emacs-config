@@ -6,6 +6,7 @@
     :commands (yaml-mode)
     :init
     (add-hook 'yaml-mode-hook 'flycheck-mode)
+    (add-hook 'yaml-mode-hook 'flyspell-prog-mode)
     :config
     (use-package flycheck-yamllint
       :ensure t
