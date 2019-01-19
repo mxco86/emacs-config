@@ -6,6 +6,6 @@
     :ensure t
     :commands (magit-status magit-dispatch-popup)
     :init
-    (global-set-key (kbd "C-x g") 'magit-status)
-    (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup))
+    (bind-key "C-x g" 'magit-status)
+    (bind-key "C-x M-g" 'magit-dispatch-popup))
   #+end_src
