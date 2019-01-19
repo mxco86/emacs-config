@@ -5,20 +5,28 @@
 
 (use-package rust-mode
   :ensure t
-  :config
+  :init
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
-
+  (add-hook 'rust-mode-hook #'racer-mode)
+  :config
   (setq-default rust-format-on-save t)
   (setq-default racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
-  (setq-default racer-rust-src-path "/Users/mryall/Src/rust/rust/src") ;; Rust source code PATH
+  (setq-default racer-rust-src-path "/Users/mryall/Src/rust/rust/src")) ;; Rust source code PATH
 
-  (add-hook 'rust-mode-hook #'racer-mode)
+(use-package racer
+  :ensure t
+  :after rust-mode
+  :init
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode))
 
+(use-package cargo
+  :ensure t
+  :after rust-mode)
+
 (use-package flycheck-rust
   :ensure t
-  :config
+  :after rust-mode
+  :init
   (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
-
 #+END_SRC
