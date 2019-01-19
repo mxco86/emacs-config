@@ -13,14 +13,14 @@
     - [[#file-backups-and-autosave][File Backups and Autosave]]
 
 *** Use Package Extensions
-    - Enable Emacs to install dependent system packages
+    Enable Emacs to install dependent system packages
     #+begin_src emacs-lisp
     (use-package use-package-ensure-system-package
       :ensure t)
     #+end_src
 
 *** Frame and Buffer Behaviour
-    - I prefer sparse frames so remove as much as we can
+    I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
 
       ;; be quiet
@@ -34,10 +34,9 @@
     #+END_SRC
 
 *** Custom Variables
-   - Place all custom-defined variables in their own file
-   - Store the custom variable file in the local machine's home directory
-     outside of version control
-   - This enables us to keep machine-specific config here
+    Place all custom-defined variables in their own file and store the custom
+    variable file in the local machine's home directory outside of version
+    control. This enables us to keep specific config local to each machine
    #+BEGIN_SRC emacs-lisp
 
      (setq-default custom-file "~/.emacs-custom.el")
@@ -46,8 +45,8 @@
    #+END_SRC
 
 *** External Program Execution
-    - Ensure we can execute programs located at various paths by setting the
-      execution path from our shell
+    Ensure we can execute programs located at various paths by setting the
+    execution path from our shell
     #+BEGIN_SRC emacs-lisp
 
       (use-package exec-path-from-shell
@@ -114,7 +113,7 @@
     #+END_SRC
 
 *** Literate Library Directories
-    - Add load directories for mode-specific literate configs
+    Add load directories for mode-specific literate configs
     #+BEGIN_SRC emacs-lisp
 
     (defun mjr/load-literate-cfg ()
