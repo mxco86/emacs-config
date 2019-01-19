@@ -6,12 +6,13 @@
     :commands (yaml-mode)
     :init
     (add-hook 'yaml-mode-hook 'flycheck-mode)
-    (add-hook 'yaml-mode-hook 'flyspell-prog-mode)
-    :config
-    (use-package flycheck-yamllint
-      :ensure t
-      :commands (yaml-mode)
-      :ensure-system-package ("/usr/local/bin/yamllint" . "brew install yamllint")
-      :init
-      (add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup)))
+    (add-hook 'yaml-mode-hook 'flyspell-prog-mode))
+
+  (use-package flycheck-yamllint
+    :ensure t
+    :after yaml-mode
+    :commands (yaml-mode)
+    :ensure-system-package ("/usr/local/bin/yamllint" . "brew install yamllint")
+    :init
+    (add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))
   #+end_src
