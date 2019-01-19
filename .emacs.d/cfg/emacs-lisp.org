@@ -1,5 +1,13 @@
 * Emacs Lisp Programming Configuration
+  Lisp mode is an internal package but wrapping the configurartion in a
+  use-package form keeps things consistent
+
   #+begin_src emacs-lisp
 
-  (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
+  (use-package lisp-mode
+    :ensure nil
+    :commands emacs-lisp-mode
+    :config
+    (bind-key "RET" 'comment-indent-new-line emacs-lisp-mode-map)
+    (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode))
   #+end_src
