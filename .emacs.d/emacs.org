@@ -147,8 +147,8 @@
     #+END_SRC
 
 ***** Literate Mode Configurations                                   :CFGLST:
-      - [[file:cfg/ag.org]]
       - [[file:cfg/color-theme.org]]
+      - [[file:cfg/command-exec.org]]
       - [[file:cfg/company.org]]
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
@@ -160,7 +160,7 @@
       - [[file:cfg/org-mode.org]]
       - [[file:cfg/paredit.org]]
       - [[file:cfg/rust.org]]
-      - [[file:cfg/smex.org]]
+      - [[file:cfg/search.org]]
       - [[file:cfg/typescript.org]]
       - [[file:cfg/windmove.org]]
       - [[file:cfg/yaml.org]]

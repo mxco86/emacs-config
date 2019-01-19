@@ -1,16 +1,28 @@
 * Command Execution Configuration
-Smex is a command suggestion tool that brings up recently used commands in the
-minibuffer
+*** Smex
+    Smex is a command suggestion tool that brings up recently used commands in
+    the minibuffer
 
-- https://github.com/nonsequitur/smex
+  - https://github.com/nonsequitur/smex
 
-#+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp
 
-(use-package smex
-  :ensure t
-  :init
-  (bind-key "C-x C-m" 'smex)
-  (bind-key "C-c C-m" 'smex)
-  :config
-  (smex-initialize))
-#+END_SRC
+  (use-package smex
+    :ensure t
+    :init
+    (bind-key "C-x C-m" 'smex)
+    (bind-key "C-c C-m" 'smex)
+    :config
+    (smex-initialize))
+  #+end_src
+
+*** Ido Mode
+  #+begin_src emacs-lisp
+
+  (use-package ido
+    :ensure t
+    :config
+    (ido-mode t)
+    (ido-everywhere 1)
+    (setq ido-enable-flex-matching t))
+  #+end_src
