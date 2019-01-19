@@ -150,8 +150,10 @@
     #+END_SRC
 
 ***** Literate Mode Configurations                                   :CFGLST:
+      - [[file:cfg/ag.org]]
       - [[file:cfg/color-theme.org]]
       - [[file:cfg/company.org]]
+      - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/flyspell.org]]
       - [[file:cfg/ibuffer.org]]
