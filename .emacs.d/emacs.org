@@ -144,8 +144,6 @@
             (insert "\n")
             (mapcar '(lambda (file) (insert (format "      - [[file:cfg/%s]]\n" file))) file-list)))))
 
-    (add-hook 'before-save-hook 'mjr/insert-literate-config-file-list nil t)
-
     #+END_SRC
 
 ***** Literate Mode Configurations                                   :CFGLST:
