@@ -11,3 +11,4 @@ network-security.data
 .emacs.d/mjr/*.el
 .emacs.d/emacs.el
 .emacs.d/history 
+/.emacs.d/recentf
