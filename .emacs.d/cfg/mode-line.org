@@ -1,0 +1,10 @@
+
+* Modeline Configuration
+
+#+begin_src emacs-lisp
+
+(use-package spaceline
+  :ensure t
+  :config
+  (spaceline-emacs-theme))
+#+end_src
