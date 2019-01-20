@@ -7,5 +7,7 @@
     :commands (magit-status magit-dispatch-popup)
     :init
     (bind-key "C-x g" 'magit-status)
-    (bind-key "C-x M-g" 'magit-dispatch-popup))
+    (bind-key "C-x M-g" 'magit-dispatch-popup)
+    :config
+    (setq-default git-commit-major-mode 'git-commit-mode))
   #+end_src
