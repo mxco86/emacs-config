@@ -59,12 +59,8 @@
 *** Buffer Behaviour
     #+begin_src emacs-lisp
 
-    (show-paren-mode t)
-    (setq line-number-mode t)
-    (setq column-number-mode t)
-    (global-font-lock-mode t)
-    (mouse-avoidance-mode 'exile)
-
+    (setq-default line-number-mode t)
+    (setq-default column-number-mode t)
     (setq-default fill-column 78)
     (setq-default split-width-threshold 120)
     (setq-default truncate-lines t)
@@ -75,6 +71,10 @@
     (setq-default next-line-add-newlines t)
     (add-to-list 'write-file-functions 'delete-trailing-whitespace)
 
+    (global-font-lock-mode t)
+    (mouse-avoidance-mode 'exile)
+    (show-paren-mode t)
+    (global-auto-revert-mode 1)
     #+end_src
 
 *** Font and Display
@@ -89,6 +89,7 @@
       (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" size))
 
     (mjr/set-font 16)
+    (toggle-frame-maximized)
     #+end_src
 
 *** Function Aliases
@@ -154,14 +155,15 @@
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/flyspell.org]]
       - [[file:cfg/ibuffer.org]]
-      - [[file:cfg/ido.org]]
       - [[file:cfg/json.org]]
       - [[file:cfg/magit.org]]
+      - [[file:cfg/mode-line.org]]
       - [[file:cfg/org-mode.org]]
       - [[file:cfg/paredit.org]]
       - [[file:cfg/rust.org]]
       - [[file:cfg/search.org]]
       - [[file:cfg/typescript.org]]
+      - [[file:cfg/web.org]]
       - [[file:cfg/windmove.org]]
       - [[file:cfg/yaml.org]]
 
