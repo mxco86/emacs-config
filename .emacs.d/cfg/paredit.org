@@ -5,13 +5,14 @@
   - Use Paredit mode for all lisp programming buffers
 
   #+begin_src emacs-lisp
-  (use-package paredit
-    :ensure t
-    :config
-    (mapcar (lambda (hook)
-              (add-hook hook '(lambda () (paredit-mode 1))))
-            '(lisp-mode-hook
-              slime-repl-mode-hook
-              lisp-interaction-mode-hook
-              emacs-lisp-mode-hook)))
+    (use-package paredit
+      :ensure t
+      :commands (paredit-mode)
+      :config
+      (mapcar (lambda (hook)
+                (add-hook hook '(lambda () (paredit-mode 1))))
+              '(lisp-mode-hook
+                slime-repl-mode-hook
+                lisp-interaction-mode-hook
+                emacs-lisp-mode-hook)))
   #+end_src

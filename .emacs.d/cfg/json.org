@@ -3,6 +3,7 @@
 
 (use-package json-mode
   :ensure t
+  :commands (json-mode)
   :init
   (add-hook 'json-mode-hook #'prettier-js-mode)
   (add-hook 'json-mode-hook #'flycheck-mode)

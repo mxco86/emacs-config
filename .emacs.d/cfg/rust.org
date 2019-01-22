@@ -5,6 +5,7 @@
 
 (use-package rust-mode
   :ensure t
+  :commands (rust-mode)
   :init
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'rust-mode-hook #'racer-mode)
