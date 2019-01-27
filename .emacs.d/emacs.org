@@ -75,6 +75,8 @@
     (mouse-avoidance-mode 'exile)
     (show-paren-mode t)
     (global-auto-revert-mode 1)
+    (subword-mode 1)
+    (global-prettify-symbols-mode 1)
     #+end_src
 
 *** Font and Display
@@ -151,6 +153,7 @@
       - [[file:cfg/color-theme.org]]
       - [[file:cfg/command-exec.org]]
       - [[file:cfg/company.org]]
+      - [[file:cfg/docker.org]]
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/flyspell.org]]
