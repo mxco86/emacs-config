@@ -44,3 +44,12 @@
             (lambda ()
               (ibuffer-switch-to-saved-filter-groups "default"))))
 #+END_SRC
+
+#+begin_src emacs-lisp
+
+(use-package vimish-fold
+  :ensure t
+  :commands (vimish-fold-toggle vimish-fold)
+  :init
+  (vimish-fold-global-mode 1))
+#+end_src

@@ -8,6 +8,7 @@
     :init
     (bind-key "C-x g" 'magit-status)
     (bind-key "C-x M-g" 'magit-dispatch-popup)
+    (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
     :config
     (setq-default git-commit-major-mode 'git-commit-mode))
   #+end_src

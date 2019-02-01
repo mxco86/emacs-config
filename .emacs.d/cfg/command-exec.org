@@ -44,7 +44,8 @@
     ;; intentional space before end of string
     (setq-default ivy-count-format "(%d/%d) ")
     (setq-default ivy-initial-inputs-alist nil)
-    (setq-default ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+    (setq-default ivy-re-builders-alist
+                  '((t . ivy--regex-plus) (t . ivy--regex-fuzzy)))
     (setq-default ivy-extra-directories nil))
 
     (use-package flx :ensure t :after counsel)

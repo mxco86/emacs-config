@@ -75,7 +75,7 @@
     (mouse-avoidance-mode 'exile)
     (show-paren-mode t)
     (global-auto-revert-mode 1)
-    (subword-mode 1)
+    (global-subword-mode 1)
     (global-prettify-symbols-mode 1)
     #+end_src
 
@@ -166,7 +166,9 @@
       - [[file:cfg/rust.org]]
       - [[file:cfg/search.org]]
       - [[file:cfg/typescript.org]]
+      - [[file:cfg/web.org]]
       - [[file:cfg/windmove.org]]
+      - [[file:cfg/writing.org]]
       - [[file:cfg/yaml.org]]
 
 *** File Backups and Autosave
