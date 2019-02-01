@@ -1,0 +1,9 @@
+#+begin_src emacs-lisp
+
+(use-package writegood-mode
+  :ensure t
+  :diminish writegood-mode
+  :config
+  (progn
+    (add-hook 'text-mode-hook 'writegood-mode)))
+#+end_src
