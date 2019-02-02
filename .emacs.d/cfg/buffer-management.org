@@ -1,0 +1,74 @@
+* Buffer Management Configuration
+*** Buffer Selection
+    IBuffer provides a nice overview interface of open buffers
+
+    - https://www.emacswiki.org/emacs/IbufferMode
+
+    #+begin_src emacs-lisp
+
+    (use-package ibuffer
+      :ensure t
+      :commands (ibuffer)
+      :init
+      (bind-key "C-x C-b" 'ibuffer)
+      :config
+      (setq ibuffer-saved-filter-groups
+            (quote (("default"
+                     ("Emacs"
+                      (or
+                       (mode . help-mode)
+                       (mode . grep-mode)
+                       (mode . completion-list-mode)
+                       (mode . emacs-lisp-mode)
+                       (name . "\\*scratch\\*")
+                       (name . "\\*Messages\\*")))
+                     ("Org"
+                      (mode . org-mode))
+                     ("Programming"
+                      (or
+                       (name . "\\*inferior-lisp\\*")
+                       (name . "*slime*")
+                       (mode . perl-mode)
+                       (mode . cperl-mode)
+                       (mode . java-mode)
+                       (mode . python-mode)
+                       (mode . c-mode)
+                       (mode . lisp-mode)
+                       (mode . js2-mode)
+                       (mode . typescript-mode)
+                       (mode . js-mode)
+                       (mode . web-mode)))
+                     ("Data/Config"
+                      (or
+                       (name . "JSON")
+                       (name . "YAML")))
+                     ("Source Ctrl"
+                      (name . "*magit*"))))))
+
+      (add-hook 'ibuffer-mode-hook
+                (lambda ()
+                  (ibuffer-switch-to-saved-filter-groups "default"))))
+    #+end_src
+
+*** Folding
+    Vimish-fold allows creation of arbitrary in-buffer folds based on the selected region
+
+    #+begin_src emacs-lisp
+
+    (use-package vimish-fold
+      :ensure t
+      :commands (vimish-fold-toggle vimish-fold)
+      :init
+      (vimish-fold-global-mode 1))
+    #+end_src
+*** Window Selection
+    Windmove allows selection of the active window using shift/arrow keys
+    which I find more natural than the default keybindings
+
+    #+begin_src emacs-lisp
+
+    (use-package windmove
+      :ensure t
+      :config
+      (windmove-default-keybindings))
+    #+end_src

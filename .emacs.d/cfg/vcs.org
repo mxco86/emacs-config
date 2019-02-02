@@ -1,0 +1,18 @@
+* VCS Configuration
+*** Magit
+    Magit is a Git porcelain which makes working with repositories easier
+
+    - https://magit.vc/
+
+    #+begin_src emacs-lisp
+
+    (use-package magit
+      :ensure t
+      :commands (magit-status magit-dispatch-popup)
+      :init
+      (bind-key "C-x g" 'magit-status)
+      (bind-key "C-x M-g" 'magit-dispatch-popup)
+      (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
+      :config
+      (setq-default git-commit-major-mode 'git-commit-mode))
+    #+end_src

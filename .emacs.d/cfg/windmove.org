@@ -1,8 +1,0 @@
-#+begin_src emacs-lisp
-
-(use-package windmove
-  :ensure t
-  :config
-  (windmove-default-keybindings))
-
-#+end_src

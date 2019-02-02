@@ -150,23 +150,22 @@
     #+END_SRC
 
 ***** Literate Mode Configurations                                   :CFGLST:
+      - [[file:cfg/buffer-management.org]]
       - [[file:cfg/color-theme.org]]
       - [[file:cfg/completion.org]]
       - [[file:cfg/docker.org]]
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/flyspell.org]]
-      - [[file:cfg/ibuffer.org]]
       - [[file:cfg/json.org]]
-      - [[file:cfg/magit.org]]
       - [[file:cfg/mode-line.org]]
       - [[file:cfg/org-mode.org]]
       - [[file:cfg/paredit.org]]
       - [[file:cfg/rust.org]]
       - [[file:cfg/search.org]]
       - [[file:cfg/typescript.org]]
+      - [[file:cfg/vcs.org]]
       - [[file:cfg/web.org]]
-      - [[file:cfg/windmove.org]]
       - [[file:cfg/writing.org]]
       - [[file:cfg/yaml.org]]
 
