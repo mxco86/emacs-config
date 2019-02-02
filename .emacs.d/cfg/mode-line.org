@@ -1,10 +1,13 @@
+* Mode line Configuration
+*** Spaceline
+    Powerline-like theme for the mode line
 
-* Modeline Configuration
+    - https://github.com/TheBB/spaceline
 
-#+begin_src emacs-lisp
+    #+begin_src emacs-lisp
 
-(use-package spaceline
-  :ensure t
-  :config
-  (spaceline-emacs-theme))
-#+end_src
+    (use-package spaceline
+      :ensure t
+      :config
+      (spaceline-emacs-theme))
+    #+end_src
