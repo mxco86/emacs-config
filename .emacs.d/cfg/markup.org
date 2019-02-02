@@ -1,0 +1,33 @@
+* Markup Editing Configuration
+*** YAML
+    #+begin_src emacs-lisp
+
+    (use-package yaml-mode
+      :ensure t
+      :commands (yaml-mode)
+      :init
+      (add-hook 'yaml-mode-hook 'flycheck-mode)
+      (add-hook 'yaml-mode-hook 'flyspell-prog-mode))
+
+    (use-package flycheck-yamllint
+      :ensure t
+      :after yaml-mode
+      :commands (yaml-mode)
+      :ensure-system-package ("/usr/local/bin/yamllint" . "brew install yamllint")
+      :init
+      (add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))
+    #+end_src
+
+*** JSON
+    #+begin_src emacs-lisp
+
+    (use-package json-mode
+      :ensure t
+      :commands (json-mode)
+      :init
+      (add-hook 'json-mode-hook #'prettier-js-mode)
+      (add-hook 'json-mode-hook #'flycheck-mode)
+      (add-hook 'json-mode-hook #'add-node-modules-path)
+      :config
+      (setq-default js-indent-level 2))
+    #+end_src

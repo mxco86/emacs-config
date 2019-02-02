@@ -157,7 +157,7 @@
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/flyspell.org]]
-      - [[file:cfg/json.org]]
+      - [[file:cfg/markup.org]]
       - [[file:cfg/mode-line.org]]
       - [[file:cfg/org-mode.org]]
       - [[file:cfg/paredit.org]]
@@ -167,7 +167,6 @@
       - [[file:cfg/vcs.org]]
       - [[file:cfg/web.org]]
       - [[file:cfg/writing.org]]
-      - [[file:cfg/yaml.org]]
 
 *** File Backups and Autosave
     #+begin_src emacs-lisp
