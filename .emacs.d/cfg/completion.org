@@ -22,8 +22,8 @@
     (setq-default ivy-initial-inputs-alist nil)
     (setq-default ivy-re-builders-alist '((swiper . ivy--regex-plus)
                                           (t . ivy--regex-fuzzy)))
-    (setq-default ivy-extra-directories nil
-                  (setq-default ivy-wrap t)))
+    (setq-default ivy-extra-directories nil)
+    (setq-default ivy-wrap t))
 
   (with-eval-after-load 'counsel
     (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t))
