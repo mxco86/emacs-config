@@ -151,8 +151,7 @@
 
 ***** Literate Mode Configurations                                   :CFGLST:
       - [[file:cfg/color-theme.org]]
-      - [[file:cfg/command-exec.org]]
-      - [[file:cfg/company.org]]
+      - [[file:cfg/completion.org]]
       - [[file:cfg/docker.org]]
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
