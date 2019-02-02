@@ -1,9 +1,34 @@
-#+begin_src emacs-lisp
+* Writing Aids Configuration
+*** Spell Check
+    Enable spell check on all text buffers. Flyspell for other modes is added
+    in the specific mode configuration. We don't defer loading of Flyspell as
+    it has some interactions with org-mode (setting flyspell-delayed-commands)
+    that cause intermittent start up errors when loading is deferred
 
-(use-package writegood-mode
-  :ensure t
-  :diminish writegood-mode
-  :config
-  (progn
-    (add-hook 'text-mode-hook 'writegood-mode)))
-#+end_src
+    #+begin_src emacs-lisp
+
+    (use-package flyspell
+      :ensure t
+      :ensure-system-package ("/usr/local/bin/aspell" . "brew install aspell")
+      :init
+      (bind-key "C-c sw" 'flyspell-auto-correct-word)
+      (add-hook 'text-mode-hook 'turn-on-flyspell)
+      :config
+      (setq-default ispell-program-name "aspell"
+                    ispell-dictionary   "british"))
+    #+end_src
+
+*** Writing Clarity
+    Highlight potential problems with text
+
+    - https://github.com/bnbeckwith/writegood-mode
+
+    #+begin_src emacs-lisp
+
+    (use-package writegood-mode
+      :ensure t
+      :diminish writegood-mode
+      :config
+      (progn
+        (add-hook 'text-mode-hook 'writegood-mode)))
+    #+end_src

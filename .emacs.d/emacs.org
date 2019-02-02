@@ -156,7 +156,6 @@
       - [[file:cfg/docker.org]]
       - [[file:cfg/emacs-lisp.org]]
       - [[file:cfg/flycheck.org]]
-      - [[file:cfg/flyspell.org]]
       - [[file:cfg/markup.org]]
       - [[file:cfg/mode-line.org]]
       - [[file:cfg/org-mode.org]]
