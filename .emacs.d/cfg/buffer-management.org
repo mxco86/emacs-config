@@ -43,7 +43,22 @@
                        (name . "JSON")
                        (name . "YAML")))
                      ("Source Ctrl"
-                      (name . "*magit*"))))))
+                      (or
+                       (mode . magit-mode)
+                       (mode . magit-cherry-mode)
+                       (mode . magit-diff-mode)
+                       (mode . magit-log-mode)
+                       (mode . magit-log-select-mode)
+                       (mode . magit-merge-preview-mode)
+                       (mode . magit-process-mode)
+                       (mode . magit-refs-mode)
+                       (mode . magit-reflog-mode)
+                       (mode . magit-revision-mode)
+                       (mode . magit-stash-mode)
+                       (mode . magit-stashes-mode)
+                       (mode . magit-status-mode))))))))
+
+      (setq ibuffer-show-empty-filter-groups nil)
 
       (add-hook 'ibuffer-mode-hook
                 (lambda ()
