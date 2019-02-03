@@ -37,16 +37,16 @@
     the minibuffer. It is used by Ivy to order command suggestions by most
     recently used
 
-  - https://github.com/nonsequitur/smex
+    - https://github.com/nonsequitur/smex
 
-    #+begin_src emacs-lisp
+  #+begin_src emacs-lisp
 
-    (use-package smex
-      :ensure t
-      :after counsel
-      :config
-      (smex-initialize))
-    #+end_src
+  (use-package smex
+    :ensure t
+    :after counsel
+    :config
+    (smex-initialize))
+  #+end_src
 
 *** Fuzzy Matching
     Flx is a fuzzy-matching package that is used by Ivy
