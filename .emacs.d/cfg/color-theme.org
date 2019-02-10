@@ -14,4 +14,6 @@
     :config
     (color-theme-solarized))
 
+  (use-package sexy-monochrome-theme :ensure t)
+
   #+END_SRC

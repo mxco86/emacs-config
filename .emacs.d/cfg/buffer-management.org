@@ -87,3 +87,12 @@
       :config
       (windmove-default-keybindings))
     #+end_src
+*** Popup Buffers
+    #+begin_src emacs-lisp
+
+    (use-package shackle
+      :ensure t
+      :config
+      (setq-default shackle-rules '((compilation-mode :noselect t))
+                    shackle-default-rule '(:select t))
+    #+end_src
