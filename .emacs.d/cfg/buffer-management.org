@@ -94,5 +94,5 @@
       :ensure t
       :config
       (setq-default shackle-rules '((compilation-mode :noselect t))
-                    shackle-default-rule '(:select t))
+                    shackle-default-rule '(:select t)))
     #+end_src
