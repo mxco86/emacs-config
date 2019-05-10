@@ -88,7 +88,7 @@
 
     (defun mjr/set-font (size)
       (interactive "nSize: ")
-      (mjr/init-font-size (selected-frame) "DejaVu Sans Mono" size))
+      (mjr/init-font-size (selected-frame) "Hack" size))
 
     (mjr/set-font 16)
     (toggle-frame-maximized)
