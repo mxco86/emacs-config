@@ -1,0 +1,32 @@
+
+* Go Programming
+
+#+BEGIN_SRC emacs-lisp
+
+(use-package go-mode
+  :ensure t
+  :commands (go-mode)
+  :init
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (add-hook 'go-mode-hook 'company-mode)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (add-to-list 'company-backends 'company-go)
+  :config
+  (defun mjr-go-mode-hook ()
+    (if (not (string-match "go" compile-command))
+        (set (make-local-variable 'compile-command)
+             (concat "go run " buffer-file-name))))
+
+  (add-hook 'go-mode-hook 'mjr-go-mode-hook)
+  :bind (:map go-mode-map ("M-." . godef-jump)))
+
+(use-package company-go
+  :ensure t
+  :after go
+  )
+
+(use-package go-eldoc
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'go-eldoc-setup))
+#+END_SRC
