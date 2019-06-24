@@ -112,7 +112,7 @@
       (global-set-key "\C-cb"    'bury-buffer )
       (global-set-key "\C-cf"    'revert-buffer )
       (global-set-key "\r"       'newline-and-indent)
-
+      (global-unset-key "\C-z")
     #+END_SRC
 
 *** Literate Library Directories
