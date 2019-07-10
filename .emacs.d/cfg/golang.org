@@ -20,6 +20,8 @@
     go get -u github.com/mdempsky/gocode
     go get -u github.com/rogpeppe/godef
     go get -u golang.org/x/lint/golint
+    go get -u golang.org/x/tools/cmd/goimports
+
     #+END_SRC
 
 *** Emacs Config
@@ -30,6 +32,7 @@
     :ensure t
     :commands (go-mode)
     :init
+    (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
     (add-hook 'go-mode-hook 'company-mode)
     (add-hook 'go-mode-hook 'go-eldoc-setup)
