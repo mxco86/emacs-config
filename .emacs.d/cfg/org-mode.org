@@ -9,6 +9,8 @@
     - [[#org-babel][Org-Babel]]
     - [[#generate-table-of-contents][Generate Table of Contents]]
     - [[#habits][Habits]]
+    - [[#clocks][Clocks]]
+    - [[#exports][Exports]]
 
 *** List Setup
     Extend the sub-items bullet count by two (1,3,5 characters etc.) to give a
@@ -112,7 +114,19 @@
 *** Habits
     #+begin_src emacs-lisp
 
-    (add-to-list 'org-modules 'habits)
+    (use-package org-habit)
     (setq-default org-log-into-drawer t)
     (setq-default org-todo-keywords '("TODO" "DONE(!)"))
+    #+end_src
+*** Clocks
+    #+begin_src emacs-lisp
+    (setq org-duration-format (quote h:mm))
+    #+end_src
+*** Exports
+    #+begin_src emacs-lisp
+
+    (use-package ox-hugo
+      :ensure t
+      :after ox)
+
     #+end_src
