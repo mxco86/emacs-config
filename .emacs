@@ -14,7 +14,7 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
       (append package-archives
-              '(("melpa" . "https://melpa.milkbox.net/packages/")
+              '(("melpa" . "https://melpa.org/packages/")
 		("org" . "https://orgmode.org/elpa/"))))
 
 (package-initialize)
