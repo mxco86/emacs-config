@@ -1,0 +1,33 @@
+
+* Email
+  Use mu and mu4e for mail indexing and reading. The mbsync utility is for two
+  way sync of IMAP mailboxes
+
+  #+BEGIN_SRC emacs-lisp
+
+  ;; Load mu4e
+  (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+  (require 'mu4e)
+
+  ;; Sending mail
+  (setq mu4e-sent-folder "/Users/mryall/Maildir/sent"
+        mu4e-drafts-folder "/Users/mryall/Maildir/drafts"
+        user-mail-address "matthew@mexico86.co.uk"
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-user "matthew@mexico86.co.uk"
+        smtpmail-local-domain "gmail.com"
+        smtpmail-smtp-service 587
+        ;;set up queue for offline email
+        smtpmail-queue-mail nil  ;; start in normal mode
+        smtpmail-queue-dir "~/Maildir/queue/cur")
+
+  ;; View settings for HTML email
+  (setq mu4e-html2text-command 'mu4e-shr2text)
+  (setq shr-color-visible-luminance-min 80)
+  (setq shr-color-visible-distance-min 5)
+
+  ;; Fetch mail via mbsync
+  (setq mu4e-get-mail-command "mbsync GMail")
+  (setq mu4e-change-filenames-when-moving t)
+  #+END_SRC
