@@ -10,9 +10,7 @@
   (require 'mu4e)
 
   ;; Sending mail
-  (setq mu4e-sent-folder "/Users/mryall/Maildir/sent"
-        mu4e-drafts-folder "/Users/mryall/Maildir/drafts"
-        user-mail-address "matthew@mexico86.co.uk"
+  (setq user-mail-address "matthew@mexico86.co.uk"
         smtpmail-default-smtp-server "smtp.gmail.com"
         smtpmail-smtp-server "smtp.gmail.com"
         smtpmail-smtp-user "matthew@mexico86.co.uk"
@@ -21,6 +19,9 @@
         ;;set up queue for offline email
         smtpmail-queue-mail nil  ;; start in normal mode
         smtpmail-queue-dir "~/Maildir/queue/cur")
+
+  ;; View settings
+  (setq mu4e-view-show-addresses t)
 
   ;; View settings for HTML email
   (setq mu4e-html2text-command 'mu4e-shr2text)
