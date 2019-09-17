@@ -27,6 +27,8 @@
   (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq shr-color-visible-luminance-min 80)
   (setq shr-color-visible-distance-min 5)
+  (add-to-list 'mu4e-view-actions
+               '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
   ;; Fetch mail via mbsync
   (setq mu4e-get-mail-command "mbsync GMail"
