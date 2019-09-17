@@ -11,6 +11,7 @@
     - [[#literate-library-directories][Literate Library Directories]]
         - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
+    - [[#os-specific-configuration][OS Specific Configuration]]
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
@@ -156,6 +157,7 @@
       - [[file:cfg/completion.org]]
       - [[file:cfg/docker.org]]
       - [[file:cfg/emacs-lisp.org]]
+      - [[file:cfg/email.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/golang.org]]
       - [[file:cfg/markup.org]]
@@ -180,3 +182,10 @@
     (setq-default delete-old-versions -1)
     (setq-default version-control t)
     #+end_src
+
+*** OS Specific Configuration
+    #+BEGIN_SRC emacs-lisp
+
+    (setq mac-command-modifier 'meta)
+
+    #+END_SRC

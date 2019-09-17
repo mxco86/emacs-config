@@ -29,6 +29,21 @@
   (setq shr-color-visible-distance-min 5)
 
   ;; Fetch mail via mbsync
-  (setq mu4e-get-mail-command "mbsync GMail")
-  (setq mu4e-change-filenames-when-moving t)
+  (setq mu4e-get-mail-command "mbsync GMail"
+        mu4e-update-interval 300
+        mu4e-change-filenames-when-moving t)
+
+  ;; Composing mail
+  (setq mu4e-compose-signature
+        (concat "Matthew Ryall\n"
+                "mexico86 Ltd\n"
+                "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
+                "Company Registration Number: 10374093\n"))
+
+  (setq mu4e-headers-fields '((:human-date . 12)
+                              (:flags . 6)
+                              (:maildir . 20)
+                              (:mailing-list . 10)
+                              (:from . 22)
+                              (:subject)))
   #+END_SRC
