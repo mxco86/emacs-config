@@ -58,8 +58,9 @@
 *** Org-Agenda
     #+BEGIN_SRC emacs-lisp
 
-      (setq-default org-agenda-files '("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org"))
-
+    (setq-default org-agenda-files
+                  '("~/Org/Documents/org"
+                    "~/Org/Documents/org/projects"))
     #+END_SRC
 
 *** Hooks
