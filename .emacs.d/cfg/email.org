@@ -10,15 +10,11 @@
   (require 'mu4e)
 
   ;; Sending mail
-  (setq user-mail-address "matthew@mexico86.co.uk"
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-user "matthew@mexico86.co.uk"
-        smtpmail-local-domain "gmail.com"
-        smtpmail-smtp-service 587
-        ;;set up queue for offline email
-        smtpmail-queue-mail nil  ;; start in normal mode
-        smtpmail-queue-dir "~/Maildir/queue/cur")
+  (setq mu4e-maildir "~/Maildir")
+
+  ;; set up queue for offline email
+  (setq  smtpmail-queue-mail nil
+         smtpmail-queue-dir "~/Maildir/queue/cur")
 
   ;; View settings
   (setq mu4e-view-show-addresses t)
@@ -31,16 +27,9 @@
                '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
   ;; Fetch mail via mbsync
-  (setq mu4e-get-mail-command "mbsync GMail"
+  (setq mu4e-get-mail-command "mbsync -a"
         mu4e-update-interval 300
         mu4e-change-filenames-when-moving t)
-
-  ;; Composing mail
-  (setq mu4e-compose-signature
-        (concat "Matthew Ryall\n"
-                "mexico86 Ltd\n"
-                "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
-                "Company Registration Number: 10374093\n"))
 
   (setq mu4e-headers-fields '((:human-date . 12)
                               (:flags . 6)
@@ -48,4 +37,62 @@
                               (:mailing-list . 10)
                               (:from . 22)
                               (:subject)))
+
+  ;; Shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/MXCO86/INBOX" . ?i)
+          ("/LVMHDA/INBOX" . ?l)))
+
+  ;; Contexts
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "Mexico86"
+             :enter-func (lambda () (mu4e-message "Entering Mexico86 context"))
+             :leave-func (lambda () (mu4e-message "Leaving Mexico86 context"))
+             ;; we match based on the contact-fields of the message
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-match-p "^/MXCO86" (mu4e-message-field msg :maildir))))
+             :vars '((user-mail-address . "matthew@mexico86.co.uk"  )
+                     (user-full-name . "Matthew Ryall" )
+                     (mu4e-sent-folder . "/MXCO86/sent")
+                     (mu4e-drafts-folder . "/MXCO86/drafts")
+                     (user-mail-address . "matthew@mexico86.co.uk")
+                     (smtpmail-default-smtp-server . "smtp.gmail.com")
+                     (smtpmail-local-domain . "gmail.com")
+                     (smtpmail-smtp-user . "matthew@mexico86.co.uk")
+                     (smtpmail-smtp-server . "smtp.gmail.com")
+                     (smtpmail-stream-type . starttls)
+                     (smtpmail-smtp-service . 587)
+                     (mu4e-compose-signature . (concat "Matthew Ryall\n"
+                                                       "mexico86 Ltd\n"
+                                                       "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
+                                                       "Company Registration Number: 10374093\n"))))
+           ,(make-mu4e-context
+             :name "LVMH"
+             :enter-func (lambda () (mu4e-message "Switch to the LVMH context"))
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-match-p "^/LVMHDA" (mu4e-message-field msg :maildir))))
+             :vars '((user-mail-address . "m.ryall@lvmhda.com" )
+                     (user-full-name . "Matthew Ryall" )
+                     (mu4e-sent-folder . "/LVMHDA/sent")
+                     (mu4e-drafts-folder . "/LVMHDA/drafts")
+                     (user-mail-address . "m.ryall@lvmhda.com")
+                     (smtpmail-default-smtp-server . "smtp.gmail.com")
+                     (smtpmail-local-domain . "gmail.com")
+                     (smtpmail-smtp-user . "m.ryall@lvmhda.com")
+                     (smtpmail-smtp-server . "smtp.gmail.com")
+                     (smtpmail-stream-type . starttls)
+                     (smtpmail-smtp-service . 587)
+                     (mu4e-compose-signature  . (concat "Matthew Ryall\n"
+                                                        "LVMH Digital\n"))))))
+
+  ;; start with the first (default) context;
+  ;; default is to ask-if-none (ask when there's no context yet, and none match)
+  (setq mu4e-context-policy 'pick-first)
+
+  ;; compose with the current context is no context matches;
+  ;; default is to ask
+  (setq mu4e-compose-context-policy nil)
   #+END_SRC
