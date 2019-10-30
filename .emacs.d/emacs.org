@@ -194,5 +194,5 @@
 
 *** Shell Configuration
     #+BEGIN_SRC emacs-lisp
-    (setq multi-term-program "/bin/bash")
+    (setq multi-term-program "/bin/zsh")
     #+END_SRC
