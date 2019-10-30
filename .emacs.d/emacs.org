@@ -12,6 +12,7 @@
         - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
+    - [[#shell-configuration][Shell Configuration]]
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
@@ -160,6 +161,7 @@
       - [[file:cfg/email.org]]
       - [[file:cfg/flycheck.org]]
       - [[file:cfg/golang.org]]
+      - [[file:cfg/javascript.org]]
       - [[file:cfg/markup.org]]
       - [[file:cfg/mode-line.org]]
       - [[file:cfg/org-mode.org]]
@@ -173,12 +175,12 @@
 
 *** File Backups and Autosave
     #+begin_src emacs-lisp
-
     (setq-default backup-dir "~/.emacs.d/.backups/")
     (make-directory backup-dir t)
     (setq-default backup-directory-alist '(("." . "~/.emacs.d/.backups")))
     (setq-default autosave-dir "~/.emacs.d/.autosaves/")
     (make-directory autosave-dir t)
+    (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
     (setq-default delete-old-versions -1)
     (setq-default version-control t)
     #+end_src
@@ -188,4 +190,9 @@
 
     (setq mac-command-modifier 'meta)
 
+    #+END_SRC
+
+*** Shell Configuration
+    #+BEGIN_SRC emacs-lisp
+    (setq multi-term-program "/bin/bash")
     #+END_SRC
