@@ -1,0 +1,10 @@
+#+BEGIN_SRC emacs-lisp
+
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'"
+  :interpreter "node"
+  :init
+  (setq js2-basic-offset 2))
+
+#+END_SRC

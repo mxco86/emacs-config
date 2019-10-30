@@ -3,7 +3,6 @@
     Basic Tide configuration to give us tsserver interaction, code
     formatting, spell checking and auto-completion via company
     #+begin_src emacs-lisp
-
     (use-package tide
       :ensure t
       :commands (typescript-mode)
@@ -12,7 +11,8 @@
         (interactive)
         (tide-setup)
         (flycheck-mode 1)
-        (custom-set-variables '(flycheck-check-syntax-automatically '(save mode-enabled)))
+        (setq flycheck-check-syntax-automatically '(save mode-enabled))
+        (flycheck-add-next-checker 'typescript-tide '(t . javascript-eslint) 'append)
         (eldoc-mode +1)
         (tide-hl-identifier-mode +1)
         (company-mode +1))
