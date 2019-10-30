@@ -1,11 +1,12 @@
 * VCS Configuration
 *** Magit
-    Magit is a Git porcelain which makes working with repositories easier
-
+    - Magit is a Git porcelain which makes working with repositories much
+      easier
+    - Makes some quite advanced git operations simple and intuitive
+    - Overall Magit is so good it's worth learning Emacs solely to use it
     - https://magit.vc/
 
     #+begin_src emacs-lisp
-
     (use-package magit
       :ensure t
       :commands (magit-status magit-dispatch-popup)
