@@ -13,3 +13,8 @@ network-security.data
 .emacs.d/history
 .emacs.d/recentf
 .emacs.d/.backups
+.emacs.d/.autosaves
+.emacs.d/.org-id-locations
+.emacs.d/recentf~
+.emacs.d/transient
+.emacs.d/url
