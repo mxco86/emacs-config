@@ -1,19 +1,23 @@
 * Color Theme Configuration
-  Use the color-theme-based solarized. There are other implementations that
-  use load-theme, however, I don't like the faces and mode-line changes
+  - Use the base16-emacs theme implementation
+  - https://github.com/belak/base16-emacs
+  - This has a version of solarized-dark which is the theme I generally use
+  - The theme is loaded and then a few minor tweaks applied before reloading
+    to apply these
+  - The cursor colour is also changed after loading as it's set to a horrible
+    red by default
 
   #+BEGIN_SRC emacs-lisp
-
-  (use-package color-theme
+  (use-package base16-theme
     :ensure t
+    :init
+    (load-theme 'base16-solarized-dark t)
     :config
-    (color-theme-initialize))
-
-  (use-package color-theme-solarized
-    :ensure t
-    :config
-    (color-theme-solarized))
-
-  (use-package sexy-monochrome-theme :ensure t)
-
+    (setq base16-solarized-dark-colors
+          (plist-put base16-solarized-dark-colors ':base09 "#586e75"))
+    (load-theme 'base16-solarized-dark t)
+    (set-cursor-color (plist-get base16-solarized-dark-colors ':base02))
+    (face-spec-set 'font-lock-variable-name-face
+                   `((t :foreground ,(plist-get base16-solarized-dark-colors ':base06)))
+                   'face-override-spec))
   #+END_SRC
