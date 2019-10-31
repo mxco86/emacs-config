@@ -10,20 +10,18 @@
       (defun setup-tide-mode ()
         (interactive)
         (tide-setup)
-        (flycheck-mode 1)
+        (flycheck-mode t)
         (setq flycheck-check-syntax-automatically '(save mode-enabled))
         (flycheck-add-next-checker 'typescript-tide '(t . javascript-eslint) 'append)
-        (eldoc-mode +1)
-        (tide-hl-identifier-mode +1)
-        (company-mode +1))
+        (eldoc-mode t)
+        (tide-hl-identifier-mode t)
+        (company-mode t))
 
       (add-hook 'before-save-hook 'tide-format-before-save)
       (add-hook 'typescript-mode-hook #'setup-tide-mode)
       (add-hook 'typescript-mode-hook #'flyspell-prog-mode)
       :config
-      (setq-default company-tooltip-align-annotations t)
-      (setq-default typescript-indent-level 2)
-      (setq-local flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
+      (setq typescript-indent-level 2))
     #+end_src
 
 *** Node/Typescript Development
