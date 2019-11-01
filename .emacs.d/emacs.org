@@ -8,7 +8,7 @@
     - [[#font-and-display][Font and Display]]
     - [[#function-aliases][Function Aliases]]
     - [[#global-key-mappings][Global Key Mappings]]
-    - [[#literate-library-directories][Literate Library Directories]]
+    - [[#mode-specific-configuration-files][Mode-Specific Configuration Files]]
     - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
@@ -117,8 +117,15 @@
       (global-unset-key "\C-x\C-z")
     #+END_SRC
 
-*** Literate Library Directories
-    Add load directories for mode-specific literate configs
+*** Mode-Specific Configuration Files
+    I split up my more specific configs into files for each general
+    area. These contain ~use-package~ declarations for loading and configuring
+    packages and any other configuration code required. This is probably
+    overkill for a lot of things that only use a single package with no config
+    but where there is more complex code I think it works well. There are a
+    couple of functions defined to load directories for mode-specific configs
+    and then insert a link to the config file into this document
+
     #+BEGIN_SRC emacs-lisp
 
     (defun mjr/load-literate-cfg ()
@@ -147,12 +154,13 @@
                      (point))))
               (delete-region beg end))
             (insert "\n")
+            (insert "    Configuration for more specific functionality, modes and areas of work\n")
             (mapcar '(lambda (file) (insert (format "    - [[file:cfg/%s]]\n" file))) file-list)))))
 
     #+END_SRC
 
-
 *** Literate Mode Configurations                                     :CFGLST:
+    Configuration for more specific functionality, modes and areas of work
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/color-theme.org]]
     - [[file:cfg/completion.org]]
