@@ -1,0 +1,9 @@
+* Terminal Emulation
+  - After trying all the shell/terminal options I've settled on Multi-Term as
+    the one that best fits my workflow
+  #+BEGIN_SRC emacs-lisp
+  (use-package multi-term
+    :defer t
+    :config
+    (setq multi-term-program "/bin/zsh"))
+  #+END_SRC

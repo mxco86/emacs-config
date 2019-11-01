@@ -12,7 +12,6 @@
         - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
-    - [[#shell-configuration][Shell Configuration]]
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
@@ -168,6 +167,7 @@
       - [[file:cfg/paredit.org]]
       - [[file:cfg/rust.org]]
       - [[file:cfg/search.org]]
+      - [[file:cfg/terminal.org]]
       - [[file:cfg/typescript.org]]
       - [[file:cfg/vcs.org]]
       - [[file:cfg/web.org]]
@@ -187,12 +187,5 @@
 
 *** OS Specific Configuration
     #+BEGIN_SRC emacs-lisp
-
     (setq mac-command-modifier 'meta)
-
-    #+END_SRC
-
-*** Shell Configuration
-    #+BEGIN_SRC emacs-lisp
-    (setq multi-term-program "/bin/zsh")
     #+END_SRC
