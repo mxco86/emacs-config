@@ -15,51 +15,42 @@
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
-    #+begin_src emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package use-package-ensure-system-package
       :ensure t)
-    #+end_src
+    #+END_SRC
 
 *** Frame and Buffer Behaviour
     I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
-
-      ;; be quiet
-      (setq-default inhibit-startup-message  t)
-
-      ;; clear the furniture
-      (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-      (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-      (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-
+    (setq-default inhibit-startup-message  t)
+    (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+    (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+    (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
     #+END_SRC
 
 *** Custom Variables
     Place all custom-defined variables in their own file and store the custom
     variable file in the local machine's home directory outside of version
     control. This enables us to keep specific config local to each machine
-   #+BEGIN_SRC emacs-lisp
 
-     (setq-default custom-file "~/.emacs-custom.el")
-     (load custom-file 'noerror)
-
-   #+END_SRC
+    #+BEGIN_SRC emacs-lisp
+    (setq-default custom-file "~/.emacs-custom.el")
+    (load custom-file 'noerror)
+    #+END_SRC
 
 *** External Program Execution
     Ensure we can execute programs located at various paths by setting the
     execution path from our shell
     #+BEGIN_SRC emacs-lisp
-
-      (use-package exec-path-from-shell
+    (use-package exec-path-from-shell
       :ensure t
       :config
       (exec-path-from-shell-initialize))
-
     #+END_SRC
 
 *** Buffer Behaviour
-    #+begin_src emacs-lisp
-
+    #+BEGIN_SRC emacs-lisp
     (setq-default line-number-mode t)
     (setq-default column-number-mode t)
     (setq-default fill-column 78)
@@ -78,11 +69,12 @@
     (global-auto-revert-mode 1)
     (global-subword-mode 1)
     (global-prettify-symbols-mode 1)
-    #+end_src
+    #+END_SRC
 
 *** Font and Display
-    #+begin_src emacs-lisp
-
+    Use the 'Hack' font which is designed for source code and also includes
+    powerline glyphs which I use on the mode line
+    #+BEGIN_SRC emacs-lisp
     (defun mjr/init-font-size (frame font value)
       (set-frame-parameter frame 'font
                            (concat font "-" (number-to-string value))))
@@ -93,28 +85,25 @@
 
     (mjr/set-font 16)
     (toggle-frame-maximized)
-    #+end_src
+    #+END_SRC
 
 *** Function Aliases
-    #+begin_src emacs-lisp
-
-      (fset 'yes-or-no-p 'y-or-n-p)
-
-    #+end_src
+    #+BEGIN_SRC emacs-lisp
+    (fset 'yes-or-no-p 'y-or-n-p)
+    #+END_SRC
 
 *** Global Key Mappings
     #+BEGIN_SRC emacs-lisp
-
-      (global-set-key "\C-w"     'backward-kill-word)
-      (global-set-key "\C-x\C-k" 'kill-region)
-      (global-set-key "\C-c\C-k" 'kill-region)
-      (global-set-key "\C-xr"    'query-replace-regexp)
-      (global-set-key "\C-xl"    'goto-line )
-      (global-set-key "\C-cb"    'bury-buffer )
-      (global-set-key "\C-cf"    'revert-buffer )
-      (global-set-key "\r"       'newline-and-indent)
-      (global-unset-key "\C-z")
-      (global-unset-key "\C-x\C-z")
+    (global-set-key "\C-w"     'backward-kill-word)
+    (global-set-key "\C-x\C-k" 'kill-region)
+    (global-set-key "\C-c\C-k" 'kill-region)
+    (global-set-key "\C-xr"    'query-replace-regexp)
+    (global-set-key "\C-xl"    'goto-line )
+    (global-set-key "\C-cb"    'bury-buffer )
+    (global-set-key "\C-cf"    'revert-buffer )
+    (global-set-key "\r"       'newline-and-indent)
+    (global-unset-key "\C-z")
+    (global-unset-key "\C-x\C-z")
     #+END_SRC
 
 *** Mode-Specific Configuration Files
@@ -127,7 +116,6 @@
     and then insert a link to the config file into this document
 
     #+BEGIN_SRC emacs-lisp
-
     (defun mjr/load-literate-cfg ()
       "Load literate config files using org-babel."
       (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
@@ -156,7 +144,6 @@
             (insert "\n")
             (insert "    Configuration for more specific functionality, modes and areas of work\n")
             (mapcar '(lambda (file) (insert (format "    - [[file:cfg/%s]]\n" file))) file-list)))))
-
     #+END_SRC
 
 *** Literate Mode Configurations                                     :CFGLST:
@@ -183,7 +170,9 @@
     - [[file:cfg/writing.org]]
 
 *** File Backups and Autosave
-    #+begin_src emacs-lisp
+    Keep backups and autosaves in specific directories rather than leaving
+    temporary files all over the filesystem
+    #+BEGIN_SRC emacs-lisp
     (setq-default backup-dir "~/.emacs.d/.backups/")
     (make-directory backup-dir t)
     (setq-default backup-directory-alist '(("." . "~/.emacs.d/.backups")))
@@ -192,7 +181,7 @@
     (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
     (setq-default delete-old-versions -1)
     (setq-default version-control t)
-    #+end_src
+    #+END_SRC
 
 *** OS Specific Configuration
     #+BEGIN_SRC emacs-lisp
