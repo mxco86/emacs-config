@@ -1,6 +1,6 @@
 
 * My Emacs Config
-  This is my emacs configuration which is written as a set of org-mode files
+  This is my Emacs configuration written as a set of org-mode files
   and loaded via ~org-babel-load-file~. I have a single top-level file for
   general config and I like to split mode-specific config into their own
   files, sometimes just with a simple ~use-package~ call to load the mode. I
@@ -11,6 +11,19 @@
   config files an add them into the main emacs.org file dynamically when I
   edit the top-level file. Not a perfect system but good enough for me.
 
-  - Bootstrap elisp file is here: [[file:.emacs]]
-  - Literate config starts here: [[file:.emacs.d/emacs.org]]
-  - Mode-specific configs are here: [[file:.emacs.d/cfg/]]
+*** Bootstrapping
+    Emacs needs a basic dotfile to load on startup which brings in
+    `use-package` and `org-mode`. After loading the dependencies we can bring
+    in the rest of the configuration by loading org files.
+
+    - Bootstrap file: [[file:.emacs]]
+
+*** Configuration
+    - Literate config starts here: [[file:.emacs.d/emacs.org]]
+    - Mode-specific configs are here: [[file:.emacs.d/cfg/]]
+
+*** Sources and Further Reading
+    - https://sites.google.com/site/steveyegge2/effective-emacs
+    - https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org
+    - https://pages.sachachua.com/.emacs.d/Sacha.html
+    - https://github.com/danielmai/.emacs.d
