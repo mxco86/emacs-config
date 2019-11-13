@@ -10,7 +10,7 @@ integration mode (ag.el) is very nice
 (use-package ag
   :ensure t
   :commands (ag ag-regexp ag-project)
-  :ensure-system-package ("/usr/local/bin/ag" . "brew install the_silver_searcher")
+  :ensure-system-package ag
   :init
   (bind-key "\C-xp" 'ag)
   :config

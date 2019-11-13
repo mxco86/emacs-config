@@ -6,20 +6,20 @@
     that cause intermittent start up errors when loading is deferred
 
     #+begin_src emacs-lisp
-
     (use-package flyspell
       :ensure t
-      :ensure-system-package ("/usr/local/bin/aspell" . "brew install aspell")
+      :ensure-system-package aspell
       :init
       (bind-key "C-c sw" 'flyspell-auto-correct-word)
       (add-hook 'text-mode-hook 'turn-on-flyspell)
       :config
       (setq-default ispell-program-name "aspell"
-                    ispell-dictionary   "british"))
+                    ispell-dictionary   "british"
+                    flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
     #+end_src
 
 *** Writing Clarity
-    Highlight potential problems with text
+    Highlight potential problems with text.
 
     - https://github.com/bnbeckwith/writegood-mode
 

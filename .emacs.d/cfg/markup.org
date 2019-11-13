@@ -13,7 +13,7 @@
       :ensure t
       :after yaml-mode
       :commands (yaml-mode)
-      :ensure-system-package ("/usr/local/bin/yamllint" . "brew install yamllint")
+      :ensure-system-package yamllint
       :init
       (add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))
     #+end_src
