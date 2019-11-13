@@ -12,6 +12,7 @@
     - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
+    - [[#system-information][System Information]]
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
@@ -187,4 +188,19 @@
 *** OS Specific Configuration
     #+BEGIN_SRC emacs-lisp
     (setq mac-command-modifier 'meta)
+    #+END_SRC
+
+*** System Information
+    Utility functions to distinguish between system types. Use these to set
+    the package manager used to install system dependencies via use-package
+    #+BEGIN_SRC emacs-lisp
+    (defun mjr/sys-macos-p ()
+      (equal system-type 'darwin))
+
+    (defun mjr/sys-linux-p ()
+      (equal system-type 'gnu/linux))
+
+    (setq system-packages-package-manager
+          (cond ((mjr/sys-linux-p) 'nix)
+                ((mjr/sys-macos-p) 'brew)))
     #+END_SRC
