@@ -85,7 +85,10 @@
       (interactive "nSize: ")
       (mjr/init-font-size (selected-frame) "Hack" size))
 
-    (mjr/set-font 16)
+    (defun mjr/approprate-font-size ()
+      (if (> (display-pixel-width) 3000) 16 10))
+
+    (mjr/set-font (mjr/approprate-font-size))
     (toggle-frame-maximized)
     #+END_SRC
 
