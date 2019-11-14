@@ -1,5 +1,6 @@
 
 * Main Emacs Config                                                   :TOC_5:
+    - [[#personal-information][Personal Information]]
     - [[#use-package-extensions][Use Package Extensions]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
@@ -13,6 +14,12 @@
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
     - [[#system-information][System Information]]
+
+*** Personal Information
+    #+BEGIN_SRC emacs-lisp
+    (setq user-full-name "Matthew Ryall"
+          user-mail-address "matthew@mexico86.co.uk")
+    #+END_SRC
 
 *** Use Package Extensions
     Enable Emacs to install dependent system packages
@@ -191,6 +198,7 @@
 *** OS Specific Configuration
     #+BEGIN_SRC emacs-lisp
     (setq mac-command-modifier 'meta)
+    (setq ns-pop-up-frames nil)
     #+END_SRC
 
 *** System Information
