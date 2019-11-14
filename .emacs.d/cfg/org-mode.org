@@ -86,11 +86,11 @@
 
 *** Org-Babel
     #+begin_src emacs-lisp
-
-    (setq-default org-src-tab-acts-natively t)
-    (setq-default org-edit-src-content-indentation 0)
-    (setq-default org-src-window-setup 'current-window)
-    (setq-default org-edit-src-persistent-message nil)
+    (setq org-src-tab-acts-natively t
+          org-edit-src-content-indentation 0
+          org-src-window-setupn 'current-window
+          org-edit-src-persistent-message nil
+          org-src-strip-leading-and-trailing-blank-lines t)
 
     (org-babel-do-load-languages 'org-babel-load-languages
                                  '((shell . t)))
