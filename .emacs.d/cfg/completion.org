@@ -70,9 +70,11 @@
 
     #+BEGIN_SRC emacs-lisp
     (use-package company
-      :ensure t
-      :init
-      (add-hook 'after-init-hook 'global-company-mode)
-      :config
-      (setq-default company-tooltip-align-annotations t))
+        :ensure t
+        :init
+        (add-hook 'after-init-hook 'global-company-mode)
+        :config
+        (setq company-tooltip-align-annotations t)
+        (define-key company-active-map (kbd "C-n") #'company-select-next)
+        (define-key company-active-map (kbd "C-p") #'company-select-previous))
     #+END_SRC
