@@ -115,7 +115,7 @@
 *** Habits
     #+begin_src emacs-lisp
 
-    (use-package org-habit)
+    (require 'org-habit)
     (setq-default org-log-into-drawer t)
     (setq-default org-todo-keywords '("TODO" "DONE(!)"))
     #+end_src

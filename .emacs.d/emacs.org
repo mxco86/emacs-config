@@ -93,7 +93,9 @@
       (mjr/init-font-size (selected-frame) "Hack" size))
 
     (defun mjr/approprate-font-size ()
-      (if (> (display-pixel-width) 3000) 16 10))
+      (if (> (display-pixel-width) 3000)
+          16
+        (if (<= (display-pixel-height) 900) 16 10)))
 
     (mjr/set-font (mjr/approprate-font-size))
     (toggle-frame-maximized)

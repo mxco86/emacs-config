@@ -4,6 +4,7 @@
   #+BEGIN_SRC emacs-lisp
   (use-package multi-term
     :defer t
+    :commands (multi-term)
     :config
     (setq multi-term-program "/bin/zsh"))
   #+END_SRC
