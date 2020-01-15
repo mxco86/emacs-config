@@ -68,6 +68,8 @@
     (setq ring-bell-function 'ignore)
     (setq transient-mark-mode t)
     (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+    (setq select-enable-primary t)
+    (setq select-enable-clipboard t)
     (setq next-line-add-newlines t)
     (setq sentence-end-double-space nil)
     (add-to-list 'write-file-functions 'delete-trailing-whitespace)
