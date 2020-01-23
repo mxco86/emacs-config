@@ -67,26 +67,7 @@
                      (mu4e-compose-signature . (concat "Matthew Ryall\n"
                                                        "mexico86 Ltd\n"
                                                        "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
-                                                       "Company Registration Number: 10374093\n"))))
-           ,(make-mu4e-context
-             :name "LVMH"
-             :enter-func (lambda () (mu4e-message "Switch to the LVMH context"))
-             :match-func (lambda (msg)
-                           (when msg
-                             (string-match-p "^/LVMHDA" (mu4e-message-field msg :maildir))))
-             :vars '((user-mail-address . "m.ryall@lvmhda.com" )
-                     (user-full-name . "Matthew Ryall" )
-                     (mu4e-sent-folder . "/LVMHDA/sent")
-                     (mu4e-drafts-folder . "/LVMHDA/drafts")
-                     (user-mail-address . "m.ryall@lvmhda.com")
-                     (smtpmail-default-smtp-server . "smtp.gmail.com")
-                     (smtpmail-local-domain . "gmail.com")
-                     (smtpmail-smtp-user . "m.ryall@lvmhda.com")
-                     (smtpmail-smtp-server . "smtp.gmail.com")
-                     (smtpmail-stream-type . starttls)
-                     (smtpmail-smtp-service . 587)
-                     (mu4e-compose-signature  . (concat "Matthew Ryall\n"
-                                                        "LVMH Digital\n"))))))
+                                                       "Company Registration Number: 10374093\n"))))))
 
   ;; start with the first (default) context;
   ;; default is to ask-if-none (ask when there's no context yet, and none match)
@@ -95,4 +76,13 @@
   ;; compose with the current context is no context matches;
   ;; default is to ask
   (setq mu4e-compose-context-policy nil)
+
+  ;; Add org-mode support
+  (require 'org-mu4e)
+
+  (setq mu4e-org-contacts-file  "~/Org/Documents/org/contacts.org")
+  (add-to-list 'mu4e-headers-actions
+               '("org-contact-add" . mu4e-action-add-org-contact) t)
+  (add-to-list 'mu4e-view-actions
+               '("org-contact-add" . mu4e-action-add-org-contact) t)
   #+END_SRC

@@ -1,0 +1,22 @@
+#+begin_src emacs-lisp
+(setq mu4e-contexts
+      `( ,(make-mu4e-context
+           :name "LVMH"
+           :enter-func (lambda () (mu4e-message "Switch to the LVMH context"))
+           :match-func (lambda (msg)
+                         (when msg
+                           (string-match-p "^/LVMHDA" (mu4e-message-field msg :maildir))))
+           :vars '((user-mail-address . "m.ryall@lvmhda.com" )
+                   (user-full-name . "Matthew Ryall" )
+                   (mu4e-sent-folder . "/LVMHDA/sent")
+                   (mu4e-drafts-folder . "/LVMHDA/drafts")
+                   (user-mail-address . "m.ryall@lvmhda.com")
+                   (smtpmail-default-smtp-server . "smtp.gmail.com")
+                   (smtpmail-local-domain . "gmail.com")
+                   (smtpmail-smtp-user . "m.ryall@lvmhda.com")
+                   (smtpmail-smtp-server . "smtp.gmail.com")
+                   (smtpmail-stream-type . starttls)
+                   (smtpmail-smtp-service . 587)
+                   (mu4e-compose-signature  . (concat "Matthew Ryall\n"
+                                                      "LVMH Digital\n"))))))
+#+end_src
