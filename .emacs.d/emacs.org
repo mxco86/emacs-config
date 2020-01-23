@@ -224,3 +224,13 @@
           (cond ((mjr/sys-linux-p) 'nix)
                 ((mjr/sys-macos-p) 'brew)))
     #+END_SRC
+
+*** Scrolling
+    Scroll one line at a time instead of jumping ahead. Taken from:
+      - https://www.emacswiki.org/emacs/SmoothScrolling
+    #+begin_src emacs-lisp
+    (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+    (setq mouse-wheel-progressive-speed nil)
+    (setq mouse-wheel-follow-mouse 't)
+    (setq scroll-step 1)
+    #+end_src
