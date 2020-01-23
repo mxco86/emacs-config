@@ -122,6 +122,11 @@
     (global-unset-key "\C-x\C-z")
     #+END_SRC
 
+*** Variables
+    #+BEGIN_SRC emacs-lisp
+    (setq org-contacts-file "~/Org/Documents/org/contacts.org")
+    #+END_SRC
+
 *** Mode-Specific Configuration Files
     I split up my more specific configs into files for each general
     area. These contain ~use-package~ declarations for loading and configuring
