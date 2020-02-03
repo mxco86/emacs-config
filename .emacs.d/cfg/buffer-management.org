@@ -76,17 +76,6 @@
       :init
       (vimish-fold-global-mode 1))
     #+end_src
-*** Window Selection
-    Windmove allows selection of the active window using shift/arrow keys
-    which I find more natural than the default keybindings
-
-    #+begin_src emacs-lisp
-
-    (use-package windmove
-      :ensure t
-      :config
-      (windmove-default-keybindings))
-    #+end_src
 *** Popup Buffers
     #+begin_src emacs-lisp
 

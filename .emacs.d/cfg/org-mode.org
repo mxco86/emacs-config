@@ -19,9 +19,8 @@
     more pronounced tree and make bulleted sub-items appear to be indented
     #+BEGIN_SRC emacs-lisp
 
-      (setq-default org-odd-levels-only t)
-      (setq-default org-hide-leading-stars t)
-
+    (setq org-odd-levels-only t)
+    (setq org-hide-leading-stars t)
     #+END_SRC
 
 *** Behaviours
@@ -29,11 +28,10 @@
     place on an item
     #+begin_src emacs-lisp
 
-      (setq-default org-return-follows-link t)
-      (setq-default org-special-ctrl-a/e t)
-      (setq-default org-special-ctrl-k t)
-      (setq-default org-insert-heading-respect-content t)
-
+    (setq-default org-return-follows-link t)
+    (setq-default org-special-ctrl-a/e t)
+    (setq-default org-special-ctrl-k t)
+    (setq-default org-insert-heading-respect-content t)
     #+end_src
 
 *** Keybindings
@@ -45,24 +43,16 @@
 
 *** Fix Conflicts and Disputed Keys
     #+BEGIN_SRC emacs-lisp
-
-    ;; Make windmove work in Org mode:
-    (add-hook 'org-shiftup-final-hook 'windmove-up)
-    (add-hook 'org-shiftleft-final-hook 'windmove-left)
-    (add-hook 'org-shiftdown-final-hook 'windmove-down)
-    (add-hook 'org-shiftright-final-hook 'windmove-right)
-
-    (setq-default org-replace-disputed-keys t)
-    (setq-default org-support-shift-select 'always)
-
+    (setq org-replace-disputed-keys t)
+    (setq org-support-shift-select 'always)
     #+END_SRC
 
 *** Org-Agenda
     #+BEGIN_SRC emacs-lisp
 
-    (setq-default org-agenda-files
-                  '("~/Org/Documents/org"
-                    "~/Org/Documents/org/projects"))
+    (setq org-agenda-files
+          '("~/Org/Documents/org"
+            "~/Org/Documents/org/projects"))
     #+END_SRC
 
 *** Hooks
@@ -106,20 +96,18 @@
     headings within. The TOC is regenerated on buffer save and placed under a
     heading with the tag :TOC:
     #+begin_src emacs-lisp
-
-      (use-package toc-org
-        :ensure t
-        :hook (org-mode . toc-org-mode)
-        :after org)
-
+    (use-package toc-org
+      :ensure t
+      :hook (org-mode . toc-org-mode)
+      :after org)
     #+end_src
 
 *** Habits
     #+begin_src emacs-lisp
 
     (require 'org-habit)
-    (setq-default org-log-into-drawer t)
-    (setq-default org-todo-keywords '("TODO" "DONE(!)"))
+    (setq org-log-into-drawer t)
+    (setq org-todo-keywords '("TODO" "DONE(!)"))
     #+end_src
 *** Clocks
     #+begin_src emacs-lisp
@@ -127,11 +115,9 @@
     #+end_src
 *** Exports
     #+begin_src emacs-lisp
-
     (use-package ox-hugo
       :ensure t
       :after ox)
-
     #+end_src
 
 *** Contacts
