@@ -28,10 +28,10 @@
     place on an item
     #+begin_src emacs-lisp
 
-    (setq-default org-return-follows-link t)
-    (setq-default org-special-ctrl-a/e t)
-    (setq-default org-special-ctrl-k t)
-    (setq-default org-insert-heading-respect-content t)
+    (setq org-return-follows-link t)
+    (setq org-special-ctrl-a/e t)
+    (setq org-special-ctrl-k t)
+    (setq org-insert-heading-respect-content t)
     #+end_src
 
 *** Keybindings
