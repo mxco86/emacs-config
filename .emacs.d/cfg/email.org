@@ -12,9 +12,12 @@
   ;; Sending mail
   (setq mu4e-maildir "~/Maildir")
 
-  ;; set up queue for offline email
+  ;; Set up queue for offline email
   (setq  smtpmail-queue-mail nil
          smtpmail-queue-dir "~/Maildir/queue/cur")
+
+  ;; Send via SMTP
+  (setq message-send-mail-function 'smtpmail-send-it)
 
   ;; View settings
   (setq mu4e-view-show-addresses t)
@@ -85,4 +88,10 @@
                '("org-contact-add" . mu4e-action-add-org-contact) t)
   (add-to-list 'mu4e-view-actions
                '("org-contact-add" . mu4e-action-add-org-contact) t)
+
+  ;; Confirm before sending mail
+  (add-hook 'message-send-hook
+            (lambda () (unless (yes-or-no-p "Sure you want to send this?")
+                    (signal 'quit nil))))
+
   #+END_SRC
