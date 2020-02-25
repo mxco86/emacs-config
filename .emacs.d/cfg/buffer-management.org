@@ -85,3 +85,13 @@
       (setq-default shackle-rules '((compilation-mode :noselect t))
                     shackle-default-rule '(:select t)))
     #+end_src
+
+*** Window Navigation
+    #+begin_src emacs-lisp
+    (use-package ace-window
+      :ensure t
+      :defer t
+      :init
+      (progn
+        (global-set-key (kbd "C-x o") 'ace-window)))
+    #+end_src
