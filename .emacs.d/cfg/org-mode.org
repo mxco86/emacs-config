@@ -151,13 +151,20 @@
         :hook (org-mode . org-roam-mode)
         :straight (:host github :repo "jethrokuan/org-roam" :branch "develop")
         :config
-        (setq org-roam-directory "~/Org/Documents/org-roam")
-        (setq org-roam-use-timestamp-as-filename nil)
+        (setq org-roam-directory "~/Org/Documents/org-roam"
+              org-roam-use-timestamp-as-filename nil
+              org-roam-buffer-position 'bottom)
         (let ((graph-viewer-binary))
           (if (mjr/sys-linux-p)
               (setq graph-viewer-binary "firefox")
             (setq graph-viewer-binary "/Applications/Firefox.app/Contents/MacOS/firefox-bin"))
           (setq org-roam-graph-viewer graph-viewer-binary))
+
+        (defun org-roam--db-reconnect ()
+          (interactive)
+          (setq org-roam--db-connection nil)
+          (setq org-roam--db-connection (make-hash-table :test #'equal)))
+
         (require 'org-roam-protocol)
         :bind
         ("C-c n l" . org-roam)
