@@ -9,11 +9,13 @@
     - [[#font-and-display][Font and Display]]
     - [[#function-aliases][Function Aliases]]
     - [[#global-key-mappings][Global Key Mappings]]
+    - [[#variables][Variables]]
     - [[#mode-specific-configuration-files][Mode-Specific Configuration Files]]
-    - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#file-backups-and-autosave][File Backups and Autosave]]
     - [[#os-specific-configuration][OS Specific Configuration]]
     - [[#system-information][System Information]]
+    - [[#scrolling][Scrolling]]
+    - [[#literate-mode-configurations][Literate Mode Configurations]]
 
 *** Personal Information
     #+BEGIN_SRC emacs-lisp
@@ -72,6 +74,7 @@
     (setq select-enable-clipboard t)
     (setq next-line-add-newlines t)
     (setq sentence-end-double-space nil)
+    (setq confirm-kill-emacs 'yes-or-no-p)
     (add-to-list 'write-file-functions 'delete-trailing-whitespace)
 
     (global-font-lock-mode t)
@@ -167,29 +170,6 @@
             (mapcar '(lambda (file) (insert (format "    - [[file:cfg/%s]]\n" file))) file-list)))))
     #+END_SRC
 
-*** Literate Mode Configurations                                     :CFGLST:
-    Configuration for more specific functionality, modes and areas of work
-    - [[file:cfg/buffer-management.org]]
-    - [[file:cfg/color-theme.org]]
-    - [[file:cfg/completion.org]]
-    - [[file:cfg/docker.org]]
-    - [[file:cfg/emacs-lisp.org]]
-    - [[file:cfg/email.org]]
-    - [[file:cfg/flycheck.org]]
-    - [[file:cfg/golang.org]]
-    - [[file:cfg/javascript.org]]
-    - [[file:cfg/markup.org]]
-    - [[file:cfg/mode-line.org]]
-    - [[file:cfg/org-mode.org]]
-    - [[file:cfg/paredit.org]]
-    - [[file:cfg/rust.org]]
-    - [[file:cfg/search.org]]
-    - [[file:cfg/terminal.org]]
-    - [[file:cfg/typescript.org]]
-    - [[file:cfg/vcs.org]]
-    - [[file:cfg/web.org]]
-    - [[file:cfg/writing.org]]
-
 *** File Backups and Autosave
     Keep backups and autosaves in specific directories rather than leaving
     temporary files all over the filesystem
@@ -234,3 +214,26 @@
     (setq mouse-wheel-follow-mouse 't)
     (setq scroll-step 1)
     #+end_src
+
+*** Literate Mode Configurations                                     :CFGLST:
+    Configuration for more specific functionality, modes and areas of work
+    - [[file:cfg/buffer-management.org]]
+    - [[file:cfg/color-theme.org]]
+    - [[file:cfg/completion.org]]
+    - [[file:cfg/docker.org]]
+    - [[file:cfg/emacs-lisp.org]]
+    - [[file:cfg/email.org]]
+    - [[file:cfg/flycheck.org]]
+    - [[file:cfg/golang.org]]
+    - [[file:cfg/javascript.org]]
+    - [[file:cfg/markup.org]]
+    - [[file:cfg/mode-line.org]]
+    - [[file:cfg/org-mode.org]]
+    - [[file:cfg/paredit.org]]
+    - [[file:cfg/rust.org]]
+    - [[file:cfg/search.org]]
+    - [[file:cfg/terminal.org]]
+    - [[file:cfg/typescript.org]]
+    - [[file:cfg/vcs.org]]
+    - [[file:cfg/web.org]]
+    - [[file:cfg/writing.org]]
