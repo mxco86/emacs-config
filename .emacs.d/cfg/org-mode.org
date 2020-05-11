@@ -153,6 +153,7 @@
         :config
         (setq org-roam-directory "~/Org/Documents/org-roam"
               org-roam-use-timestamp-as-filename nil
+              org-roam-db-location "~/.org-roam/org-roam.db"
               org-roam-buffer-position 'bottom
               org-roam-graphviz-executable (executable-find "neato")
               org-roam-graphviz-extra-options '(("overlap" . "false")))
@@ -177,10 +178,9 @@
         ("C-c n g" . org-roam-show-graph))
 
     (use-package company-org-roam
-        :straight nil
-        :after org-roam company org
+        :straight (:host github :repo "jethrokuan/company-org-roam")
         :config
-        (company-org-roam-init))
+        (push 'company-org-roam company-backends))
 
     (use-package deft
       :after org
