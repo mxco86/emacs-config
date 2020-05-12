@@ -147,8 +147,6 @@
                     (org-babel-load-file (concat cfg-conf-dir conf-file)))
                 (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
 
-    (mjr/load-literate-cfg)
-
     (defun mjr/insert-literate-config-file-list ()
       (interactive)
       (let ((cfg-conf-dir "~/.emacs.d/cfg/")
@@ -217,6 +215,10 @@
 
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
+    #+BEGIN_SRC emacs-lisp
+    (mjr/load-literate-cfg)
+
+    #+END_SRC
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/color-theme.org]]
     - [[file:cfg/completion.org]]
