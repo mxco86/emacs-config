@@ -185,6 +185,7 @@
 *** OS Specific Configuration
     #+BEGIN_SRC emacs-lisp
     (setq mac-command-modifier 'meta)
+    (setq mac-option-modifier 'meta)
     (setq ns-pop-up-frames nil)
     #+END_SRC
 
