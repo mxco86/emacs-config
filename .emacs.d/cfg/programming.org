@@ -1,0 +1,20 @@
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-mode
+    :ensure t
+    :init
+    (setq lsp-prefer-flymake nil
+          lsp-auto-guess-root nil
+          gc-cons-threshold 100000000
+          read-process-output-max (* 1024 1024)
+          lsp-prefer-capf t)
+    (add-hook 'python-mode-hook #'lsp)
+    (add-hook 'js2-mode-hook #'lsp)
+    (add-hook 'go-mode-hook #'lsp)
+    (add-hook 'javascript-mode-hook #'lsp)
+    (add-hook 'typescript-mode-hook #'lsp))
+
+(use-package lsp-ivy
+    :ensure t
+    :after lsp-mode
+    :commands lsp-ivy-workspace-symbol)
+#+END_SRC
