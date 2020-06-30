@@ -191,6 +191,19 @@
       (deft-use-filter-string-for-filename t)
       (deft-default-extension "org")
       (deft-directory "~/Org/Documents/org-roam"))
+
+    (use-package org-roam-server
+      :ensure t
+      :config
+      (setq org-roam-server-host "127.0.0.1"
+            org-roam-server-port 5880
+            org-roam-server-export-inline-images t
+            org-roam-server-authenticate nil
+            org-roam-server-network-poll t
+            org-roam-server-network-arrows nil
+            org-roam-server-network-label-truncate t
+            org-roam-server-network-label-truncate-length 60
+            org-roam-server-network-label-wrap-length 20))
     #+end_src
 *** Org-Download
     #+begin_src emacs-lisp
