@@ -1,20 +1,65 @@
-#+BEGIN_SRC emacs-lisp
-(use-package lsp-mode
-    :ensure t
-    :init
-    (setq lsp-prefer-flymake nil
-          lsp-auto-guess-root nil
-          gc-cons-threshold 100000000
-          read-process-output-max (* 1024 1024)
-          lsp-prefer-capf t)
-    (add-hook 'python-mode-hook #'lsp)
-    (add-hook 'js2-mode-hook #'lsp)
-    (add-hook 'go-mode-hook #'lsp)
-    (add-hook 'javascript-mode-hook #'lsp)
-    (add-hook 'typescript-mode-hook #'lsp))
 
-(use-package lsp-ivy
+* LSP Mode
+  #+BEGIN_SRC emacs-lisp
+  (use-package lsp-mode
+      :ensure t
+      :init
+      (setq lsp-prefer-flymake nil
+            lsp-auto-guess-root nil
+            gc-cons-threshold 100000000
+            read-process-output-max (* 1024 1024)
+            lsp-prefer-capf t)
+      (add-hook 'python-mode-hook #'lsp)
+      (add-hook 'js2-mode-hook #'lsp)
+      (add-hook 'go-mode-hook #'lsp)
+      (add-hook 'javascript-mode-hook #'lsp)
+      (add-hook 'typescript-mode-hook #'lsp))
+
+  (use-package lsp-ivy
+      :ensure t
+      :after lsp-mode
+      :commands lsp-ivy-workspace-symbol)
+  #+END_SRC
+
+* JavaScript and Typescript Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package add-node-modules-path
     :ensure t
-    :after lsp-mode
-    :commands lsp-ivy-workspace-symbol)
-#+END_SRC
+    :commands (add-node-modules-path)
+    :init
+    (add-hook 'typescript-mode-hook #'add-node-modules-path)
+    (add-hook 'js2-mode-hook #'add-node-modules-path)
+    (add-hook 'web-mode-hook #'add-node-modules-path))
+
+  (use-package npm-mode
+    :ensure t
+    :commands (npm-mode)
+    :init
+    (add-hook 'typescript-mode-hook #'npm-mode))
+  #+END_SRC
+
+* Typescript Development
+  #+BEGIN_SRC emacs-lisp
+  #+END_SRC
+
+* JavaScript Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :mode "\\.js\\'"
+    :interpreter "node"
+    :init
+    (setq js-indent-level 2)
+  #+END_SRC
+
+* Code Formatting
+  #+BEGIN_SRC emacs-lisp
+  (use-package prettier-js
+    :ensure t
+    :commands (prettier-js-mode)
+    :init
+    (add-hook 'typescript-mode-hook #'prettier-js-mode)
+    (add-hook 'js2-mode-hook #'prettier-js-mode)
+    ;;(add-hook 'web-mode-hook #'prettier-js-mode)
+    )
+  #+END_SRC
