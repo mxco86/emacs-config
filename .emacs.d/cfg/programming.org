@@ -1,4 +1,3 @@
-
 * LSP Mode
   #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode

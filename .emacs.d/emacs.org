@@ -16,6 +16,7 @@
     - [[#system-information][System Information]]
     - [[#scrolling][Scrolling]]
     - [[#literate-mode-configurations][Literate Mode Configurations]]
+    - [[#footer][Footer]]
 
 *** Personal Information
     #+BEGIN_SRC emacs-lisp
@@ -216,10 +217,6 @@
 
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
-    #+BEGIN_SRC emacs-lisp
-    (mjr/load-literate-cfg)
-
-    #+END_SRC
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/color-theme.org]]
     - [[file:cfg/completion.org]]
@@ -233,6 +230,8 @@
     - [[file:cfg/mode-line.org]]
     - [[file:cfg/org-mode.org]]
     - [[file:cfg/paredit.org]]
+    - [[file:cfg/programming.org]]
+    - [[file:cfg/projects.org]]
     - [[file:cfg/rust.org]]
     - [[file:cfg/search.org]]
     - [[file:cfg/terminal.org]]
@@ -240,3 +239,6 @@
     - [[file:cfg/vcs.org]]
     - [[file:cfg/web.org]]
     - [[file:cfg/writing.org]]
+
+*** Footer
+   We thank you for your patience
