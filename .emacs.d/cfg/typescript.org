@@ -3,72 +3,23 @@
     Basic Tide configuration to give us tsserver interaction, code
     formatting, spell checking and auto-completion via company
     #+begin_src emacs-lisp
-    (use-package tide
-      :ensure t
-      :commands (typescript-mode)
-      :init
-      (defun setup-tide-mode ()
-        (interactive)
-        (tide-setup)
-        (flycheck-mode t)
-        (setq flycheck-check-syntax-automatically '(save mode-enabled))
-        (flycheck-add-next-checker 'typescript-tide '(t . javascript-eslint) 'append)
-        (eldoc-mode t)
-        (tide-hl-identifier-mode t)
-        (company-mode t))
+    ;; (use-package tide
+    ;;   :ensure t
+    ;;   :commands (typescript-mode)
+    ;;   :init
+    ;;   (defun setup-tide-mode ()
+    ;;     (interactive)
+    ;;     (tide-setup)
+    ;;     (flycheck-mode t)
+    ;;     (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    ;;     (flycheck-add-next-checker 'typescript-tide '(t . javascript-eslint) 'append)
+    ;;     (eldoc-mode t)
+    ;;     (tide-hl-identifier-mode t)
+    ;;     (company-mode t))
 
-      (add-hook 'before-save-hook 'tide-format-before-save)
-      (add-hook 'typescript-mode-hook #'setup-tide-mode)
-      (add-hook 'typescript-mode-hook #'flyspell-prog-mode)
-      :config
-      (setq typescript-indent-level 2))
-    #+end_src
-
-*** Node/Typescript Development
-    Add some minor modes for more effective node development
-    #+begin_src emacs-lisp
-
-    (use-package add-node-modules-path
-      :ensure t
-      :commands (add-node-modules-path)
-      :init
-      (add-hook 'typescript-mode-hook #'add-node-modules-path)
-      (add-hook 'web-mode-hook #'add-node-modules-path))
-
-    (use-package npm-mode
-      :ensure t
-      :commands (npm-mode)
-      :init
-      (add-hook 'typescript-mode-hook #'npm-mode))
-
-    (use-package prettier-js
-      :ensure t
-      :commands (prettier-js-mode)
-      :init
-      (add-hook 'typescript-mode-hook #'prettier-js-mode)
-      (add-hook 'web-mode-hook #'prettier-js-mode))
-
-    (use-package web-mode
-      :ensure t
-      :mode (("\\.html?\\'" . web-mode)
-             ("\\.tsx\\'" . web-mode)
-             ("\\.jsx\\'" . web-mode))
-      :config
-      (setq web-mode-markup-indent-offset 2
-            web-mode-css-indent-offset 2
-            web-mode-code-indent-offset 2
-            web-mode-block-padding 2
-            web-mode-comment-style 2
-
-            web-mode-enable-css-colorization t
-            web-mode-enable-auto-pairing t
-            web-mode-enable-comment-keywords t
-            web-mode-enable-current-element-highlight t
-            web-mode-enable-auto-indentation nil)
-      (add-hook 'web-mode-hook
-                (lambda ()
-                  (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                    (setup-tide-mode))))
-      ;; enable typescript-tslint checker
-      (flycheck-add-mode 'typescript-tslint 'web-mode))
+    ;;   (add-hook 'before-save-hook 'tide-format-before-save)
+    ;;   (add-hook 'typescript-mode-hook #'setup-tide-mode)
+    ;;   (add-hook 'typescript-mode-hook #'flyspell-prog-mode)
+    ;;   :config
+    ;;   (setq typescript-indent-level 2))
     #+end_src
