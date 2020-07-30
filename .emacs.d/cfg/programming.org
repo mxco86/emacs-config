@@ -11,11 +11,13 @@
       (add-hook 'python-mode-hook #'lsp)
       (add-hook 'js2-mode-hook #'lsp)
       (add-hook 'go-mode-hook #'lsp)
+      (add-hook 'kotlin-mode-hook #'lsp)
       (add-hook 'javascript-mode-hook #'lsp)
       (add-hook 'typescript-mode-hook #'lsp)
       (add-hook 'lsp-after-initialize-hook
                 (lambda ()
-                  (flycheck-add-next-checker 'lsp 'javascript-eslint))))
+                  (flycheck-add-next-checker 'lsp 'javascript-eslint)
+                  (flycheck-add-next-checker 'lsp 'kotlin-ktlint))))
 
   (use-package lsp-ui
       :ensure t
@@ -63,6 +65,18 @@
     :interpreter "node"
     :init
     (setq js-indent-level 2))
+  #+END_SRC
+
+* Kotlin Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package kotlin-mode
+    :ensure t
+    :mode "\\.kt\\'")
+
+  (use-package flycheck-kotlin
+    :ensure t
+    :init
+    (flycheck-kotlin-setup))
   #+END_SRC
 
 * Code Formatting
