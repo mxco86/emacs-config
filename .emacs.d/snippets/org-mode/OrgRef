@@ -1,9 +1,9 @@
 # key: or
 # name: Org Reference
 # --
-*** TODO $1
+*** TODO $3
 ***** Metadata
-      - source :: $2
-      - author :: $3
+      - source :: $1
+      - author :: $2
 ***** Notes
       $0
