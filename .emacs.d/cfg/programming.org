@@ -79,6 +79,18 @@
     (flycheck-kotlin-setup))
   #+END_SRC
 
+* Java Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package lsp-java :config (add-hook 'java-mode-hook 'lsp))
+  (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+  ;; (use-package dap-java :ensure nil)
+
+  ;; Spring Boot
+  ;; (require 'lsp-java-boot)
+  ;; (add-hook 'lsp-mode-hook #'lsp-lens-mode)
+  ;; (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+  #+END_SRC
+
 * Code Formatting
   #+BEGIN_SRC emacs-lisp
   (use-package prettier-js
@@ -116,4 +128,11 @@
                     (setup-tide-mode))))
       ;; enable typescript-tslint checker
       (flycheck-add-mode 'typescript-tslint 'web-mode))
+  #+end_src
+
+* Directory Environment
+  #+begin_src emacs-lisp
+  (use-package direnv
+   :config
+   (direnv-mode))
   #+end_src
