@@ -16,4 +16,7 @@
       (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
       :config
       (setq-default git-commit-major-mode 'git-commit-mode))
+
+    (use-package forge
+      :after magit)
     #+end_src
