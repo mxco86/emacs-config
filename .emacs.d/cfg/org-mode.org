@@ -149,7 +149,6 @@
     (use-package org-roam
         :after org
         :hook (org-mode . org-roam-mode)
-        :straight (:host github :repo "jethrokuan/org-roam" :branch "master")
         :config
         (setq org-roam-directory "~/Org/Documents/org-roam"
               org-roam-use-timestamp-as-filename nil
@@ -178,7 +177,6 @@
         ("C-c n g" . org-roam-show-graph))
 
     (use-package company-org-roam
-        :straight (:host github :repo "jethrokuan/company-org-roam")
         :config
         (push 'company-org-roam company-backends))
 
