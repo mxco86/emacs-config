@@ -1,39 +1,59 @@
 * LSP Mode
   #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
-      :ensure t
-      :init
-      (setq lsp-prefer-flymake nil
-            lsp-auto-guess-root t
-            gc-cons-threshold 100000000
-            read-process-output-max (* 1024 1024)
-            lsp-prefer-capf t)
-      (add-hook 'python-mode-hook #'lsp)
-      (add-hook 'js2-mode-hook #'lsp)
-      (add-hook 'go-mode-hook #'lsp)
-      (add-hook 'kotlin-mode-hook #'lsp)
-      (add-hook 'javascript-mode-hook #'lsp)
-      (add-hook 'typescript-mode-hook #'lsp)
-      (add-hook 'lsp-after-initialize-hook
-                (lambda ()
-                  (flycheck-add-next-checker 'lsp 'javascript-eslint)
-                  (flycheck-add-next-checker 'lsp 'kotlin-ktlint))))
+      :hook ((kotlin-mode . lsp)
+             (typescript-mode . lsp)
+             (lsp-mode . lsp-enable-which-key-integration))
+      :commands lsp
+      :config
+      (setq lsp-headerline-breadcrumb-enable nil
+            lsp-enable-completion-at-point t
+            lsp-enable-indentation t))
 
   (use-package lsp-ui
-      :ensure t
+      :commands lsp-ui-mode
       :config
       (setq lsp-ui-sideline-enable t
-            lsp-ui-sideline-show-symbol nil
-            lsp-ui-sideline-show-hover t
+            lsp-ui-sideline-show-diagnostics t
+            lsp-ui-sideline-show-symbol t
+            lsp-ui-sideline-show-hover nil
             lsp-ui-sideline-show-code-actions t
             lsp-ui-peek-enable t
             lsp-ui-imenu-enable t
-            lsp-ui-doc-enable t))
+            lsp-ui-doc-enable t
+            lsp-ui-sideline-update-mode 'line)
+
+      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
   (use-package lsp-ivy
       :ensure t
       :after lsp-mode
       :commands lsp-ivy-workspace-symbol)
+
+  (use-package which-key
+      :config (which-key-mode))
+
+  ;; LSP Flycheck
+  (defvar-local mjr/flycheck-local-cache nil)
+
+  (defun mjr/flycheck-checker-get (fn checker property)
+    (or (alist-get property (alist-get checker mjr/flycheck-local-cache))
+        (funcall fn checker property)))
+
+  (advice-add 'flycheck-checker-get :around 'mjr/flycheck-checker-get)
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'kotlin-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (kotlin-ktlint)))))))))
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'typescript-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (javascript-eslint)))))))))
   #+END_SRC
 
 * Directory Environment
