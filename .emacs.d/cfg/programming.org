@@ -63,16 +63,12 @@
    (direnv-mode))
   #+end_src
 
-* Code Formatting
+* Editor Settings
   #+BEGIN_SRC emacs-lisp
-  (use-package prettier-js
-    :ensure t
-    :commands (prettier-js-mode)
-    :init
-    (add-hook 'typescript-mode-hook #'prettier-js-mode)
-    (add-hook 'js2-mode-hook #'prettier-js-mode)
-    ;;(add-hook 'web-mode-hook #'prettier-js-mode)
-    )
+  (use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
   #+END_SRC
 
 * Node Development (JavaScript and Typescript)
@@ -135,13 +131,23 @@
                 (concat "-Xbootclasspath/a:" mjr/lombok-jar))))
 
   (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+
+  (use-package groovy-mode
+      :ensure t
+      :mode "\\.gradle\\'")
+
+  ;; (use-package lsp-sonarlint
+  ;;     :ensure t
+  ;;     :config
+  ;;     (require 'lsp-sonarlint-java)
+  ;;     (setq lsp-sonarlint-java-enabled t))
+
   ;; (use-package dap-java :ensure nil)
 
   ;; Spring Boot
   ;; (require 'lsp-java-boot)
   ;; (add-hook 'lsp-mode-hook #'lsp-lens-mode)
   ;; (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
-
   #+END_SRC
 
 * Mixed Web Programming
@@ -157,7 +163,6 @@
             web-mode-code-indent-offset 2
             web-mode-block-padding 2
             web-mode-comment-style 2
-
             web-mode-enable-css-colorization t
             web-mode-enable-auto-pairing t
             web-mode-enable-comment-keywords t
@@ -179,4 +184,10 @@
                              (require 'lsp-pyright)
                              (lsp))))
 
+  #+end_src
+
+* Terraform Development
+  #+begin_src emacs-lisp
+  (use-package terraform-mode
+      :ensure t)
   #+end_src
