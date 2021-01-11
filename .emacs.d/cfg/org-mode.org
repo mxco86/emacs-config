@@ -15,7 +15,7 @@
     - [[#calendar-syncronisation][Calendar Syncronisation]]
     - [[#org-roam][Org-Roam]]
     - [[#org-download][Org-Download]]
-    - [[#links][Links]]
+    - [[#org-trello][Org-Trello]]
 
 *** List Setup
     Extend the sub-items bullet count by two (1,3,5 characters etc.) to give a
@@ -56,6 +56,12 @@
     (setq org-agenda-files
           '("~/Org/Documents/org"
             "~/Org/Documents/org/projects"))
+
+    (setq org-agenda-prefix-format
+          '((agenda . " %i %s")
+            (todo . " %i %-12:c")
+            (tags . " %i %-12:c")
+            (search . " %i %-12:c")))
     #+END_SRC
 
 *** Hooks
@@ -110,7 +116,7 @@
 
     (require 'org-habit)
     (setq org-log-into-drawer t)
-    (setq org-todo-keywords '("TODO" "DONE(!)"))
+    (setq org-todo-keywords '("BACKLOG" "TODO" "DOING" "DONE(!)"))
     #+end_src
 *** Clocks
     #+begin_src emacs-lisp
@@ -210,12 +216,16 @@
         :config
         (setq-default org-download-image-dir "~/Org/Documents/org-roam/files"))
     #+end_src
-*** Links
+
+*** Org-Trello
     #+begin_src emacs-lisp
-    (setq org-link-frame-setup
-          '((vm . vm-visit-folder-other-frame)
-            (vm-imap . vm-visit-imap-folder-other-frame)
-            (gnus . org-gnus-no-new-news)
-            (file . find-file)
-            (wl . wl-other-frame)))
+    (use-package org-trello
+        :after org
+        :config
+        (add-to-list 'auto-mode-alist '("\\.trello$" . org-mode))
+        (add-hook 'org-mode-hook
+                  (lambda ()
+                    (let ((filename (buffer-file-name (current-buffer))))
+                      (when (and filename (string= "trello" (file-name-extension filename)))
+                        (org-trello-mode))))))
     #+end_src
