@@ -4,7 +4,6 @@
     - [[#use-package-extensions][Use Package Extensions]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
-    - [[#external-program-execution][External Program Execution]]
     - [[#buffer-behaviour][Buffer Behaviour]]
     - [[#font-and-display][Font and Display]]
     - [[#function-aliases][Function Aliases]]
@@ -48,16 +47,6 @@
     #+BEGIN_SRC emacs-lisp
     (setq-default custom-file "~/.emacs-custom.el")
     (load custom-file 'noerror)
-    #+END_SRC
-
-*** External Program Execution
-    Ensure we can execute programs located at various paths by setting the
-    execution path from our shell
-    #+BEGIN_SRC emacs-lisp
-    (use-package exec-path-from-shell
-      :ensure t
-      :config
-      (exec-path-from-shell-initialize))
     #+END_SRC
 
 *** Buffer Behaviour
@@ -234,6 +223,7 @@
     - [[file:cfg/projects.org]]
     - [[file:cfg/rust.org]]
     - [[file:cfg/search.org]]
+    - [[file:cfg/snippets.org]]
     - [[file:cfg/terminal.org]]
     - [[file:cfg/typescript.org]]
     - [[file:cfg/vcs.org]]
