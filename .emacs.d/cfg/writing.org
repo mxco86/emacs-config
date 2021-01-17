@@ -17,18 +17,3 @@
                     ispell-dictionary   "british"
                     flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
     #+end_src
-
-*** Writing Clarity
-    Highlight potential problems with text.
-
-    - https://github.com/bnbeckwith/writegood-mode
-
-    #+begin_src emacs-lisp
-
-    (use-package writegood-mode
-      :ensure t
-      :diminish writegood-mode
-      :config
-      (progn
-        (add-hook 'text-mode-hook 'writegood-mode)))
-    #+end_src
