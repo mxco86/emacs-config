@@ -54,13 +54,30 @@
               (when (derived-mode-p 'typescript-mode)
                 (setq mjr/flycheck-local-cache
                       '((lsp . ((next-checkers . (javascript-eslint)))))))))
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'nix-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (nix-linter)))))))))
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'python-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (python-pylint)))))))))
+
+
+
   #+END_SRC
 
 * Directory Environment
   #+begin_src emacs-lisp
   (use-package direnv
-   :config
-   (direnv-mode))
+    :hook
+    (flycheck-before-syntax-check . direnv-update-environment)
+    :config
+    (direnv-mode))
   #+end_src
 
 * Editor Settings
