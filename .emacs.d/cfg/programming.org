@@ -208,3 +208,11 @@
   (use-package terraform-mode
       :ensure t)
   #+end_src
+
+* Nix Development
+  #+begin_src emacs-lisp
+  (use-package nix-mode
+    :ensure t
+    :config
+    (add-hook 'before-save-hook 'nix-format-buffer))
+  #+end_src
