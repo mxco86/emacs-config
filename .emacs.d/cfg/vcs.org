@@ -19,4 +19,6 @@
 
     (use-package forge
       :after magit)
+
+    (use-package git-timemachine)
     #+end_src
