@@ -21,4 +21,6 @@
       :after magit)
 
     (use-package git-timemachine)
+
+    (use-package github-review)
     #+end_src
