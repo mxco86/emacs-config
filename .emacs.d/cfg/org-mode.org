@@ -160,6 +160,7 @@
               org-roam-use-timestamp-as-filename nil
               org-roam-db-location "~/.org-roam/org-roam.db"
               org-roam-buffer-position 'bottom
+              org-roam-completion-everywhere t
               org-roam-graphviz-executable (executable-find "neato")
               org-roam-graphviz-extra-options '(("overlap" . "false")))
 
@@ -181,10 +182,6 @@
         ("C-c n f" . org-roam-find-file)
         ("C-c n i" . org-roam-insert)
         ("C-c n g" . org-roam-show-graph))
-
-    (use-package company-org-roam
-        :config
-        (push 'company-org-roam company-backends))
 
     (use-package deft
       :after org
