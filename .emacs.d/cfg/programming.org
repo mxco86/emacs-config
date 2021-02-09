@@ -211,8 +211,15 @@
 
 * Nix Development
   #+begin_src emacs-lisp
-  (use-package nix-mode
+  (use-package nix-mode :ensure t)
+  #+end_src
+
+* Code Formatting
+  #+begin_src emacs-lisp
+  (use-package format-all
     :ensure t
     :config
-    (add-hook 'before-save-hook 'nix-format-buffer))
+    (add-hook 'prog-mode-hook 'format-all-mode)
+    (add-hook 'prog-mode-hook 'format-all-ensure-formatter))
   #+end_src
+  
