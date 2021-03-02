@@ -23,20 +23,25 @@
     (bind-key "C-x C-f" 'counsel-find-file)
     :config
     (ivy-mode 1)
-    (setq-default ivy-use-virtual-buffers t)
-    ;; intentional space before end of string
-    (setq-default ivy-count-format "(%d/%d) ")
-    (setq-default ivy-initial-inputs-alist nil)
-    (setq-default ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                          (t . ivy--regex-fuzzy)))
-    (setq-default ivy-extra-directories nil)
-    (setq-default ivy-wrap t))
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "(%d/%d) "
+          ivy-initial-inputs-alist nil
+          ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                  (t . ivy--regex-fuzzy))
+          ivy-extra-directories nil
+          ivy-wrap t))
 
   (with-eval-after-load 'counsel
-    (let ((done (where-is-internal #'ivy-done     ivy-minibuffer-map t))
+    (let ((done (where-is-internal #'ivy-done ivy-minibuffer-map t))
           (alt  (where-is-internal #'ivy-alt-done ivy-minibuffer-map t)))
       (define-key counsel-find-file-map done #'ivy-alt-done)
       (define-key counsel-find-file-map alt  #'ivy-done)))
+
+  (use-package ivy-rich
+    :after ivy
+    :hook (ivy-mode . ivy-rich-mode)
+    :config
+    (setq ivy-rich-path-style 'abbrev))
   #+END_SRC
 
 *** Command Suggestions
