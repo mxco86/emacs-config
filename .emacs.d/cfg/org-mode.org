@@ -93,7 +93,8 @@
           org-src-strip-leading-and-trailing-blank-lines t)
 
     (org-babel-do-load-languages 'org-babel-load-languages
-                                 '((shell . t)))
+                                 '((shell . t)
+                                   (kotlin . t)))
 
     (define-advice org-edit-src-exit (:before (&rest _args))
       (delete-trailing-whitespace))
