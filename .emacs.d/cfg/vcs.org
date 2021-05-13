@@ -24,3 +24,27 @@
 
     (use-package github-review)
     #+end_src
+
+*** Diff Mode
+    #+begin_src emacs-lisp
+    (defun update-diff-colors ()
+      "update the colors for diff faces"
+      (set-face-attribute 'diff-added nil
+                          :foreground "#cceecc" :background "#336633")
+      (set-face-attribute 'diff-removed nil
+                          :foreground "#cceecc" :background "#663333")
+      (set-face-attribute 'diff-refine-added nil
+                          :background "#336633")
+      (set-face-attribute 'diff-refine-removed nil
+                          :background "#663333")
+      (set-face-attribute 'diff-changed nil
+                          :foreground "#cceecc" :background "#268bd2")
+      (set-face-attribute 'diff-indicator-changed nil
+                          :foreground "#cceecc")
+      (set-face-attribute 'diff-indicator-added nil
+                          :foreground "#cceecc")
+      (set-face-attribute 'diff-indicator-removed nil
+                          :foreground "#cceecc"))
+
+    (eval-after-load "diff-mode" '(update-diff-colors))
+    #+end_src
