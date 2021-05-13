@@ -57,6 +57,13 @@
 
   (add-hook 'lsp-managed-mode-hook
             (lambda ()
+              (when (derived-mode-p 'js2-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (javascript-eslint)))))))))
+
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
               (when (derived-mode-p 'nix-mode)
                 (setq mjr/flycheck-local-cache
                       '((lsp . ((next-checkers . (nix-linter)))))))))
@@ -67,9 +74,12 @@
                 (setq mjr/flycheck-local-cache
                       '((lsp . ((next-checkers . (python-pylint)))))))))
 
-
-
-  #+END_SRC
+    (add-hook 'lsp-managed-mode-hook
+              (lambda ()
+                (when (derived-mode-p 'terraform-mode)
+                  (setq mjr/flycheck-local-cache
+                        '((lsp . ((next-checkers . (terraform-tflint)))))))))
+                      #+END_SRC
 
 * Directory Environment
   #+begin_src emacs-lisp
@@ -222,7 +232,6 @@
     (add-hook 'prog-mode-hook 'format-all-mode)
     (add-hook 'prog-mode-hook 'format-all-ensure-formatter))
   #+end_src
-
 
 * Go Programming
 *** Initial Setup
