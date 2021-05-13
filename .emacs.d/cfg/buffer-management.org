@@ -95,3 +95,11 @@
       (progn
         (global-set-key (kbd "C-x o") 'ace-window)))
     #+end_src
+
+*** PDF Buffers
+    #+begin_src emacs-lisp
+    (use-package pdf-tools
+      :config
+      (pdf-tools-install :no-query)
+      (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
+    #+end_src
