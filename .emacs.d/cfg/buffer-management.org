@@ -24,6 +24,9 @@
                        (name . "\\*Messages\\*")))
                      ("Org"
                       (mode . org-mode))
+                     ("Code Review"
+                      (or
+                       (mode . github-review-mode)))
                      ("Programming"
                       (or
                        (name . "\\*inferior-lisp\\*")
@@ -37,6 +40,8 @@
                        (mode . js2-mode)
                        (mode . typescript-mode)
                        (mode . js-mode)
+                       (mode . nix-mode)
+                       (mode . kotlin-mode)
                        (mode . web-mode)))
                      ("Data/Config"
                       (or
@@ -78,6 +83,7 @@
     #+end_src
 *** Popup Buffers
     #+begin_src emacs-lisp
+    (winner-mode t)
 
     (use-package shackle
       :ensure t
