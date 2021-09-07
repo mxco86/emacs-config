@@ -57,11 +57,14 @@
           '("~/Org/Documents/org"
             "~/Org/Documents/org-roam"))
 
-    (setq org-agenda-prefix-forgmat
-          '((agenda . " %i %s %-12c")
-            (todo . " %i %-12:c")
+    (setq org-agenda-prefix-format
+          '((agenda . " %i %s %-12:c")
+            (todo . " %b ")
             (tags . " %i %-12:c")
             (search . " %i %-12:c")))
+
+    (setq org-agenda-custom-commands
+          '(("n" todo "NEXT")))
     #+END_SRC
 
 *** Hooks
@@ -115,10 +118,8 @@
 
 *** Habits
     #+begin_src emacs-lisp
-
-    (require 'org-habit)
-    (setq org-log-into-drawer t)
-    (setq org-todo-keywords '("BACKLOG" "TODO" "DOING" "DONE(!)"))
+    (setq org-log-into-drawer nil)
+    (setq org-todo-keywords '("TODO" "NEXT" "DONE(!)"))
     #+end_src
 *** Clocks
     #+begin_src emacs-lisp
@@ -149,6 +150,7 @@
       :bind (("C-c n l" . org-roam-buffer-toggle)
              ("C-c n s" . org-store-link)
              ("C-c n i" . org-roam-node-insert)
+             ("C-c n d" . org-roam-dailies-goto-today)
              ("C-c n f" . org-roam-node-find))
       :init
       (setq org-roam-v2-ack t)

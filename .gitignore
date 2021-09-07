@@ -22,3 +22,16 @@ network-security.data
 /.emacs.d/tramp
 /.emacs.d/bookmarks
 /.emacs.d/org-gcal/
+/.emacs.d/.cache/
+/.emacs.d/.dap-breakpoints
+/.emacs.d/.lsp-session-v1
+/.emacs.d/.trello/
+/.emacs.d/eclipse.jdt.ls/
+/.emacs.d/forge-database.sqlite
+/.emacs.d/projectile-bookmarks.eld
+/.emacs.d/request/
+/.emacs.d/var/
+/.emacs.d/workspace/
+/.emacs.d/eln-cache/
+/.emacs.d/org-roam.db
+/.emacs.d/vimish-fold/
