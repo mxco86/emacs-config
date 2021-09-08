@@ -14,7 +14,6 @@
     - [[#contacts][Contacts]]
     - [[#org-roam][Org-Roam]]
     - [[#org-download][Org-Download]]
-    - [[#org-trello][Org-Trello]]
 
 *** List Setup
     Extend the sub-items bullet count by two (1,3,5 characters etc.) to give a
@@ -161,11 +160,11 @@
             org-roam-mode-section-functions (list #'org-roam-backlinks-section
                                                   #'org-roam-reflinks-section
                                                   #'org-roam-unlinked-references-section))
-    
+
       (cl-defmethod org-roam-node-filetitle ((node org-roam-node))
         "Return the file TITLE for the node."
         (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
-    
+
       (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
         "Return the hierarchy for the node."
         (let ((title (org-roam-node-title node))
@@ -176,62 +175,8 @@
            (if (> level 0) (concat filetitle " > "))
            (if (> level 1) (concat (string-join olp " > ") " > "))
            title)))
-    
+
       (org-roam-setup))
-    
-      ;; (use-package org-roam
-      ;;     :after org
-      ;;     :hook (org-mode . org-roam-mode)
-      ;;     :config
-      ;;     (setq org-roam-directory "~/Org/Documents/org-roam"
-      ;;           org-roam-use-timestamp-as-filename nil
-      ;;           org-roam-db-location "~/.org-roam/org-roam.db"
-      ;;           org-roam-buffer-position 'bottom
-      ;;           org-roam-completion-everywhere t
-      ;;           org-roam-graphviz-executable (executable-find "neato")
-      ;;           org-roam-graphviz-extra-options '(("overlap" . "false")))
-    
-      ;;     (let ((graph-viewer-binary))
-      ;;       (if (mjr/sys-linux-p)
-      ;;           (setq graph-viewer-binary "firefox")
-      ;;         (setq graph-viewer-binary "/Applications/Firefox.app/Contents/MacOS/firefox-bin"))
-      ;;       (setq org-roam-graph-viewer graph-viewer-binary))
-    
-      ;;     (defun org-roam--db-reconnect ()
-      ;;       (interactive)
-      ;;       (setq org-roam--db-connection nil)
-      ;;       (setq org-roam--db-connection (make-hash-table :test #'equal)))
-    
-      ;;     (require 'org-roam-protocol)
-      ;;     :bind
-      ;;     ("C-c n l" . org-roam)
-      ;;     ("C-c n t" . org-roam-today)
-      ;;     ("C-c n f" . org-roam-find-file)
-      ;;     ("C-c n i" . org-roam-insert)
-      ;;     ("C-c n g" . org-roam-show-graph))
-    
-      ;; (use-package deft
-      ;;   :after org
-      ;;   :bind
-      ;;   ("C-c n d" . deft)
-      ;;   :custom
-      ;;   (deft-recursive t)
-      ;;   (deft-use-filter-string-for-filename t)
-      ;;   (deft-default-extension "org")
-      ;;   (deft-directory "~/Org/Documents/org-roam"))
-    
-      ;; (use-package org-roam-server
-      ;;   :ensure t
-      ;;   :config
-      ;;   (setq org-roam-server-host "127.0.0.1"
-      ;;         org-roam-server-port 5880
-      ;;         org-roam-server-export-inline-images t
-      ;;         org-roam-server-authenticate nil
-      ;;         org-roam-server-network-poll t
-      ;;         org-roam-server-network-arrows nil
-      ;;         org-roam-server-network-label-truncate t
-      ;;         org-roam-server-network-label-truncate-length 60
-      ;;         org-roam-server-network-label-wrap-length 20))
     #+end_src
 *** Org-Download
     #+begin_src emacs-lisp
@@ -239,17 +184,4 @@
         :after org
         :config
         (setq-default org-download-image-dir "~/Org/Documents/org-roam/files"))
-    #+end_src
-
-*** Org-Trello
-    #+begin_src emacs-lisp
-    (use-package org-trello
-        :after org
-        :config
-        (add-to-list 'auto-mode-alist '("\\.trello$" . org-mode))
-        (add-hook 'org-mode-hook
-                  (lambda ()
-                    (let ((filename (buffer-file-name (current-buffer))))
-                      (when (and filename (string= "trello" (file-name-extension filename)))
-                        (org-trello-mode))))))
     #+end_src
