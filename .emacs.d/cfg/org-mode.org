@@ -64,6 +64,9 @@
 
     (setq org-agenda-custom-commands
           '(("n" todo "NEXT")))
+
+    (setq org-refile-targets
+          '(("~/Org/Documents/org-roam/task-archive.org" :maxlevel . 2)))
     #+END_SRC
 
 *** Hooks
@@ -118,7 +121,7 @@
 *** Habits
     #+begin_src emacs-lisp
     (setq org-log-into-drawer nil)
-    (setq org-todo-keywords '("TODO" "NEXT" "DONE(!)"))
+    (setq org-todo-keywords '("TODO" "NEXT" "DONE"))
     #+end_src
 *** Clocks
     #+begin_src emacs-lisp
