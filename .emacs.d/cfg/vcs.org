@@ -22,7 +22,10 @@
 
     (use-package git-timemachine)
 
-    (use-package github-review)
+    (use-package github-review
+      :config
+      (setq github-review-view-comments-in-code-lines t
+            github-review-reply-inline-comments t))
     #+end_src
 
 *** Diff Mode
