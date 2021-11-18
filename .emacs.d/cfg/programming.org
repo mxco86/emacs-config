@@ -95,7 +95,7 @@
   (use-package editorconfig
   :ensure t
   :config
-  (editorconfig-mode 1))
+  (editorconfig-mode t))
   #+END_SRC
 
 * Node Development (JavaScript and Typescript)

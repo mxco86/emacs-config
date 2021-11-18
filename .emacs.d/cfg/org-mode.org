@@ -195,6 +195,7 @@
     (set-face-attribute 'org-block-begin-line nil :background "#002b36")
     (set-face-attribute 'org-block nil :background "#073642")
     (set-face-attribute 'org-block-end-line nil :background "#002b36")
+    #+end_src
 *** Org-Id
     #+begin_src emacs-lisp
     (setq org-id-extra-files
