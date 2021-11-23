@@ -288,3 +288,15 @@
     :config
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   #+END_SRC
+
+* Compilation
+  #+begin_src emacs-lisp
+  (require 'ansi-color)
+  (defun mjr/colorize-compilation ()
+    (let ((inhibit-read-only t))
+      (ansi-color-apply-on-region
+       compilation-filter-start (point))))
+
+  (add-hook 'compilation-filter-hook
+            #'mjr/colorize-compilation)
+  #+end_src
