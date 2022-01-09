@@ -53,7 +53,8 @@
             (lambda ()
               (when (derived-mode-p 'typescript-mode)
                 (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (javascript-eslint)))))))))
+                      '((lsp . ((next-checkers . (javascript-eslint))))))
+                (add-node-modules-path))))
 
   (add-hook 'lsp-managed-mode-hook
             (lambda ()
@@ -148,33 +149,37 @@
   (use-package lsp-java
       :config
     (add-hook 'java-mode-hook 'lsp)
-    (setq mjr/lombok-jar "")
+    (setq mjr/lombok-jar "/Users/mryall/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar")
     (setq lsp-java-vmargs
           (list "-noverify"
                 "-Xmx1G"
                 "-XX:+UseG1GC"
                 "-XX:+UseStringDeduplication"
+                "--add-opens" "java.base/java.lang=ALL-UNNAMED"
                 (concat "-javaagent:" mjr/lombok-jar)
-                (concat "-Xbootclasspath/a:" mjr/lombok-jar))))
+                (concat "-Xbootclasspath/a:" mjr/lombok-jar)
+                )))
 
-  (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+  ;; (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
+  ;; (use-package dap-java :ensure nil)
 
   (use-package groovy-mode
       :ensure t
       :mode "\\.gradle\\'")
 
-  ;; (use-package lsp-sonarlint
-  ;;     :ensure t
-  ;;     :config
-  ;;     (require 'lsp-sonarlint-java)
-  ;;     (setq lsp-sonarlint-java-enabled t))
-
-  ;; (use-package dap-java :ensure nil)
+  (use-package lsp-sonarlint
+      :ensure t
+      :config
+      (require 'lsp-sonarlint-java)
+      (require 'lsp-sonarlint-typescript)
+      (setq lsp-sonarlint-java-enabled t)
+      (setq lsp-sonarlint-typescript-enabled t))
 
   ;; Spring Boot
-  ;; (require 'lsp-java-boot)
-  ;; (add-hook 'lsp-mode-hook #'lsp-lens-mode)
-  ;; (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+  ;; (use-package lsp-java-boot
+  ;;   :config
+  ;;   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
+  ;;   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
   #+END_SRC
 
 * Mixed Web Programming
