@@ -119,7 +119,9 @@
 * Typescript Development
   #+BEGIN_SRC emacs-lisp
   (use-package typescript-mode
-      :ensure t)
+    :ensure t
+    :init
+    (setq typescript-indent-level 2))
   #+END_SRC
 
 * JavaScript Development
