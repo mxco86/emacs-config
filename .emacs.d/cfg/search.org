@@ -10,8 +10,6 @@ integration mode (ag.el) is very nice
 (use-package ag
   :ensure t
   :commands (ag ag-regexp ag-project)
-  :ensure-system-package ((ag . silver-searcher)
-                          (ag . the_silver_searcher))
   :init
   (bind-key "\C-xp" 'ag)
   :config
