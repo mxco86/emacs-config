@@ -1,5 +1,0 @@
-
-#+begin_src emacs-lisp
-  (use-package web-mode
-    :ensure t)
-#+end_src
