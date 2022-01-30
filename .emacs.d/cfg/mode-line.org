@@ -5,9 +5,9 @@
     - https://github.com/TheBB/spaceline
 
     #+begin_src emacs-lisp
-
     (use-package spaceline
       :ensure t
       :config
-      (spaceline-emacs-theme))
+      (spaceline-emacs-theme)
+      (set-face-attribute 'mode-line-active nil :inherit 'mode-line))
     #+end_src
