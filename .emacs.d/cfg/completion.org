@@ -1,87 +1,25 @@
 * Completion Configuration
-*** Minibuffer Completion / Incremental Search
-    - Ivy is a interactive interface for anything that is completed in the
-      minibuffer
-    - https://oremacs.com/swiper/
-    - It gives a vertical list of completions in the minibuffer and is useful
-      in lots of contexts where input is required
-    - For some reason it's split into multiple packages and the recommended
-      way of installing is to install ~counsel~, a package of completion
-      functions, which brings in the rest as dependencies
-    - The ~swiper~ package provides a completions list for an incremental
-      buffer search which works well
-    - For this reason we install ~counsel~ here and then configure all the
-      packages in the config block
-
   #+BEGIN_SRC emacs-lisp
-  (use-package counsel
+  (use-package selectrum
     :ensure t
-    :commands (swiper counsel-find-file counsel-M-x)
+    :config
+    (selectrum-mode t))
+
+  (use-package selectrum-prescient
+    :ensure t
+    :config
+    (selectrum-prescient-mode t)
+    (prescient-persist-mode t))
+
+  (use-package consult
+    :ensure t
+    :bind
+    ("C-s" . 'consult-line)
+    ("C-x b" . 'consult-buffer))
+
+  (use-package marginalia
+    :ensure t
+    :bind ("M-A" . marginalia-cycle)
     :init
-    (bind-key "C-s" 'swiper)
-    (bind-key "C-x C-m" 'counsel-M-x)
-    (bind-key "C-x C-f" 'counsel-find-file)
-    :config
-    (ivy-mode 1)
-    (setq ivy-use-virtual-buffers t
-          ivy-count-format "(%d/%d) "
-          ivy-initial-inputs-alist nil
-          ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                  (t . ivy--regex-fuzzy))
-          ivy-extra-directories nil
-          ivy-wrap t))
-
-  (with-eval-after-load 'counsel
-    (let ((done (where-is-internal #'ivy-done ivy-minibuffer-map t))
-          (alt  (where-is-internal #'ivy-alt-done ivy-minibuffer-map t)))
-      (define-key counsel-find-file-map done #'ivy-alt-done)
-      (define-key counsel-find-file-map alt  #'ivy-done)))
-
-  (use-package ivy-rich
-    :after ivy
-    :hook (ivy-mode . ivy-rich-mode)
-    :config
-    (setq ivy-rich-path-style 'abbrev))
+    (marginalia-mode))
   #+END_SRC
-
-*** Command Suggestions
-    - Smex is a command suggestion tool that brings up recently used commands
-      in the minibuffer
-    - It is used by Ivy to order command suggestions by most recently used
-    - https://github.com/nonsequitur/smex
-
-    #+BEGIN_SRC emacs-lisp
-    (use-package smex
-      :ensure t
-      :after counsel
-      :config
-      (smex-initialize))
-    #+END_SRC
-
-*** Fuzzy Matching
-    - Flx is a fuzzy-matching package used by Ivy
-    - https://github.com/lewang/flx
-
-    #+BEGIN_SRC emacs-lisp
-    (use-package flx :ensure t :after counsel)
-    #+END_SRC
-
-*** In-Buffer Autocompletion
-    - Use company for simple in-buffer autocompletion in most contexts
-    - http://company-mode.github.io/
-    - There's not much config here as it mostly just works
-    - I enable completions globally which might be a bit overkill but I'm too
-      lazy to configure it everywhere individually
-
-    #+BEGIN_SRC emacs-lisp
-    (use-package company
-        :ensure t
-        :init
-        (add-hook 'after-init-hook 'global-company-mode)
-        :config
-        (setq company-tooltip-align-annotations t
-              company-idle-delay 0.2
-              company-minimum-prefix-length 2)
-        (define-key company-active-map (kbd "C-n") #'company-select-next)
-        (define-key company-active-map (kbd "C-p") #'company-select-previous))
-    #+END_SRC

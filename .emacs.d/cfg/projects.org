@@ -6,8 +6,6 @@
     :ensure t
     :config
     (projectile-mode t)
-    (setq projectile-sort-order 'recentf
-          projectile-completion-system 'ivy)
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
     (defun mjr/projectile-find-file-from-diff ()

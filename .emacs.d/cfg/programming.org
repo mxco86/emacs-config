@@ -26,11 +26,6 @@
       (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
       (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
 
-  (use-package lsp-ivy
-      :ensure t
-      :after lsp-mode
-      :commands lsp-ivy-workspace-symbol)
-
   (use-package which-key
       :config (which-key-mode))
 
@@ -274,9 +269,7 @@
     :init
     (setq gofmt-command "goimports")
     (add-hook 'before-save-hook 'gofmt-before-save)
-    (add-hook 'go-mode-hook 'company-mode)
     (add-hook 'go-mode-hook 'go-eldoc-setup)
-    (add-to-list 'company-backends 'company-go)
     :config
     (defun mjr-go-mode-hook ()
       (if (not (string-match "go" compile-command))
