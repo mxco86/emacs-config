@@ -6,7 +6,6 @@ integration mode (ag.el) is very nice
  - https://agel.readthedocs.io/en/latest/
 
 #+begin_src emacs-lisp
-
 (use-package ag
   :ensure t
   :commands (ag ag-regexp ag-project)
@@ -14,4 +13,6 @@ integration mode (ag.el) is very nice
   (bind-key "\C-xp" 'ag)
   :config
   (setq-default ag-highlight-search t))
+
+(use-package rg :ensure t)
 #+end_src

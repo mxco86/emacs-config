@@ -1,9 +1,10 @@
-* Completion Configuration
+* Minibuffer Configuration
   #+BEGIN_SRC emacs-lisp
   (use-package selectrum
     :ensure t
     :config
-    (selectrum-mode t))
+    (selectrum-mode t)
+    (recentf-mode t))
 
   (use-package selectrum-prescient
     :ensure t

@@ -300,3 +300,14 @@
   (add-hook 'compilation-filter-hook
             #'mjr/colorize-compilation)
   #+end_src
+
+* Code Navigation
+  #+begin_src emacs-lisp
+  (use-package dumb-jump
+    :ensure t
+    :config
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+    (setq xref-show-definitions-function #'xref-show-definitions-completing-read
+          dumb-jump-prefer-searcher 'rg))
+  #+end_src
+

@@ -111,6 +111,7 @@
     (global-set-key "\C-cb"    'bury-buffer )
     (global-set-key "\C-cf"    'revert-buffer )
     (global-set-key "\r"       'newline-and-indent)
+    (global-set-key "\C-x\C-m" 'execute-extended-command)
     (global-unset-key "\C-z")
     (global-unset-key "\C-x\C-z")
     #+END_SRC
@@ -213,8 +214,6 @@
     - [[file:cfg/emacs-lisp.org]]
     - [[file:cfg/email.org]]
     - [[file:cfg/flycheck.org]]
-    - [[file:cfg/golang.org]]
-    - [[file:cfg/javascript.org]]
     - [[file:cfg/markup.org]]
     - [[file:cfg/mode-line.org]]
     - [[file:cfg/org-mode.org]]
@@ -227,7 +226,6 @@
     - [[file:cfg/terminal.org]]
     - [[file:cfg/typescript.org]]
     - [[file:cfg/vcs.org]]
-    - [[file:cfg/web.org]]
     - [[file:cfg/writing.org]]
 
 *** Footer

@@ -1,4 +1,4 @@
-* Color Theme Configuration
+* Colour Theme Configuration
   - Use the base16-emacs theme implementation
   - https://github.com/belak/base16-emacs
   - This has a version of solarized-dark which is the theme I generally use
