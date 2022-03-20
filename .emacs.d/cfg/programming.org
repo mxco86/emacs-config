@@ -179,6 +179,13 @@
   ;;   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
   #+END_SRC
 
+* Haskell Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode
+    :ensure t
+    :mode "\\.hs\\'")
+  #+END_SRC
+
 * Mixed Web Programming
   #+begin_src emacs-lisp
     (use-package web-mode
