@@ -12,6 +12,7 @@
         "Find and open a project file from a diff string"
         (interactive)
         (let ((diff-filename (thing-at-point 'filename))
-              (project-dir (ivy-read "Project dir:" projectile-known-projects)))
+              (project-dir (completing-read "Project dir:" projectile-known-projects)))
           (find-file (concat project-dir "/" (substring diff-filename 2))))))
   #+END_SRC
+
