@@ -160,7 +160,7 @@
               (delete-region beg end))
             (insert "\n")
             (insert "    Configuration for more specific functionality, modes and areas of work\n")
-            (mapcar '(lambda (file) (insert (format "    - [[file:cfg/%s]]\n" file))) file-list)))))
+            (mapcar '(lambda (file) (insert (format "    - [[file:%s]]\n" (substring file 11)))) file-list)))))
     #+END_SRC
 
 *** File Backups and Autosave
@@ -211,14 +211,20 @@
 
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
+    - [[file:cfg/develop/go.org]]
+    - [[file:cfg/develop/java.org]]
+    - [[file:cfg/develop/lang.org]]
+    - [[file:cfg/develop/lsp.org]]
+    - [[file:cfg/develop/typescript.org]]
+    - [[file:cfg/develop/web.org]]
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/color-theme.org]]
-    - [[file:cfg/completion.org]]
     - [[file:cfg/docker.org]]
     - [[file:cfg/emacs-lisp.org]]
     - [[file:cfg/email.org]]
     - [[file:cfg/flycheck.org]]
     - [[file:cfg/markup.org]]
+    - [[file:cfg/minibuffer.org]]
     - [[file:cfg/mode-line.org]]
     - [[file:cfg/org-mode.org]]
     - [[file:cfg/paredit.org]]
