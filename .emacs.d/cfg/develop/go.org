@@ -1,0 +1,53 @@
+* Go Programming
+*** Initial Setup
+    Go binary must be installed and configured which can be done via hombrew. Additional binaries
+    can be installed via ~go get~
+
+    #+BEGIN_SRC sh
+
+    # Install language distribution
+    brew install golang
+
+    # Configure locations and paths
+    export GOPATH=$HOME/Playground/golang
+    export GOROOT=/usr/local/opt/go/libexec
+    export PATH=$PATH:$GOPATH/bin
+    export PATH=$PATH:$GOROOT/bin
+
+    # Install development tools
+    go get -u github.com/mdempsky/gocode
+    go get -u github.com/rogpeppe/godef
+    go get -u golang.org/x/lint/golint
+    go get -u golang.org/x/tools/cmd/goimports
+
+    #+END_SRC
+
+*** Emacs Config
+
+  #+BEGIN_SRC emacs-lisp
+
+  (use-package go-mode
+    :ensure t
+    :commands (go-mode)
+    :init
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook 'go-eldoc-setup)
+    :config
+    (defun mjr-go-mode-hook ()
+      (if (not (string-match "go" compile-command))
+          (set (make-local-variable 'compile-command)
+               (concat "go run " buffer-file-name))))
+
+    (add-hook 'go-mode-hook 'mjr-go-mode-hook)
+    :bind (:map go-mode-map ("M-." . godef-jump)))
+
+  (use-package company-go
+    :ensure t
+    :after go)
+
+  (use-package go-eldoc
+    :ensure t
+    :config
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+  #+END_SRC

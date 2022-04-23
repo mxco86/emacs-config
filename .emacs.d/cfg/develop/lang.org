@@ -1,0 +1,30 @@
+* Haskell Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package haskell-mode
+    :ensure t
+    :mode "\\.hs\\'")
+  #+END_SRC
+
+
+* Python Development
+  #+begin_src emacs-lisp
+  (use-package lsp-pyright
+      :ensure t
+      :hook (python-mode . (lambda ()
+                             (require 'lsp-pyright)
+                             (lsp))))
+
+  #+end_src
+
+
+* Terraform Development
+  #+begin_src emacs-lisp
+  (use-package terraform-mode
+      :ensure t)
+  #+end_src
+
+
+* Nix Development
+  #+begin_src emacs-lisp
+  (use-package nix-mode :ensure t)
+  #+end_src

@@ -1,82 +1,3 @@
-* LSP Mode
-  #+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode
-      :hook ((kotlin-mode . lsp)
-             (typescript-mode . lsp)
-             (lsp-mode . lsp-enable-which-key-integration))
-      :commands lsp
-      :config
-      (setq lsp-headerline-breadcrumb-enable nil
-            lsp-enable-completion-at-point t
-            lsp-enable-indentation t))
-
-  (use-package lsp-ui
-      :commands lsp-ui-mode
-      :config
-      (setq lsp-ui-sideline-enable t
-            lsp-ui-sideline-show-diagnostics t
-            lsp-ui-sideline-show-symbol t
-            lsp-ui-sideline-show-hover nil
-            lsp-ui-sideline-show-code-actions t
-            lsp-ui-peek-enable t
-            lsp-ui-imenu-enable t
-            lsp-ui-doc-enable t
-            lsp-ui-sideline-update-mode 'line)
-
-      (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-      (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
-
-  (use-package which-key
-      :config (which-key-mode))
-
-  ;; LSP Flycheck
-  (defvar-local mjr/flycheck-local-cache nil)
-
-  (defun mjr/flycheck-checker-get (fn checker property)
-    (or (alist-get property (alist-get checker mjr/flycheck-local-cache))
-        (funcall fn checker property)))
-
-  (advice-add 'flycheck-checker-get :around 'mjr/flycheck-checker-get)
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'kotlin-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (kotlin-ktlint)))))))))
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'typescript-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (javascript-eslint))))))
-                (add-node-modules-path))))
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'js2-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (javascript-eslint)))))))))
-
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'nix-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (nix-linter)))))))))
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'python-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (python-pylint)))))))))
-
-    (add-hook 'lsp-managed-mode-hook
-              (lambda ()
-                (when (derived-mode-p 'terraform-mode)
-                  (setq mjr/flycheck-local-cache
-                        '((lsp . ((next-checkers . (terraform-tflint)))))))))
-                      #+END_SRC
-
 * Directory Environment
   #+begin_src emacs-lisp
   (use-package direnv
@@ -86,6 +7,7 @@
     (direnv-mode))
   #+end_src
 
+
 * Editor Settings
   #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
@@ -94,144 +16,6 @@
   (editorconfig-mode t))
   #+END_SRC
 
-* Node Development (JavaScript and Typescript)
-  #+BEGIN_SRC emacs-lisp
-  (use-package add-node-modules-path
-    :ensure t
-    :commands (add-node-modules-path)
-    :init
-    (add-hook 'typescript-mode-hook #'add-node-modules-path)
-    (add-hook 'js2-mode-hook #'add-node-modules-path)
-    (add-hook 'web-mode-hook #'add-node-modules-path))
-
-  (use-package npm-mode
-    :ensure t
-    :commands (npm-mode)
-    :init
-    (add-hook 'typescript-mode-hook #'npm-mode))
-  #+END_SRC
-
-* Typescript Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package typescript-mode
-    :ensure t
-    :init
-    (setq typescript-indent-level 2))
-  #+END_SRC
-
-* JavaScript Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package js2-mode
-    :ensure t
-    :mode "\\.js\\'"
-    :interpreter "node"
-    :init
-    (setq js-indent-level 2))
-  #+END_SRC
-
-* Kotlin Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package kotlin-mode
-    :ensure t
-    :mode "\\.kt\\'")
-
-  (use-package flycheck-kotlin
-    :ensure t
-    :init
-    (flycheck-kotlin-setup))
-  #+END_SRC
-
-* Java Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package lsp-java
-      :config
-    (add-hook 'java-mode-hook 'lsp)
-    (setq mjr/lombok-jar "/Users/mryall/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar")
-    (setq lsp-java-vmargs
-          (list "-noverify"
-                "-Xmx1G"
-                "-XX:+UseG1GC"
-                "-XX:+UseStringDeduplication"
-                "--add-opens" "java.base/java.lang=ALL-UNNAMED"
-                (concat "-javaagent:" mjr/lombok-jar)
-                (concat "-Xbootclasspath/a:" mjr/lombok-jar)
-                )))
-
-  ;; (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
-  ;; (use-package dap-java :ensure nil)
-
-  (use-package groovy-mode
-      :ensure t
-      :mode "\\.gradle\\'")
-
-  (use-package lsp-sonarlint
-      :ensure t
-      :config
-      (require 'lsp-sonarlint-java)
-      (require 'lsp-sonarlint-typescript)
-      (setq lsp-sonarlint-java-enabled t)
-      (setq lsp-sonarlint-typescript-enabled t))
-
-  ;; Spring Boot
-  ;; (use-package lsp-java-boot
-  ;;   :config
-  ;;   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
-  ;;   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
-  #+END_SRC
-
-* Haskell Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode
-    :ensure t
-    :mode "\\.hs\\'")
-  #+END_SRC
-
-* Mixed Web Programming
-  #+begin_src emacs-lisp
-    (use-package web-mode
-      :ensure t
-      :mode (("\\.html?\\'" . web-mode)
-             ("\\.tsx\\'" . web-mode)
-             ("\\.jsx\\'" . web-mode))
-      :config
-      (setq web-mode-markup-indent-offset 2
-            web-mode-css-indent-offset 2
-            web-mode-code-indent-offset 2
-            web-mode-block-padding 2
-            web-mode-comment-style 2
-            web-mode-enable-css-colorization t
-            web-mode-enable-auto-pairing t
-            web-mode-enable-comment-keywords t
-            web-mode-enable-current-element-highlight t
-            web-mode-enable-auto-indentation nil)
-      (add-hook 'web-mode-hook
-                (lambda ()
-                  (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                    (setup-tide-mode))))
-      ;; enable typescript-tslint checker
-      (flycheck-add-mode 'typescript-tslint 'web-mode))
-  #+end_src
-
-* Python Development
-  #+begin_src emacs-lisp
-  (use-package lsp-pyright
-      :ensure t
-      :hook (python-mode . (lambda ()
-                             (require 'lsp-pyright)
-                             (lsp))))
-
-  #+end_src
-
-* Terraform Development
-  #+begin_src emacs-lisp
-  (use-package terraform-mode
-      :ensure t)
-  #+end_src
-
-* Nix Development
-  #+begin_src emacs-lisp
-  (use-package nix-mode :ensure t)
-  #+end_src
 
 * Code Formatting
   #+begin_src emacs-lisp
@@ -242,59 +26,6 @@
     (add-hook 'prog-mode-hook 'format-all-ensure-formatter))
   #+end_src
 
-* Go Programming
-*** Initial Setup
-    Go binary must be installed and configured which can be done via hombrew. Additional binaries
-    can be installed via ~go get~
-
-    #+BEGIN_SRC sh
-
-    # Install language distribution
-    brew install golang
-
-    # Configure locations and paths
-    export GOPATH=$HOME/Playground/golang
-    export GOROOT=/usr/local/opt/go/libexec
-    export PATH=$PATH:$GOPATH/bin
-    export PATH=$PATH:$GOROOT/bin
-
-    # Install development tools
-    go get -u github.com/mdempsky/gocode
-    go get -u github.com/rogpeppe/godef
-    go get -u golang.org/x/lint/golint
-    go get -u golang.org/x/tools/cmd/goimports
-
-    #+END_SRC
-
-*** Emacs Config
-
-  #+BEGIN_SRC emacs-lisp
-
-  (use-package go-mode
-    :ensure t
-    :commands (go-mode)
-    :init
-    (setq gofmt-command "goimports")
-    (add-hook 'before-save-hook 'gofmt-before-save)
-    (add-hook 'go-mode-hook 'go-eldoc-setup)
-    :config
-    (defun mjr-go-mode-hook ()
-      (if (not (string-match "go" compile-command))
-          (set (make-local-variable 'compile-command)
-               (concat "go run " buffer-file-name))))
-
-    (add-hook 'go-mode-hook 'mjr-go-mode-hook)
-    :bind (:map go-mode-map ("M-." . godef-jump)))
-
-  (use-package company-go
-    :ensure t
-    :after go)
-
-  (use-package go-eldoc
-    :ensure t
-    :config
-    (add-hook 'go-mode-hook 'go-eldoc-setup))
-  #+END_SRC
 
 * Compilation
   #+begin_src emacs-lisp
@@ -308,6 +39,7 @@
             #'mjr/colorize-compilation)
   #+end_src
 
+
 * Code Navigation
   #+begin_src emacs-lisp
   (use-package dumb-jump
@@ -317,4 +49,3 @@
     (setq xref-show-definitions-function #'xref-show-definitions-completing-read
           dumb-jump-prefer-searcher 'rg))
   #+end_src
-

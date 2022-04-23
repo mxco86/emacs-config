@@ -1,0 +1,34 @@
+* Node Development (JavaScript and Typescript)
+  #+BEGIN_SRC emacs-lisp
+  (use-package add-node-modules-path
+    :ensure t
+    :commands (add-node-modules-path)
+    :init
+    (add-hook 'typescript-mode-hook #'add-node-modules-path)
+    (add-hook 'js2-mode-hook #'add-node-modules-path)
+    (add-hook 'web-mode-hook #'add-node-modules-path))
+
+  (use-package npm-mode
+    :ensure t
+    :commands (npm-mode)
+    :init
+    (add-hook 'typescript-mode-hook #'npm-mode))
+  #+END_SRC
+
+* Typescript Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package typescript-mode
+    :ensure t
+    :init
+    (setq typescript-indent-level 2))
+  #+END_SRC
+
+* JavaScript Development
+  #+BEGIN_SRC emacs-lisp
+  (use-package js2-mode
+    :ensure t
+    :mode "\\.js\\'"
+    :interpreter "node"
+    :init
+    (setq js-indent-level 2))
+  #+END_SRC
