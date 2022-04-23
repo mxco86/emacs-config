@@ -117,9 +117,13 @@
     #+END_SRC
 
 *** Variables
-    #+BEGIN_SRC emacs-lisp
-    (setq org-contacts-file "~/Org/Documents/org/contacts.org")
-    #+END_SRC
+    #+begin_src emacs-lisp
+      (use-package exec-path-from-shell
+        :config
+        (dolist (var '("SSH_AUTH_SOCK"))
+          (add-to-list 'exec-path-from-shell-variables var))
+        (exec-path-from-shell-initialize))
+    #+end_src
 
 *** Mode-Specific Configuration Files
     I split up my more specific configs into files for each general
