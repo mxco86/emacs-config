@@ -1,18 +1,7 @@
 * File and Directory Search Configuration
-Use The Silver Searcher for filesystem search operations. It's fast and the
-integration mode (ag.el) is very nice
-
- - https://github.com/ggreer/the_silver_searcher
- - https://agel.readthedocs.io/en/latest/
 
 #+begin_src emacs-lisp
-(use-package ag
-  :ensure t
-  :commands (ag ag-regexp ag-project)
-  :init
-  (bind-key "\C-xp" 'ag)
+(use-package rg
   :config
-  (setq-default ag-highlight-search t))
-
-(use-package rg :ensure t)
+  (rg-enable-default-bindings))
 #+end_src
