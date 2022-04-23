@@ -132,17 +132,17 @@
 
     #+BEGIN_SRC emacs-lisp
     (defun mjr/load-literate-cfg ()
-      "Load literate config files using org-babel."
-      (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
-        (mapcar #'(lambda (conf-file)
-                    (org-babel-load-file (concat cfg-conf-dir conf-file)))
-                (directory-files cfg-conf-dir nil "^[^.]\.*.org"))))
+      "Load literate config files using org-babel.")
+    (let ((cfg-conf-dir "~/.emacs.d/cfg/"))
+      (mapcar #'(lambda (conf-file)
+                  (org-babel-load-file conf-file))
+              (directory-files-recursively cfg-conf-dir "^[^.]\.*.org")))
 
     (defun mjr/insert-literate-config-file-list ()
       (interactive)
       (let ((cfg-conf-dir "~/.emacs.d/cfg/")
             (file-list nil))
-        (setq file-list (directory-files cfg-conf-dir nil "^[^.]\.*.org"))
+        (setq file-list (directory-files-recursively cfg-conf-dir "^[^.]\.*.org"))
         (save-excursion
           (goto-char (point-min))
           (when (re-search-forward "[:]CFGLST:" (point-max) t)
