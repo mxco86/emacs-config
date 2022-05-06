@@ -15,11 +15,18 @@
   (use-package consult
     :ensure t
     :bind
-    ("C-s" . 'consult-line)
-    ("C-x b" . 'consult-buffer)
-    ("C-x 4 b" . consult-buffer-other-window)
-    ("C-x 5 b" . consult-buffer-other-frame)
-    ("M-g o" . consult-outline))
+    (("C-s" . consult-line)
+     ("C-x b" . consult-buffer)
+     ("C-x 4 b" . consult-buffer-other-window)
+     ("C-x 5 b" . consult-buffer-other-frame)
+     ("M-g o" . consult-outline)))
+
+  (use-package consult-dir
+    :ensure t
+    :bind (("C-x d" . consult-dir)
+           :map selectrum-minibuffer-map
+           ("C-x d" . consult-dir)
+           ("C-x C-j" . consult-dir-jump-file)))
 
   (use-package marginalia
     :ensure t
