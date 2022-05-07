@@ -49,3 +49,9 @@
     (setq xref-show-definitions-function #'xref-show-definitions-completing-read
           dumb-jump-prefer-searcher 'rg))
   #+end_src
+
+
+* Language Server Integration
+  #+begin_src emacs-lisp
+  (use-package eglot :ensure t)
+  #+end_src

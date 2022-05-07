@@ -1,50 +1,29 @@
 * Java Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package lsp-java
-      :config
-    (add-hook 'java-mode-hook 'lsp)
-    (setq mjr/lombok-jar "/Users/mryall/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar")
-    (setq lsp-java-vmargs
-          (list "-noverify"
-                "-Xmx1G"
-                "-XX:+UseG1GC"
-                "-XX:+UseStringDeduplication"
-                "--add-opens" "java.base/java.lang=ALL-UNNAMED"
-                (concat "-javaagent:" mjr/lombok-jar)
-                (concat "-Xbootclasspath/a:" mjr/lombok-jar)
-                )))
+  #+begin_src emacs-lisp
+  (defun mjr/enable-eglot-java-hook ()
+    (interactive)
+    (add-hook 'java-mode-hook 'eglot-ensure))
 
-  ;; (use-package dap-mode :after lsp-mode :config (dap-auto-configure-mode))
-  ;; (use-package dap-java :ensure nil)
+  (defun mjr/disable-eglot-java-hook ()
+    (interactive)
+    (remove-hook 'java-mode-hook 'eglot-ensure))
 
   (use-package groovy-mode
-      :ensure t
-      :mode "\\.gradle\\'")
-
-  (use-package lsp-sonarlint
-      :ensure t
-      :config
-      (require 'lsp-sonarlint-java)
-      (require 'lsp-sonarlint-typescript)
-      (setq lsp-sonarlint-java-enabled nil)
-      (setq lsp-sonarlint-typescript-enabled nil))
-
-  ;; Spring Boot
-  ;; (use-package lsp-java-boot
-  ;;   :config
-  ;;   (add-hook 'lsp-mode-hook #'lsp-lens-mode)
-  ;;   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode))
-  #+END_SRC
+    :ensure t
+    :mode "\\.gradle\\'")
+  #+end_src
 
 
 * Kotlin Development
-  #+BEGIN_SRC emacs-lisp
+  #+begin_src emacs-lisp  
   (use-package kotlin-mode
     :ensure t
     :mode "\\.kt\\'")
 
+  (add-hook 'kotlin-mode-hook 'eglot-ensure)
+  
   (use-package flycheck-kotlin
     :ensure t
     :init
     (flycheck-kotlin-setup))
-  #+END_SRC
+  #+end_src

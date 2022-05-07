@@ -8,12 +8,7 @@
 
 * Python Development
   #+begin_src emacs-lisp
-  (use-package lsp-pyright
-      :ensure t
-      :hook (python-mode . (lambda ()
-                             (require 'lsp-pyright)
-                             (lsp))))
-
+  (add-hook 'python-mode-hook 'eglot-ensure)
   #+end_src
 
 

@@ -41,11 +41,14 @@
     :init
     (setq prefix-help-command #'embark-prefix-help-command))
 
-  ;; Consult users will also want the embark-consult package.
   (use-package embark-consult
     :ensure t
     :after (embark consult)
     :demand t
     :hook
     (embark-collect-mode . consult-preview-at-point-mode))
-  #+END_SRC
+
+  (use-package which-key
+    :ensure t
+    :config (which-key-mode))
+#+END_SRC
