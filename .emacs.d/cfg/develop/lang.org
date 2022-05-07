@@ -1,9 +1,7 @@
 * Haskell Development
-  #+BEGIN_SRC emacs-lisp
-  (use-package haskell-mode
-    :ensure t
-    :mode "\\.hs\\'")
-  #+END_SRC
+  #+begin_src emacs-lisp
+  (use-package haskell-mode :ensure t :mode "\\.hs\\'")
+  #+end_src
 
 
 * Python Development
@@ -14,8 +12,13 @@
 
 * Terraform Development
   #+begin_src emacs-lisp
-  (use-package terraform-mode
-      :ensure t)
+  (use-package terraform-mode :ensure t)
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'terraform-mode)
+                (setq mjr/flycheck-local-cache
+                      '((lsp . ((next-checkers . (terraform-tflint)))))))))
   #+end_src
 
 
@@ -23,3 +26,16 @@
   #+begin_src emacs-lisp
   (use-package nix-mode :ensure t)
   #+end_src
+
+
+* Sonar
+  #+begin_src emacs-lisp
+  (use-package lsp-sonarlint
+      :ensure t
+      :config
+      (require 'lsp-sonarlint-java)
+      (require 'lsp-sonarlint-typescript)
+      (setq lsp-sonarlint-java-enabled nil
+            lsp-sonarlint-typescript-enabled nil))
+  #+end_src
+  
