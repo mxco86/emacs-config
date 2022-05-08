@@ -1,16 +1,19 @@
 * Minibuffer Configuration
   #+BEGIN_SRC emacs-lisp
-  (use-package selectrum
+  (use-package vertico
     :ensure t
-    :config
-    (selectrum-mode t)
-    (recentf-mode t))
+    :init (vertico-mode))
 
-  (use-package selectrum-prescient
+  (use-package savehist
     :ensure t
-    :config
-    (selectrum-prescient-mode t)
-    (prescient-persist-mode t))
+    :init (savehist-mode))
+
+  (use-package orderless
+    :ensure t
+    :init
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
 
   (use-package consult
     :ensure t
@@ -24,7 +27,7 @@
   (use-package consult-dir
     :ensure t
     :bind (("C-x d" . consult-dir)
-           :map selectrum-minibuffer-map
+           :map vertico-map
            ("C-x d" . consult-dir)
            ("C-x C-j" . consult-dir-jump-file)))
 
