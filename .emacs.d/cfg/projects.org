@@ -1,7 +1,7 @@
 * Project
   Project organisation tools
 
-#+begin_src emacs-lisp
+  #+begin_src emacs-lisp
   (use-package project
     :config
     (setq project-switch-commands
@@ -14,5 +14,5 @@
       (interactive)
       (let ((diff-filename (thing-at-point 'filename))
             (project-dir (completing-read "Project dir:" project--list)))
-        (find-file (concat project-dir "/" (substring diff-filename 2)))))))
+        (find-file (concat project-dir "/" (substring diff-filename 2))))))
   #+end_src
