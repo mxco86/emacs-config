@@ -4,10 +4,8 @@
   #+begin_src emacs-lisp
   (use-package project
     :config
-    (setq project-switch-commands
-          '((project-find-file "find file")
-            (magit-project-status "magit" ?g)
-            (rg "grep" ?h)))
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?g))
+    (add-to-list 'project-switch-commands '(rg "ripgrep" ?h))
 
     (defun mjr/project-find-file-from-diff ()
       "Find and open a project file from a diff string"
