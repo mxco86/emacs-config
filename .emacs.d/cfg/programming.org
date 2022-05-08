@@ -1,3 +1,13 @@
+* Programming Settings
+  #+begin_src emacs-lisp
+  (defun mjr/prog-mode-hook ()
+    (linum-mode)
+    (company-mode))
+
+  (add-hook 'prog-mode-hook #'mjr/prog-mode-hook)
+  #+end_src
+
+
 * Directory Environment
   #+begin_src emacs-lisp
   (use-package direnv
