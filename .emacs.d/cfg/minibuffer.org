@@ -4,9 +4,9 @@
     :ensure t
     :init (vertico-mode))
 
-  (use-package savehist
-    :ensure t
-    :init (savehist-mode))
+  (use-package savehist :init (savehist-mode))
+
+  (use-package recentf :init (recentf-mode))
 
   (use-package orderless
     :ensure t
