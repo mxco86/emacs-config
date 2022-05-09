@@ -1,6 +1,5 @@
 * Main Emacs Config                                                   :TOC_5:
     - [[#personal-information][Personal Information]]
-    - [[#use-package-extensions][Use Package Extensions]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
     - [[#buffer-behaviour][Buffer Behaviour]]
@@ -21,13 +20,6 @@
     #+BEGIN_SRC emacs-lisp
     (setq user-full-name "Matthew Ryall"
           user-mail-address "matthew@mexico86.co.uk")
-    #+END_SRC
-
-*** Use Package Extensions
-    Enable Emacs to install dependent system packages
-    #+BEGIN_SRC emacs-lisp
-    (use-package use-package-ensure-system-package
-      :ensure t)
     #+END_SRC
 
 *** Frame and Buffer Behaviour
