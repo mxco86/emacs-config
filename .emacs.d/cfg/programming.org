@@ -22,6 +22,7 @@
   #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
   :ensure t
+  :diminish
   :config
   (editorconfig-mode t))
   #+END_SRC
@@ -64,4 +65,13 @@
 * Language Server Integration
   #+begin_src emacs-lisp
   (use-package eglot :ensure t)
+  #+end_src
+
+
+* Documentation
+  #+begin_src emacs-lisp
+  (use-package eldoc
+    :pin gnu
+    :diminish
+    :custom (eldoc-echo-area-prefer-doc-buffer t))
   #+end_src

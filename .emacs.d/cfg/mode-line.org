@@ -11,3 +11,9 @@
       (spaceline-emacs-theme)
       (set-face-attribute 'mode-line-active nil :inherit 'mode-line))
     #+end_src
+
+
+*** Diminish
+    #+begin_src emacs-lisp
+    (use-package diminish :ensure t)
+    #+end_src
