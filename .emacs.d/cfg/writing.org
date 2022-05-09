@@ -8,9 +8,8 @@
     #+begin_src emacs-lisp
     (use-package flyspell
       :ensure t
-      :ensure-system-package aspell
       :init
-      (bind-key "C-c sw" 'flyspell-auto-correct-word)
+      (bind-key "C-c cw" 'flyspell-auto-correct-word)
       (add-hook 'text-mode-hook 'turn-on-flyspell)
       :config
       (setq-default ispell-program-name "aspell"
