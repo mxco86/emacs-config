@@ -3,5 +3,6 @@
 #+begin_src emacs-lisp
 (use-package rg
   :config
-  (rg-enable-default-bindings))
+  (rg-enable-default-bindings)
+  (setq rg-command-line-flags '("--hidden")))
 #+end_src
