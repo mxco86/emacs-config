@@ -17,15 +17,21 @@
       :config
       (setq-default git-commit-major-mode 'git-commit-mode))
 
-    (use-package forge
-      :after magit)
+    (use-package libgit :ensure t :after magit)
+    (use-package magit-libgit :ensure t :after (magit libgit))
+
+    (use-package forge :after magit)
 
     (use-package git-timemachine)
 
-    (use-package github-review
+    (use-package code-review
+      :ensure t
+      :after magit
+      :bind (:map forge-topic-mode-map ("C-c r" . #'code-review-forge-pr-at-point))
+      :bind (:map code-review-mode-map (("C-c n" . #'code-review-comment-jump-next)
+                                     ("C-c p" . #'code-review-comment-jump-previous)))
       :config
-      (setq github-review-view-comments-in-code-lines t
-            github-review-reply-inline-comments t))
+      (setq code-review-auth-login-marker 'forge))
     #+end_src
 
 *** Diff Mode
