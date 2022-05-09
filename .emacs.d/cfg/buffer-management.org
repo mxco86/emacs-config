@@ -122,3 +122,11 @@
       (pdf-tools-install :no-query)
       (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
     #+end_src
+
+*** Buffer Navigation
+    #+begin_src emacs-lisp
+    (use-package avy
+      :bind (("C-c l" . #'avy-goto-line)
+             ("C-c j" . #'avy-goto-char-timer)
+             ("C-c v" . #'avy-goto-word-1)))
+    #+end_src
