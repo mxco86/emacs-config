@@ -14,4 +14,8 @@
               slime-repl-mode-hook
               lisp-interaction-mode-hook
               emacs-lisp-mode-hook)))
+
+  (use-package rainbow-delimiters
+    :ensure t
+    :hook ((prog-mode . rainbow-delimiters-mode)))
   #+end_src
