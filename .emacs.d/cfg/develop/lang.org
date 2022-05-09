@@ -1,6 +1,6 @@
 * Haskell Development
   #+begin_src emacs-lisp
-  (use-package haskell-mode :ensure t :mode "\\.hs\\'")
+  (use-package haskell-mode :mode "\\.hs\\'")
   #+end_src
 
 
@@ -12,7 +12,7 @@
 
 * Terraform Development
   #+begin_src emacs-lisp
-  (use-package terraform-mode :ensure t)
+  (use-package terraform-mode)
 
   (add-hook 'lsp-managed-mode-hook
             (lambda ()
@@ -24,18 +24,16 @@
 
 * Nix Development
   #+begin_src emacs-lisp
-  (use-package nix-mode :ensure t)
+  (use-package nix-mode)
   #+end_src
 
 
 * Sonar
   #+begin_src emacs-lisp
   (use-package lsp-sonarlint
-      :ensure t
       :config
       (require 'lsp-sonarlint-java)
       (require 'lsp-sonarlint-typescript)
       (setq lsp-sonarlint-java-enabled nil
             lsp-sonarlint-typescript-enabled nil))
   #+end_src
-  

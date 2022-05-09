@@ -5,7 +5,6 @@
 
   #+begin_src emacs-lisp
   (use-package paredit
-    :ensure t
     :commands (paredit-mode)
     :init
     (mapcar (lambda (hook)
@@ -16,6 +15,5 @@
               emacs-lisp-mode-hook)))
 
   (use-package rainbow-delimiters
-    :ensure t
     :hook ((prog-mode . rainbow-delimiters-mode)))
   #+end_src

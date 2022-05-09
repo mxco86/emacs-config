@@ -7,7 +7,6 @@
 
     #+begin_src emacs-lisp
     (use-package flyspell
-      :ensure t
       :init
       (bind-key "C-c cw" 'flyspell-auto-correct-word)
       (add-hook 'text-mode-hook 'turn-on-flyspell)

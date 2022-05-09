@@ -1,7 +1,6 @@
 * Web Programming
   #+begin_src emacs-lisp
     (use-package web-mode
-      :ensure t
       :mode (("\\.html?\\'" . web-mode)
              ("\\.tsx\\'" . web-mode)
              ("\\.jsx\\'" . web-mode))

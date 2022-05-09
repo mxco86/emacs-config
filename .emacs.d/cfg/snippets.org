@@ -1,7 +1,6 @@
 * Text Snippets
   #+BEGIN_SRC emacs-lisp
   (use-package yasnippet
-      :ensure t
       :config
       (yas-global-mode t))
   #+END_SRC

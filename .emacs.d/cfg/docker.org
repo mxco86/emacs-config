@@ -1,14 +1,11 @@
 * Docker Tools
 #+begin_src emacs-lisp
 (use-package docker
-  :ensure t
   :commands (docker))
 
 (use-package docker-compose-mode
-  :ensure t
   :commands (docker-compose-mode))
 
 (use-package dockerfile-mode
-  :ensure t
   :commands (dockerfile-mode))
 #+end_src

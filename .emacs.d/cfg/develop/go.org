@@ -27,7 +27,6 @@
   #+BEGIN_SRC emacs-lisp
 
   (use-package go-mode
-    :ensure t
     :commands (go-mode)
     :init
     (setq gofmt-command "goimports")
@@ -42,12 +41,9 @@
     (add-hook 'go-mode-hook 'mjr-go-mode-hook)
     :bind (:map go-mode-map ("M-." . godef-jump)))
 
-  (use-package company-go
-    :ensure t
-    :after go)
+  (use-package company-go :after go)
 
   (use-package go-eldoc
-    :ensure t
     :config
     (add-hook 'go-mode-hook 'go-eldoc-setup))
   #+END_SRC

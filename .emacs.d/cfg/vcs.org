@@ -8,7 +8,6 @@
 
     #+begin_src emacs-lisp
     (use-package magit
-      :ensure t
       :commands (magit-status magit-dispatch-popup)
       :init
       (bind-key "C-x g" 'magit-status)
@@ -17,15 +16,14 @@
       :config
       (setq-default git-commit-major-mode 'git-commit-mode))
 
-    (use-package libgit :ensure t :after magit)
-    (use-package magit-libgit :ensure t :after (magit libgit))
+    (use-package libgit :after magit)
+    (use-package magit-libgit :after (magit libgit))
 
     (use-package forge :after magit)
 
     (use-package git-timemachine)
 
     (use-package code-review
-      :ensure t
       :after magit
       :bind (:map forge-topic-mode-map ("C-c r" . #'code-review-forge-pr-at-point))
       :bind (:map code-review-mode-map (("C-c n" . #'code-review-comment-jump-next)

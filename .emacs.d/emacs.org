@@ -1,5 +1,6 @@
 * Main Emacs Config                                                   :TOC_5:
     - [[#personal-information][Personal Information]]
+    - [[#use-package][Use Package]]
     - [[#frame-and-buffer-behaviour][Frame and Buffer Behaviour]]
     - [[#custom-variables][Custom Variables]]
     - [[#buffer-behaviour][Buffer Behaviour]]
@@ -22,6 +23,11 @@
           user-mail-address "matthew@mexico86.co.uk")
     #+END_SRC
 
+*** Use Package
+    #+begin_src emacs-lisp
+    (require 'use-package)
+    (setq use-package-always-ensure t)
+    #+end_src
 *** Frame and Buffer Behaviour
     I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
@@ -89,10 +95,9 @@
           16
         (if (<= (display-pixel-height) 900) 16 10)))
 
-    (use-package all-the-icons :ensure t :if (display-graphic-p))
+    (use-package all-the-icons :if (display-graphic-p))
 
     (use-package all-the-icons-dired
-      :ensure t
       :after all-the-icons
       :hook (dired-mode . all-the-icons-dired-mode))
 
@@ -221,7 +226,7 @@
           dired-do-revert-buffer t
           dired-mark-region t)
     #+end_src
-    
+
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
     - [[file:cfg/develop/emacs-lisp.org]]

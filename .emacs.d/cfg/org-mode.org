@@ -113,7 +113,6 @@
     heading with the tag :TOC:
     #+begin_src emacs-lisp
     (use-package toc-org
-      :ensure t
       :hook (org-mode . toc-org-mode)
       :after org)
     #+end_src
@@ -129,9 +128,7 @@
     #+end_src
 *** Exports
     #+begin_src emacs-lisp
-    (use-package ox-hugo
-      :ensure t
-      :after ox)
+    ;; (use-package ox-hugo :after ox)
     #+end_src
 
 *** Org-Roam

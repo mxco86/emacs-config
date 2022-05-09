@@ -1,4 +1,4 @@
 * Terminal Emulation
   #+begin_src emacs-lisp
-  (use-package vterm :ensure t)
+  (use-package vterm)
   #+end_src

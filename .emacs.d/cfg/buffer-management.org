@@ -7,7 +7,6 @@
     #+begin_src emacs-lisp
 
     (use-package ibuffer
-      :ensure t
       :commands (ibuffer)
       :init
       (bind-key "C-x C-b" 'ibuffer)
@@ -76,7 +75,6 @@
     #+begin_src emacs-lisp
 
     (use-package vimish-fold
-      :ensure t
       :commands (vimish-fold-toggle vimish-fold)
       :init
       (vimish-fold-global-mode 1))
@@ -86,7 +84,6 @@
     (winner-mode t)
 
     (use-package shackle
-      :ensure t
       :config
       (setq-default shackle-rules '((compilation-mode :noselect t))
                     shackle-default-rule '(:select t)))
@@ -100,14 +97,12 @@
 
     #+begin_src emacs-lisp
     (use-package ace-window
-      :ensure t
       :defer t
       :init
       (progn
         (global-set-key (kbd "C-x o") 'ace-window)))
 
     (use-package windmove
-      :ensure t
       :config
       (global-set-key (kbd "C-c <left>")  'windmove-left)
       (global-set-key (kbd "C-c <right>") 'windmove-right)

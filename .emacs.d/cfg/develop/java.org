@@ -9,21 +9,18 @@
     (remove-hook 'java-mode-hook 'eglot-ensure))
 
   (use-package groovy-mode
-    :ensure t
     :mode "\\.gradle\\'")
   #+end_src
 
 
 * Kotlin Development
-  #+begin_src emacs-lisp  
+  #+begin_src emacs-lisp
   (use-package kotlin-mode
-    :ensure t
     :mode "\\.kt\\'")
 
   (add-hook 'kotlin-mode-hook 'eglot-ensure)
-  
+
   (use-package flycheck-kotlin
-    :ensure t
     :init
     (flycheck-kotlin-setup))
   #+end_src

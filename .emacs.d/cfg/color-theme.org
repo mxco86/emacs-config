@@ -9,7 +9,6 @@
 
   #+BEGIN_SRC emacs-lisp
   (use-package base16-theme
-    :ensure t
     :init
     (load-theme 'base16-solarized-dark t)
     :config

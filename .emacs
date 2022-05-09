@@ -9,7 +9,7 @@
 
 ;;; Code:
 
-;; Bootstrap 'package', 'straight', 'use-package' and 'org-mode'
+;; Bootstrap 'package' and 'org-mode'
 (require 'package)
 (setq package-archives
       (append package-archives
