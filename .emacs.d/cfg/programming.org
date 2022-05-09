@@ -64,7 +64,12 @@
 
 * Language Server Integration
   #+begin_src emacs-lisp
-  (use-package eglot :ensure t)
+  (use-package eglot
+    :ensure t
+    :config
+    (setq eglot-autoshutdown t))
+
+  (use-package consult-eglot :ensure t)
   #+end_src
 
 
