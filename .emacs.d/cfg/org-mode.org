@@ -29,19 +29,17 @@
     Ensure keyboard navigation works sensibly in headings and when tags are in
     place on an item
     #+begin_src emacs-lisp
-
     (setq org-return-follows-link t)
     (setq org-special-ctrl-a/e t)
     (setq org-special-ctrl-k t)
     (setq org-insert-heading-respect-content t)
     (setq org-startup-folded 'content)
+    (setq org-adapt-indentation t)
     #+end_src
 
 *** Keybindings
     #+BEGIN_SRC emacs-lisp
-
-      (define-key global-map "\C-ca" 'org-agenda)
-
+    (define-key global-map "\C-ca" 'org-agenda)
     #+END_SRC
 
 *** Fix Conflicts and Disputed Keys
