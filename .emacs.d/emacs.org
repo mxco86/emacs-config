@@ -13,6 +13,7 @@
     - [[#os-specific-configuration][OS Specific Configuration]]
     - [[#system-information][System Information]]
     - [[#scrolling][Scrolling]]
+    - [[#dired][Dired]]
     - [[#literate-mode-configurations][Literate Mode Configurations]]
     - [[#footer][Footer]]
 
@@ -221,6 +222,14 @@
     (setq scroll-step 1)
     #+end_src
 
+*** Dired
+    #+begin_src emacs-lisp
+    (setq dired-create-destination-dirs 'ask
+          dired-kill-when-opening-new-dired-buffer t
+          dired-do-revert-buffer t
+          dired-mark-region t)
+    #+end_src
+    
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
     - [[file:cfg/develop/emacs-lisp.org]]
