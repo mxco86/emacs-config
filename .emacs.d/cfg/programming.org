@@ -63,7 +63,8 @@
   #+begin_src emacs-lisp
   (use-package eglot
     :config
-    (setq eglot-autoshutdown t))
+    (setq eglot-autoshutdown t)
+    (add-to-list 'eglot-server-programs '(terraform-mode "terraform-lsp")))
 
   (use-package consult-eglot)
   #+end_src

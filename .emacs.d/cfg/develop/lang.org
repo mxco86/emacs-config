@@ -12,13 +12,9 @@
 
 * Terraform Development
   #+begin_src emacs-lisp
-  (use-package terraform-mode)
-
-  (add-hook 'lsp-managed-mode-hook
-            (lambda ()
-              (when (derived-mode-p 'terraform-mode)
-                (setq mjr/flycheck-local-cache
-                      '((lsp . ((next-checkers . (terraform-tflint)))))))))
+  (use-package terraform-mode
+    :config
+    :hook (terraform-mode . eglot-ensure))
   #+end_src
 
 
