@@ -9,12 +9,12 @@
     #+begin_src emacs-lisp
     (use-package magit
       :commands (magit-status magit-dispatch-popup)
-      :init
-      (bind-key "C-x g" 'magit-status)
-      (bind-key "C-x M-g" 'magit-dispatch-popup)
-      (add-hook 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
+      :bind (("C-x g" . magit-status)
+             ("C-x M-g" . magit-dispatch-popup))
+      :hook (git-commit-setup . git-commit-turn-on-flyspell)
       :config
-      (setq-default git-commit-major-mode 'git-commit-mode))
+      (setq magit-save-repository-buffers 'dontask
+            git-commit-major-mode 'git-commit-mode))
 
     (use-package libgit :after magit)
     (use-package magit-libgit :after (magit libgit))
