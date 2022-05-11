@@ -125,3 +125,9 @@
              ("C-c j" . #'avy-goto-char-timer)
              ("C-c v" . #'avy-goto-word-1)))
     #+end_src
+*** Undo
+    #+begin_src emacs-lisp
+    (use-package undo-tree
+      :config
+      (global-undo-tree-mode))
+    #+end_src
