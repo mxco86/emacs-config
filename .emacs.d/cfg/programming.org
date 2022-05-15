@@ -64,7 +64,7 @@
   (use-package eglot
     :config
     (setq eglot-autoshutdown t)
-    (add-to-list 'eglot-server-programs '(terraform-mode "terraform-lsp")))
+    (add-to-list 'eglot-server-programs '(terraform-mode "terraform-ls" "serve")))
 
   (use-package consult-eglot)
   #+end_src
@@ -75,5 +75,5 @@
   (use-package eldoc
     :pin gnu
     :diminish
-    :custom (eldoc-echo-area-prefer-doc-buffer t))
+    :custom (eldoc-echo-area-prefer-doc-buffer 'maybe))
   #+end_src

@@ -6,7 +6,8 @@
 
 * Python Development
   #+begin_src emacs-lisp
-  (add-hook 'python-mode-hook 'eglot-ensure)
+  (use-package python-mode
+    :hook (python-mode . eglot-ensure))
   #+end_src
 
 
