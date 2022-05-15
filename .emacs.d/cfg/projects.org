@@ -12,5 +12,5 @@
       (interactive)
       (let ((diff-filename (thing-at-point 'filename))
             (project-dir (completing-read "Project dir:" project--list)))
-        (find-file (concat project-dir "/" (substring diff-filename 2))))))
+        (find-file (concat project-dir "/" diff-filename)))))
   #+end_src
