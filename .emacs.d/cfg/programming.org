@@ -1,8 +1,7 @@
 * Programming Settings
   #+begin_src emacs-lisp
   (defun mjr/prog-mode-hook ()
-    (linum-mode)
-    (company-mode))
+    (linum-mode))
 
   (add-hook 'prog-mode-hook #'mjr/prog-mode-hook)
   #+end_src
@@ -63,7 +62,8 @@
   #+begin_src emacs-lisp
   (use-package eglot
     :config
-    (setq eglot-autoshutdown t)
+    (setq eglot-autoshutdown t
+          completion-category-overrides '((eglot (styles orderless))))
     (add-to-list 'eglot-server-programs '(terraform-mode "terraform-ls" "serve")))
 
   (use-package consult-eglot :after eglot)
