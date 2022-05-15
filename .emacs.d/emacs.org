@@ -73,9 +73,13 @@
     (mouse-avoidance-mode 'exile)
     (show-paren-mode t)
     (global-auto-revert-mode 1)
-    (global-subword-mode 1)
     (global-hl-line-mode)
     (global-prettify-symbols-mode 1)
+
+    (use-package subword
+      :diminish
+      :config
+      (global-subword-mode 1))
     #+END_SRC
 
 *** Font and Display
@@ -247,6 +251,7 @@
     - [[file:cfg/develop/web.org]]
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/color-theme.org]]
+    - [[file:cfg/completion.org]]
     - [[file:cfg/docker.org]]
     - [[file:cfg/email.org]]
     - [[file:cfg/flycheck.org]]

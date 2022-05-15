@@ -52,5 +52,7 @@
     (embark-collect-mode . consult-preview-at-point-mode))
 
   (use-package which-key
+    :diminish
     :config (which-key-mode))
-#+end_src
+  #+end_src
+
