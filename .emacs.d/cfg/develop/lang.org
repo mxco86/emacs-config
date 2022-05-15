@@ -7,7 +7,10 @@
 * Python Development
   #+begin_src emacs-lisp
   (use-package python-mode
-    :hook (python-mode . eglot-ensure))
+    :hook (python-mode . eglot-ensure)
+    :config
+    (setq eglot-workspace-configuration
+          '((:pyright . ((useLibraryCodeForTypes . t))))))
   #+end_src
 
 

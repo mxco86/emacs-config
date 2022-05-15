@@ -1,7 +1,9 @@
 * Minibuffer Configuration
   #+begin_src emacs-lisp
   (use-package vertico
-    :init (vertico-mode))
+    :init (vertico-mode)
+    :config
+    (setq vertico-cycle nil))
 
   (use-package savehist :init (savehist-mode))
 
@@ -16,7 +18,7 @@
   (use-package consult
     :bind
     (("C-s" . consult-line)
-     ("C-S-G" . consult-ripgrep)
+     ("C-S-g" . consult-ripgrep)
      ("C-x b" . consult-buffer)
      ("C-x 4 b" . consult-buffer-other-window)
      ("C-x 5 b" . consult-buffer-other-frame)
@@ -33,7 +35,9 @@
   (use-package marginalia
     :bind ("M-A" . marginalia-cycle)
     :init
-    (marginalia-mode))
+    (marginalia-mode)
+    :config
+    (setq marginalia-align 'right))
 
   (use-package embark
     :bind

@@ -66,7 +66,7 @@
     (setq eglot-autoshutdown t)
     (add-to-list 'eglot-server-programs '(terraform-mode "terraform-ls" "serve")))
 
-  (use-package consult-eglot)
+  (use-package consult-eglot :after eglot)
   #+end_src
 
 
