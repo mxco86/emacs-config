@@ -85,8 +85,8 @@
 
     (use-package shackle
       :config
-      (setq-default shackle-rules '((compilation-mode :noselect t))
-                    shackle-default-rule '(:select t)))
+      (setq shackle-rules '((compilation-mode :noselect t))
+            shackle-default-rule '(:select t)))
     #+end_src
 
 *** Window Navigation

@@ -31,7 +31,7 @@
 *** Frame and Buffer Behaviour
     I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
-    (setq-default inhibit-startup-message  t)
+    (setq inhibit-startup-message  t)
     (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
     (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
     (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -43,7 +43,7 @@
     control. This enables us to keep specific config local to each machine
 
     #+BEGIN_SRC emacs-lisp
-    (setq-default custom-file "~/.emacs-custom.el")
+    (setq custom-file "~/.emacs-custom.el")
     (load custom-file 'noerror)
     #+END_SRC
 
@@ -188,14 +188,14 @@
     Keep backups and autosaves in specific directories rather than leaving
     temporary files all over the filesystem
     #+BEGIN_SRC emacs-lisp
-    (setq-default backup-dir "~/.emacs.d/.backups/")
+    (setq backup-dir "~/.emacs.d/.backups/")
     (make-directory backup-dir t)
-    (setq-default backup-directory-alist '(("." . "~/.emacs.d/.backups")))
-    (setq-default autosave-dir "~/.emacs.d/.autosaves/")
+    (setq backup-directory-alist '(("." . "~/.emacs.d/.backups")))
+    (setq autosave-dir "~/.emacs.d/.autosaves/")
     (make-directory autosave-dir t)
     (setq auto-save-file-name-transforms `((".*" ,autosave-dir t)))
-    (setq-default delete-old-versions -1)
-    (setq-default version-control t)
+    (setq delete-old-versions -1)
+    (setq version-control t)
     #+END_SRC
 
 *** OS Specific Configuration

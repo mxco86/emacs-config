@@ -11,7 +11,7 @@
       (bind-key "C-c cw" 'flyspell-auto-correct-word)
       (add-hook 'text-mode-hook 'turn-on-flyspell)
       :config
-      (setq-default ispell-program-name "aspell"
-                    ispell-dictionary   "british"
-                    flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
+      (setq ispell-program-name "aspell"
+            ispell-dictionary   "british"
+            flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
     #+end_src

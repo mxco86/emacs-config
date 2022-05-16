@@ -25,5 +25,5 @@
       (add-hook 'json-mode-hook #'flycheck-mode)
       (add-hook 'json-mode-hook #'add-node-modules-path)
       :config
-      (setq-default js-indent-level 2))
+      (setq js-indent-level 2))
     #+end_src
