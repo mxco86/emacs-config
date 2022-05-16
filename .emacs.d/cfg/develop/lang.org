@@ -28,6 +28,15 @@
   #+end_src
 
 
+* Shell Script
+  #+begin_src emacs-lisp
+  (use-package sh-script
+    :ensure nil
+    :config
+    (setq sh-basic-offset 2))
+  #+end_src
+
+
 * Sonar
   #+begin_src emacs-lisp
   (use-package lsp-sonarlint
