@@ -67,7 +67,7 @@
     (setq truncate-string-ellipsis "…")
     (setq help-window-select t)
     (setq completions-detailed t)
-    (add-to-list 'write-file-functions 'delete-trailing-whitespace)
+    (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
     (global-font-lock-mode t)
     (mouse-avoidance-mode 'exile)
@@ -80,6 +80,8 @@
       :diminish
       :config
       (global-subword-mode 1))
+
+    (use-package unfill)
     #+END_SRC
 
 *** Font and Display
