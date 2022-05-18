@@ -16,7 +16,8 @@
   :after rust-mode
   :init
   (add-hook 'racer-mode-hook #'eldoc-mode)
-  (add-hook 'racer-mode-hook #'company-mode))
+  ;;(add-hook 'racer-mode-hook #'company-mode)
+  )
 
 (use-package cargo :after rust-mode)
 

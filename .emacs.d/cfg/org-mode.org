@@ -145,6 +145,7 @@
       (setq org-roam-directory "~/Org/Documents/org-roam"
             org-roam-node-display-template "${hierarchy:*} ${tags:20}"
             org-id-link-to-org-use-id 'create-if-interactive
+            org-roam-completion-everywhere t
             org-roam-mode-section-functions (list #'org-roam-backlinks-section
                                                   #'org-roam-reflinks-section
                                                   #'org-roam-unlinked-references-section))

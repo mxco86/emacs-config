@@ -8,8 +8,8 @@
           tab-always-indent 'complete
           corfu-auto-prefix 2
           corfu-auto-delay 0.25
-          corfu-min-width 60
-          corfu-max-width corfu-min-width))
+          corfu-separator ?\s
+          corfu-quit-no-match 'separator))
 
   (use-package dabbrev)
 

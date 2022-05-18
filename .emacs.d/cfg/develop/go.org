@@ -41,7 +41,7 @@
     (add-hook 'go-mode-hook 'mjr-go-mode-hook)
     :bind (:map go-mode-map ("M-." . godef-jump)))
 
-  (use-package company-go :after go)
+  ;; (use-package company-go :after go)
 
   (use-package go-eldoc
     :config
