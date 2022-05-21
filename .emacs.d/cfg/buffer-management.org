@@ -128,7 +128,6 @@
 *** Undo
     #+begin_src emacs-lisp
     (use-package undo-tree
-      :diminish
       :config
       (global-undo-tree-mode)
       (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))

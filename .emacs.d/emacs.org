@@ -77,7 +77,6 @@
     (global-prettify-symbols-mode 1)
 
     (use-package subword
-      :diminish
       :config
       (global-subword-mode 1))
 

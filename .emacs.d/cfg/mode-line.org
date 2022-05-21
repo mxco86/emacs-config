@@ -1,4 +1,10 @@
 * Mode line Configuration
+*** Minions
+    #+begin_src emacs-lisp
+    (use-package minions :config (minions-mode t))
+    #+end_src
+
+
 *** Spaceline
     Powerline-like theme for the mode line
 
@@ -8,11 +14,10 @@
     (use-package spaceline
       :config
       (spaceline-emacs-theme)
-      (set-face-attribute 'mode-line-active nil :inherit 'mode-line))
-    #+end_src
-
-
-*** Diminish
-    #+begin_src emacs-lisp
-    (use-package diminish)
+      (set-face-attribute 'mode-line-active nil :inherit 'mode-line)
+      (spaceline-toggle-major-mode-off)
+      (spaceline-define-segment minor-modes
+        (if (bound-and-true-p minions-mode)
+            (format-mode-line minions-mode-line-modes)
+          (spaceline-minor-modes-default))))
     #+end_src

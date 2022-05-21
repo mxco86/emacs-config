@@ -20,7 +20,6 @@
 * Editor Settings
   #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
-  :diminish
   :config
   (editorconfig-mode t))
   #+END_SRC
@@ -74,6 +73,12 @@
   #+begin_src emacs-lisp
   (use-package eldoc
     :pin gnu
-    :diminish
     :custom (eldoc-echo-area-prefer-doc-buffer 'maybe))
+  #+end_src
+
+
+* Tree Sitter
+  #+begin_src emacs-lisp
+  (use-package tree-sitter)
+  (use-package tree-sitter-langs :after tree-sitter)
   #+end_src
