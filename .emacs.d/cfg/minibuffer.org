@@ -37,7 +37,7 @@
     :init
     (marginalia-mode)
     :config
-    (setq marginalia-align 'right))
+    (setq marginalia-align 'left))
 
   (use-package embark
     :bind
