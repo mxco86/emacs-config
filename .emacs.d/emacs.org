@@ -25,9 +25,11 @@
 
 *** Use Package
     #+begin_src emacs-lisp
-    (require 'use-package)
+    (eval-when-compile
+      (require 'use-package))
     (setq use-package-always-ensure t)
     #+end_src
+
 *** Frame and Buffer Behaviour
     I prefer sparse frames so remove as much as we can
     #+BEGIN_SRC emacs-lisp
@@ -81,6 +83,11 @@
       (global-subword-mode 1))
 
     (use-package unfill)
+
+    (use-package link-hint
+      :bind
+      ("C-c e o" . link-hint-open-link)
+      ("C-c e c" . link-hint-copy-link))
     #+END_SRC
 
 *** Font and Display

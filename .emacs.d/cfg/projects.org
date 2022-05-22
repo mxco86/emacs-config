@@ -3,6 +3,7 @@
 
   #+begin_src emacs-lisp
   (use-package project
+    :pin gnu
     :config
     (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?g))
     (add-to-list 'project-switch-commands '(rg "ripgrep" ?h))
