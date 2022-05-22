@@ -1,4 +1,0 @@
-* Terminal Emulation
-  #+begin_src emacs-lisp
-  (use-package vterm)
-  #+end_src

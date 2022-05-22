@@ -82,3 +82,32 @@
   (use-package tree-sitter)
   (use-package tree-sitter-langs :after tree-sitter)
   #+end_src
+
+
+* Linting
+  Enable linting on all buffers using the appropriate linter/compiler/syntax
+  checker
+
+  #+begin_src emacs-lisp
+  (use-package flycheck
+    :init
+    (add-hook 'after-init-hook #'global-flycheck-mode))
+  #+end_src
+
+
+* Paredit Mode
+  - Structured editing of S-expression data
+  - https://www.emacswiki.org/emacs/ParEdit
+  - Use Paredit mode for all lisp programming buffers
+
+  #+begin_src emacs-lisp
+  (use-package paredit
+    :commands (paredit-mode)
+    :hook (emacs-lisp-mode . paredit-mode)
+    :hook (lisp-mode . paredit-mode)
+    :hook (slime-repl-mode . paredit-mode)
+    :hook (lisp-interaction-mode . paredit-mode))
+
+  (use-package rainbow-delimiters
+    :hook ((prog-mode . rainbow-delimiters-mode)))
+  #+end_src

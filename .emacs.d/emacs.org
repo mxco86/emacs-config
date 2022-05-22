@@ -248,6 +248,7 @@
 
 *** Literate Mode Configurations                                     :CFGLST:
     Configuration for more specific functionality, modes and areas of work
+    - [[file:cfg/develop/docker.org]]
     - [[file:cfg/develop/emacs-lisp.org]]
     - [[file:cfg/develop/go.org]]
     - [[file:cfg/develop/java.org]]
@@ -258,22 +259,14 @@
     - [[file:cfg/develop/typescript.org]]
     - [[file:cfg/develop/web.org]]
     - [[file:cfg/buffer-management.org]]
-    - [[file:cfg/color-theme.org]]
     - [[file:cfg/completion.org]]
-    - [[file:cfg/docker.org]]
     - [[file:cfg/email.org]]
-    - [[file:cfg/flycheck.org]]
     - [[file:cfg/minibuffer.org]]
     - [[file:cfg/mode-line.org]]
     - [[file:cfg/org-mode.org]]
-    - [[file:cfg/paredit.org]]
+    - [[file:cfg/productivity.org]]
     - [[file:cfg/programming.org]]
-    - [[file:cfg/projects.org]]
-    - [[file:cfg/search.org]]
-    - [[file:cfg/snippets.org]]
-    - [[file:cfg/terminal.org]]
     - [[file:cfg/vcs.org]]
-    - [[file:cfg/writing.org]]
 
 *** Footer
    We thank you for your patience

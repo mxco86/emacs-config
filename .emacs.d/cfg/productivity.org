@@ -1,0 +1,58 @@
+* Text Snippets
+  #+begin_src emacs-lisp
+  (use-package yasnippet
+    :config
+    (yas-global-mode t))
+  #+end_src
+
+
+* Spell Check
+  Enable spell check on all text buffers. Flyspell for other modes is added
+  in the specific mode configuration. We don't defer loading of Flyspell as
+  it has some interactions with org-mode (setting flyspell-delayed-commands)
+  that cause intermittent start up errors when loading is deferred
+
+  #+begin_src emacs-lisp
+  (use-package flyspell
+    :init
+    (bind-key "C-c cw" 'flyspell-auto-correct-word)
+    (add-hook 'text-mode-hook 'turn-on-flyspell)
+    :config
+    (setq ispell-program-name "aspell"
+          ispell-dictionary   "british"
+          flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
+  #+end_src
+
+
+* File and Directory Search
+  #+begin_src emacs-lisp
+  (use-package rg
+    :config
+    (rg-enable-default-bindings)
+    (setq rg-command-line-flags '("--hidden")))
+  #+end_src
+
+
+* Terminal Emulation
+  #+begin_src emacs-lisp
+  (use-package vterm)
+  #+end_src
+
+
+* Projects
+  Project context and organisation tools
+
+  #+begin_src emacs-lisp
+  (use-package project
+    :pin gnu
+    :config
+    (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?g))
+    (add-to-list 'project-switch-commands '(rg "ripgrep" ?h))
+
+    (defun mjr/project-find-file-from-diff ()
+      "Find and open a project file from a diff string"
+      (interactive)
+      (let ((diff-filename (thing-at-point 'filename))
+            (project-dir (completing-read "Project dir:" project--list)))
+        (find-file (concat project-dir "/" diff-filename)))))
+  #+end_src
