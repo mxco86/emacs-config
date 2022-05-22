@@ -12,12 +12,14 @@
 
     #+begin_src emacs-lisp
     (use-package spaceline
+      :after minions
       :config
-      (spaceline-emacs-theme)
       (set-face-attribute 'mode-line-active nil :inherit 'mode-line)
-      (spaceline-toggle-major-mode-off)
+      (spaceline-emacs-theme)
       (spaceline-define-segment minor-modes
         (if (bound-and-true-p minions-mode)
             (format-mode-line minions-mode-line-modes)
-          (spaceline-minor-modes-default))))
+          (spaceline-minor-modes-default)))
+      (spaceline-emacs-theme)
+      (spaceline-toggle-major-mode))
     #+end_src
