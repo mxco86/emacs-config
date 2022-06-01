@@ -111,3 +111,90 @@
   (use-package rainbow-delimiters
     :hook ((prog-mode . rainbow-delimiters-mode)))
   #+end_src
+
+
+* Docker Tools
+  #+begin_src emacs-lisp
+  (use-package docker
+    :commands (docker))
+
+  (use-package docker-compose-mode
+    :commands (docker-compose-mode))
+
+  (use-package dockerfile-mode
+    :commands (dockerfile-mode))
+  #+end_src
+
+
+* Language Configuration
+*** Emacs Lisp
+    #+begin_src emacs-lisp
+    (use-package elisp-mode
+      :ensure nil
+      :config
+      (bind-key "RET" 'comment-indent-new-line emacs-lisp-mode-map)
+      (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode))
+    #+end_src
+
+*** Haskell
+    #+begin_src emacs-lisp
+    (use-package haskell-mode :mode "\\.hs\\'")
+    #+end_src
+
+*** Python
+    #+begin_src emacs-lisp
+    (use-package python-mode
+      :hook (python-mode . eglot-ensure)
+      :config
+      (setq eglot-workspace-configuration
+            '((:pyright . ((useLibraryCodeForTypes . t))))))
+    #+end_src
+
+*** Terraform
+    #+begin_src emacs-lisp
+    (use-package terraform-mode
+      :config
+      :hook (terraform-mode . eglot-ensure))
+    #+end_src
+
+*** Nix
+    #+begin_src emacs-lisp
+    (use-package nix-mode)
+    #+end_src
+
+*** Shell Script
+    #+begin_src emacs-lisp
+    (use-package sh-script
+      :ensure nil
+      :config
+      (setq sh-basic-offset 2))
+    #+end_src
+
+*** YAML
+    #+begin_src emacs-lisp
+
+    (use-package yaml-mode
+      :commands (yaml-mode)
+      :init
+      (add-hook 'yaml-mode-hook 'flycheck-mode)
+      (add-hook 'yaml-mode-hook 'flyspell-prog-mode))
+
+    (use-package flycheck-yamllint
+      :after yaml-mode
+      :commands (yaml-mode)
+      :init
+      (add-hook 'flycheck-mode-hook 'flycheck-yamllint-setup))
+    #+end_src
+
+*** JSON
+    #+begin_src emacs-lisp
+
+    (use-package json-mode
+      :commands (json-mode)
+      :init
+      (add-hook 'json-mode-hook #'prettier-js-mode)
+      (add-hook 'json-mode-hook #'flycheck-mode)
+      (add-hook 'json-mode-hook #'add-node-modules-path)
+      :config
+      (setq js-indent-level 2))
+    #+end_src
