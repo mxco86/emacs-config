@@ -279,3 +279,50 @@
       :init
       (flycheck-kotlin-setup))
     #+end_src
+
+*** Go
+  #+begin_src emacs-lisp
+  (use-package go-mode
+    :commands (go-mode)
+    :init
+    (setq gofmt-command "goimports")
+    (add-hook 'before-save-hook 'gofmt-before-save)
+    (add-hook 'go-mode-hook 'go-eldoc-setup)
+    :config
+    (defun mjr-go-mode-hook ()
+      (if (not (string-match "go" compile-command))
+          (set (make-local-variable 'compile-command)
+               (concat "go run " buffer-file-name))))
+
+    (add-hook 'go-mode-hook 'mjr-go-mode-hook)
+    :bind (:map go-mode-map ("M-." . godef-jump)))
+
+  (use-package go-eldoc
+    :config
+    (add-hook 'go-mode-hook 'go-eldoc-setup))
+  #+end_src
+
+*** Rust
+  #+begin_src emacs-lisp
+  (use-package rust-mode
+    :commands (rust-mode)
+    :init
+    (add-hook 'rust-mode-hook 'cargo-minor-mode)
+    (add-hook 'rust-mode-hook #'racer-mode)
+    :config
+    (setq rust-format-on-save t)
+    (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
+    (setq racer-rust-src-path "/Users/mryall/Src/rust/rust/src")) ;; Rust source code PATH
+
+  (use-package racer
+    :after rust-mode
+    :init
+    (add-hook 'racer-mode-hook #'eldoc-mode))
+
+  (use-package cargo :after rust-mode)
+
+  (use-package flycheck-rust
+    :after rust-mode
+    :init
+    (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
+  #+end_src
