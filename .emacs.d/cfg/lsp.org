@@ -50,5 +50,14 @@
         (funcall fn checker property)))
 
   (advice-add 'flycheck-checker-get :around 'mjr/flycheck-checker-get)
+  #+end_src
 
+* Sonar
+  #+begin_src emacs-lisp
+  (use-package lsp-sonarlint
+      :config
+      (require 'lsp-sonarlint-java)
+      (require 'lsp-sonarlint-typescript)
+      (setq lsp-sonarlint-java-enabled nil
+            lsp-sonarlint-typescript-enabled nil))
   #+end_src
