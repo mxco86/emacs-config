@@ -14,7 +14,7 @@
     - [[#system-information][System Information]]
     - [[#scrolling][Scrolling]]
     - [[#dired][Dired]]
-    - [[#literate-mode-configurations][Literate Mode Configurations]]
+    - [[#area-specific-configuration][Area-Specific Configuration]]
     - [[#footer][Footer]]
 
 *** Personal Information
@@ -246,21 +246,12 @@
           dired-mark-region t)
     #+end_src
 
-*** Literate Mode Configurations                                     :CFGLST:
+*** Area-Specific Configuration                                      :CFGLST:
     Configuration for more specific functionality, modes and areas of work
-    - [[file:cfg/develop/docker.org]]
-    - [[file:cfg/develop/emacs-lisp.org]]
-    - [[file:cfg/develop/go.org]]
-    - [[file:cfg/develop/java.org]]
-    - [[file:cfg/develop/lang.org]]
-    - [[file:cfg/develop/lsp.org]]
-    - [[file:cfg/develop/markup.org]]
-    - [[file:cfg/develop/rust.org]]
-    - [[file:cfg/develop/typescript.org]]
-    - [[file:cfg/develop/web.org]]
     - [[file:cfg/buffer-management.org]]
     - [[file:cfg/completion.org]]
     - [[file:cfg/email.org]]
+    - [[file:cfg/lsp.org]]
     - [[file:cfg/minibuffer.org]]
     - [[file:cfg/mode-line.org]]
     - [[file:cfg/org-mode.org]]
