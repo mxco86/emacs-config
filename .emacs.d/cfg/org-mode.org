@@ -40,6 +40,7 @@
 *** Keybindings
     #+BEGIN_SRC emacs-lisp
     (define-key global-map "\C-ca" 'org-agenda)
+    (define-key global-map "\M-2" 'org-global-cycle)
     #+END_SRC
 
 *** Fix Conflicts and Disputed Keys
