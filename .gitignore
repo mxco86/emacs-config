@@ -33,3 +33,5 @@ network-security.data
 /.emacs.d/eln-cache/
 /.emacs.d/org-roam.db
 /.emacs.d/vimish-fold/
+/.emacs.d/code-review-db-file.sqlite
+/.emacs.d/projects
