@@ -1,70 +1,69 @@
 * Minibuffer Configuration
   Everything about the minibuffer in here
 
-* Vertical Completion UI
-  #+begin_src emacs-lisp
-  (use-package vertico
-    :init (vertico-mode)
-    :config
-    (setq vertico-cycle nil))
-  #+end_src
+*** Vertical Completion UI
+    #+begin_src emacs-lisp
+    (use-package vertico
+      :init (vertico-mode)
+      :config
+      (setq vertico-cycle nil))
+    #+end_src
 
-* Completion Style
-  #+begin_src emacs-lisp
-  (use-package orderless
-    :init
-    (setq completion-styles '(orderless basic)
-          completion-category-defaults nil
-          completion-category-overrides '((file (styles partial-completion)))))
+*** Completion Style
+    #+begin_src emacs-lisp
+    (use-package orderless
+      :init
+      (setq completion-styles '(orderless basic)
+            completion-category-defaults nil
+            completion-category-overrides '((file (styles partial-completion)))))
 
-  (use-package savehist :init (savehist-mode))
-  (use-package recentf :init (recentf-mode))
-  #+end_src
+    (use-package savehist :init (savehist-mode))
+    (use-package recentf :init (recentf-mode))
+    #+end_src
 
-* Context Completion Candidates
-  #+begin_src emacs-lisp
-  (use-package consult
-    :bind
-    (("C-s" . consult-line)
-     ("C-S-g" . consult-ripgrep)
-     ("C-x b" . consult-buffer)
-     ("C-x 4 b" . consult-buffer-other-window)
-     ("C-x 5 b" . consult-buffer-other-frame)
-     ("M-g o" . consult-outline))
-    :config
-    (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number ."))
+*** Context Completion Candidates
+    #+begin_src emacs-lisp
+    (use-package consult
+      :bind
+      (("C-s" . consult-line)
+       ("C-S-g" . consult-ripgrep)
+       ("C-x b" . consult-buffer)
+       ("C-x 4 b" . consult-buffer-other-window)
+       ("C-x 5 b" . consult-buffer-other-frame)
+       ("M-g o" . consult-outline))
+      :config
+      (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number ."))
 
-  (use-package consult-dir
-    :bind (("C-x d" . consult-dir)
-           :map vertico-map
-           ("C-x d" . consult-dir)
-           ("C-x C-j" . consult-dir-jump-file)))
-  #+end_src
+    (use-package consult-dir
+      :bind (("C-x d" . consult-dir)
+             :map vertico-map
+             ("C-x d" . consult-dir)
+             ("C-x C-j" . consult-dir-jump-file)))
+    #+end_src
 
-* Completion Context Commands
-  #+begin_src emacs-lisp
-  (use-package embark
-    :bind
-    (("C-." . embark-act))
-    :init
-    (setq prefix-help-command #'embark-prefix-help-command))
+*** Contextual Command Execution
+    #+begin_src emacs-lisp
+    (use-package embark
+      :bind
+      (("C-." . embark-act))
+      :init
+      (setq prefix-help-command #'embark-prefix-help-command))
 
-  (use-package embark-consult
-    :after (embark consult)
-    :demand t
-    :hook
-    (embark-collect-mode . consult-preview-at-point-mode))
-  #+end_src
+    (use-package embark-consult
+      :after (embark consult)
+      :demand t
+      :hook
+      (embark-collect-mode . consult-preview-at-point-mode))
+    #+end_src
 
-* Completion Context Commands
-  #+begin_src emacs-lisp
-  (use-package marginalia
-    :bind ("M-A" . marginalia-cycle)
-    :init
-    (marginalia-mode)
-    :config
-    (setq marginalia-align 'left))
+*** Contextual Information
+    #+begin_src emacs-lisp
+    (use-package marginalia
+      :bind ("M-A" . marginalia-cycle)
+      :init
+      (marginalia-mode)
+      :config
+      (setq marginalia-align 'left))
 
-  (use-package which-key
-    :config (which-key-mode))
-  #+end_src
+    (use-package which-key :config (which-key-mode))
+    #+end_src
