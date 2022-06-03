@@ -1,20 +1,28 @@
 * Minibuffer Configuration
+  Everything about the minibuffer in here
+
+* Vertical Completion UI
   #+begin_src emacs-lisp
   (use-package vertico
     :init (vertico-mode)
     :config
     (setq vertico-cycle nil))
+  #+end_src
 
-  (use-package savehist :init (savehist-mode))
-
-  (use-package recentf :init (recentf-mode))
-
+* Completion Style
+  #+begin_src emacs-lisp
   (use-package orderless
     :init
     (setq completion-styles '(orderless basic)
           completion-category-defaults nil
           completion-category-overrides '((file (styles partial-completion)))))
 
+  (use-package savehist :init (savehist-mode))
+  (use-package recentf :init (recentf-mode))
+  #+end_src
+
+* Context Completion Candidates
+  #+begin_src emacs-lisp
   (use-package consult
     :bind
     (("C-s" . consult-line)
@@ -31,14 +39,10 @@
            :map vertico-map
            ("C-x d" . consult-dir)
            ("C-x C-j" . consult-dir-jump-file)))
+  #+end_src
 
-  (use-package marginalia
-    :bind ("M-A" . marginalia-cycle)
-    :init
-    (marginalia-mode)
-    :config
-    (setq marginalia-align 'left))
-
+* Completion Context Commands
+  #+begin_src emacs-lisp
   (use-package embark
     :bind
     (("C-." . embark-act))
@@ -50,6 +54,16 @@
     :demand t
     :hook
     (embark-collect-mode . consult-preview-at-point-mode))
+  #+end_src
+
+* Completion Context Commands
+  #+begin_src emacs-lisp
+  (use-package marginalia
+    :bind ("M-A" . marginalia-cycle)
+    :init
+    (marginalia-mode)
+    :config
+    (setq marginalia-align 'left))
 
   (use-package which-key
     :config (which-key-mode))

@@ -41,7 +41,6 @@
 
 * Projects
   Project context and organisation tools
-
   #+begin_src emacs-lisp
   (use-package project
     :pin gnu
@@ -55,4 +54,13 @@
       (let ((diff-filename (thing-at-point 'filename))
             (project-dir (completing-read "Project dir:" project--list)))
         (find-file (concat project-dir "/" diff-filename)))))
+  #+end_src
+
+
+* In-Buffer Links
+  #+begin_src emacs-lisp
+  (use-package link-hint
+    :bind
+    ("C-c e o" . link-hint-open-link)
+    ("C-c e c" . link-hint-copy-link))
   #+end_src
