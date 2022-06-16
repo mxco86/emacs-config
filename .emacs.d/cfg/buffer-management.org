@@ -96,10 +96,9 @@
 
     #+begin_src emacs-lisp
     (use-package ace-window
-      :defer t
-      :init
-      (progn
-        (global-set-key (kbd "C-x o") 'ace-window)))
+      :bind ("C-x o" . ace-window)
+      :config
+      (ace-window-display-mode))
 
     (use-package windmove
       :config
