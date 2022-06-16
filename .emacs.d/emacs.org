@@ -15,7 +15,7 @@
     - [[#dired-configuration][Dired Configuration]]
     - [[#mode-line-configuration][Mode line Configuration]]
         - [[#minor-modes][Minor Modes]]
-        - [[#spaceline][Spaceline]]
+        - [[#mood-line][Mood Line]]
     - [[#functional-area-configuration][Functional Area Configuration]]
     - [[#functional-area-configuration-files][Functional Area Configuration Files]]
     - [[#footer][Footer]]
@@ -195,8 +195,22 @@
       #+begin_src emacs-lisp
       (use-package minions :config (minions-mode t))
       #+end_src
+***** Mood Line
+      #+begin_src emacs-lisp
+      (use-package mood-line
+        :after minions
+        :config
+        (mood-line-mode)
+        ;; Add minions mode
+        (defun mood-line-segment-major-mode ()
+          "Displays the current major mode in the mode-line."
+          (concat (format-mode-line minions-mode-line-modes 'mood-line-major-mode) " "))
+        (setq mood-line-show-cursor-point t
+              mood-line-show-encoding-information t
+              mood-line-show-eol-style t))
+      #+end_src
 
-***** Spaceline
+***** COMMENT Spaceline
       Powerline-like theme for the mode line
 
       - https://github.com/TheBB/spaceline
