@@ -146,11 +146,12 @@
       :init
       (load-theme 'base16-solarized-dark t)
       :config
-      (setq base16-solarized-dark-colors
-            (plist-put base16-solarized-dark-colors ':base09 "#586e75"))
+      (setq base16-solarized-dark-theme-colors
+            (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
       (load-theme 'base16-solarized-dark t)
-      (set-cursor-color (plist-get base16-solarized-dark-colors ':base02))
+      (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
+      (set-face-attribute 'mode-line nil :background (plist-get base16-solarized-dark-theme-colors ':base01))
       (face-spec-set 'font-lock-variable-name-face
-                     `((t :foreground ,(plist-get base16-solarized-dark-colors ':base06)))
+                     `((t :foreground ,(plist-get base16-solarized-dark-theme-colors ':base06)))
                      'face-override-spec))
     #+end_src
