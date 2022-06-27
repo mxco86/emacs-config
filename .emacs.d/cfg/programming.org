@@ -29,8 +29,10 @@
   #+begin_src emacs-lisp
   (use-package format-all
     :config
-    (add-hook 'prog-mode-hook 'format-all-mode)
-    (add-hook 'prog-mode-hook 'format-all-ensure-formatter))
+    :hook ((prog-mode . format-all-mode)
+           (prog-mode . format-all-ensure-formatter)
+           (yaml-mode . format-all-mode)
+           (yaml-mode . format-all-ensure-formatter)))
   #+end_src
 
 
@@ -166,6 +168,7 @@
     #+begin_src emacs-lisp
     (use-package sh-script
       :ensure nil
+      :hook (sh-mode . eglot-ensure)
       :config
       (setq sh-basic-offset 2))
     #+end_src
@@ -217,7 +220,9 @@
 *** Typescript
     #+begin_src emacs-lisp
     (use-package typescript-mode
-      :init
+      :hook ((typescript-mode . eglot-ensure)
+             (typescript-mode . tree-sitter-hl-mode))
+      :config
       (setq typescript-indent-level 2))
     #+end_src
 
@@ -273,7 +278,13 @@
     #+begin_src emacs-lisp
     (use-package kotlin-mode :mode "\\.kt\\'")
 
-    (add-hook 'kotlin-mode-hook 'eglot-ensure)
+    (defun mjr/enable-eglot-kotlin-hook ()
+      (interactive)
+      (add-hook 'kotlin-mode-hook 'eglot-ensure))
+
+    (defun mjr/disable-eglot-kotlin-hook ()
+      (interactive)
+      (remove-hook 'kotlin-mode-hook 'eglot-ensure))
 
     (use-package flycheck-kotlin
       :init
