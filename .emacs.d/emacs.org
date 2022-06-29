@@ -16,6 +16,7 @@
     - [[#mode-line-configuration][Mode line Configuration]]
         - [[#minor-modes][Minor Modes]]
         - [[#mood-line][Mood Line]]
+    - [[#help][Help]]
     - [[#functional-area-configuration][Functional Area Configuration]]
     - [[#functional-area-configuration-files][Functional Area Configuration Files]]
     - [[#footer][Footer]]
@@ -228,6 +229,15 @@
         (spaceline-emacs-theme)
         (spaceline-toggle-major-mode))
       #+end_src
+
+*** Help
+    #+begin_src emacs-lisp
+    (use-package helpful
+      :bind (("C-h f" . helpful-callable)
+             ("C-h v" . helpful-variable)
+             ("C-h k" . helpful-key)
+             ("C-c C-d" . helpful-at-point)))
+    #+end_src
 
 *** Functional Area Configuration
     I split up some more extensive configs into files for each functional

@@ -21,7 +21,7 @@
     (use-package recentf :init (recentf-mode))
     #+end_src
 
-*** Context Completion Candidates
+*** Completing Read Functions
     #+begin_src emacs-lisp
     (use-package consult
       :bind
@@ -41,7 +41,7 @@
              ("C-x C-j" . consult-dir-jump-file)))
     #+end_src
 
-*** Contextual Command Execution
+*** Command Execution
     #+begin_src emacs-lisp
     (use-package embark
       :bind
@@ -56,7 +56,7 @@
       (embark-collect-mode . consult-preview-at-point-mode))
     #+end_src
 
-*** Contextual Information
+*** Annotations / Help
     #+begin_src emacs-lisp
     (use-package marginalia
       :bind ("M-A" . marginalia-cycle)
