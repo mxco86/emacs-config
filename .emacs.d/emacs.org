@@ -1,13 +1,13 @@
 * Main Emacs Config                                                   :TOC_5:
     - [[#use-package][Use Package]]
     - [[#general-configuration][General Configuration]]
+        - [[#hooks][Hooks]]
         - [[#initial-setup][Initial Setup]]
         - [[#personal-details][Personal Details]]
         - [[#basic-editing][Basic Editing]]
         - [[#backups-and-autosaves][Backups and Autosaves]]
         - [[#scrolling][Scrolling]]
         - [[#settings-to-make-things-a-bit-nicer][Settings to Make Things a Bit Nicer]]
-        - [[#hooks][Hooks]]
     - [[#editing-packages][Editing Packages]]
     - [[#font-and-display][Font and Display]]
     - [[#environment-variables][Environment Variables]]
@@ -41,11 +41,14 @@
       ("C-c f" . revert-buffer)
       ("C-x C-m" . execute-extended-command)
       ("C-x f" . find-file)
-      :config
      #+end_src
-
+***** Hooks
+      #+begin_src emacs-lisp
+      :hook (before-save . delete-trailing-whitespace)
+      #+end_src
 ***** Initial Setup
       #+begin_src emacs-lisp
+      :config
       (setq inhibit-startup-message  t)
       (setq custom-file "~/.emacs.d/custom.el")
       (load custom-file 'noerror)
@@ -117,12 +120,7 @@
       (global-subword-mode)
 
       (global-unset-key "\C-z")
-      (global-unset-key "\C-x\C-z")
-      #+end_src
-
-***** Hooks
-      #+begin_src emacs-lisp
-      (add-hook 'before-save-hook 'delete-trailing-whitespace))
+      (global-unset-key "\C-x\C-z"))
       #+end_src
 
 *** Editing Packages
