@@ -7,16 +7,6 @@
   #+end_src
 
 
-* Directory Environment
-  #+begin_src emacs-lisp
-  (use-package direnv
-    :hook
-    (flycheck-before-syntax-check . direnv-update-environment)
-    :config
-    (direnv-mode))
-  #+end_src
-
-
 * Editor Settings
   #+BEGIN_SRC emacs-lisp
   (use-package editorconfig

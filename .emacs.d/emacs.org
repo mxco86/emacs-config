@@ -19,6 +19,7 @@
     - [[#help][Help]]
     - [[#functional-area-configuration][Functional Area Configuration]]
     - [[#functional-area-configuration-files][Functional Area Configuration Files]]
+    - [[#directory-environment][Directory Environment]]
     - [[#footer][Footer]]
 
 *** Use Package
@@ -284,6 +285,13 @@
     - [[file:cfg/productivity.org]]
     - [[file:cfg/programming.org]]
     - [[file:cfg/vcs.org]]
+
+*** Directory Environment
+    #+begin_src emacs-lisp
+    (use-package envrc
+      :config
+      (envrc-global-mode))
+    #+end_src
 
 *** Footer
    We thank you for your patience
