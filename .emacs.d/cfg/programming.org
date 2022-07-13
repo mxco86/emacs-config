@@ -82,8 +82,7 @@
 
   #+begin_src emacs-lisp
   (use-package flycheck
-    :init
-    (add-hook 'after-init-hook #'global-flycheck-mode))
+    :hook (after-init . global-flycheck-mode))
   #+end_src
 
 
@@ -151,7 +150,8 @@
 
 *** Nix
     #+begin_src emacs-lisp
-    (use-package nix-mode)
+    (use-package nix-mode
+      :hook (nix-mode . eglot-ensure))
     #+end_src
 
 *** Shell Script
