@@ -6,95 +6,95 @@
   #+BEGIN_SRC emacs-lisp
   ;; Load mu4e
   ;;(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
-  (let ((mu4epath (concat (f-dirname (file-truename (executable-find "mu")))
-                          "/../share/emacs/site-lisp/mu4e")))
-    (when (and (string-prefix-p "/nix/store/" mu4epath)
-               (file-directory-p mu4epath))
-      (add-to-list 'load-path mu4epath)))
-  (require 'mu4e)
+  ;; (let ((mu4epath (concat (f-dirname (file-truename (executable-find "mu")))
+  ;;                         "/../share/emacs/site-lisp/mu4e")))
+  ;;   (when (and (string-prefix-p "/nix/store/" mu4epath)
+  ;;              (file-directory-p mu4epath))
+  ;;     (add-to-list 'load-path mu4epath)))
+  ;; (require 'mu4e)
 
-  ;; Sending mail
-  (setq mu4e-maildir "~/Maildir")
+  ;; ;; Sending mail
+  ;; (setq mu4e-maildir "~/Maildir")
 
-  ;; Set up queue for offline email
-  (setq  smtpmail-queue-mail nil
-         smtpmail-queue-dir "~/Maildir/queue/cur")
+  ;; ;; Set up queue for offline email
+  ;; (setq  smtpmail-queue-mail nil
+  ;;        smtpmail-queue-dir "~/Maildir/queue/cur")
 
-  ;; Send via SMTP
-  (setq message-send-mail-function 'smtpmail-send-it)
+  ;; ;; Send via SMTP
+  ;; (setq message-send-mail-function 'smtpmail-send-it)
 
-  ;; View settings
-  (setq mu4e-view-show-addresses t)
+  ;; ;; View settings
+  ;; (setq mu4e-view-show-addresses t)
 
-  ;; View settings for HTML email
-  (setq mu4e-html2text-command 'mu4e-shr2text)
-  (setq shr-color-visible-luminance-min 80)
-  (setq shr-color-visible-distance-min 5)
-  (add-to-list 'mu4e-view-actions
-               '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+  ;; ;; View settings for HTML email
+  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
+  ;; (setq shr-color-visible-luminance-min 80)
+  ;; (setq shr-color-visible-distance-min 5)
+  ;; (add-to-list 'mu4e-view-actions
+  ;;              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
-  ;; Fetch mail via mbsync
-  (setq mu4e-get-mail-command "mbsync -a"
-        mu4e-update-interval 300
-        mu4e-change-filenames-when-moving t)
+  ;; ;; Fetch mail via mbsync
+  ;; (setq mu4e-get-mail-command "mbsync -a"
+  ;;       mu4e-update-interval 300
+  ;;       mu4e-change-filenames-when-moving t)
 
-  (setq mu4e-headers-fields '((:human-date . 12)
-                              (:flags . 6)
-                              (:maildir . 20)
-                              (:mailing-list . 10)
-                              (:from . 22)
-                              (:subject)))
+  ;; (setq mu4e-headers-fields '((:human-date . 12)
+  ;;                             (:flags . 6)
+  ;;                             (:maildir . 20)
+  ;;                             (:mailing-list . 10)
+  ;;                             (:from . 22)
+  ;;                             (:subject)))
 
-  ;; Shortcuts
-  (setq mu4e-maildir-shortcuts
-        '(("/MXCO86/INBOX" . ?i)
-          ("/LVMHDA/INBOX" . ?l)))
+  ;; ;; Shortcuts
+  ;; (setq mu4e-maildir-shortcuts
+  ;;       '(("/MXCO86/INBOX" . ?i)
+  ;;         ("/LVMHDA/INBOX" . ?l)))
 
-  ;; Contexts
-  (setq mu4e-contexts
-        `( ,(make-mu4e-context
-             :name "Mexico86"
-             :enter-func (lambda () (mu4e-message "Entering Mexico86 context"))
-             :leave-func (lambda () (mu4e-message "Leaving Mexico86 context"))
-             ;; we match based on the contact-fields of the message
-             :match-func (lambda (msg)
-                           (when msg
-                             (string-match-p "^/MXCO86" (mu4e-message-field msg :maildir))))
-             :vars '((user-mail-address . "matthew@mexico86.co.uk"  )
-                     (user-full-name . "Matthew Ryall" )
-                     (mu4e-sent-folder . "/MXCO86/sent")
-                     (mu4e-drafts-folder . "/MXCO86/drafts")
-                     (user-mail-address . "matthew@mexico86.co.uk")
-                     (smtpmail-default-smtp-server . "smtp.gmail.com")
-                     (smtpmail-local-domain . "gmail.com")
-                     (smtpmail-smtp-user . "matthew@mexico86.co.uk")
-                     (smtpmail-smtp-server . "smtp.gmail.com")
-                     (smtpmail-stream-type . starttls)
-                     (smtpmail-smtp-service . 587)
-                     (mu4e-compose-signature . (concat "Matthew Ryall\n"
-                                                       "mexico86 Ltd\n"
-                                                       "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
-                                                       "Company Registration Number: 10374093\n"))))))
+  ;; ;; Contexts
+  ;; (setq mu4e-contexts
+  ;;       `( ,(make-mu4e-context
+  ;;            :name "Mexico86"
+  ;;            :enter-func (lambda () (mu4e-message "Entering Mexico86 context"))
+  ;;            :leave-func (lambda () (mu4e-message "Leaving Mexico86 context"))
+  ;;            ;; we match based on the contact-fields of the message
+  ;;            :match-func (lambda (msg)
+  ;;                          (when msg
+  ;;                            (string-match-p "^/MXCO86" (mu4e-message-field msg :maildir))))
+  ;;            :vars '((user-mail-address . "matthew@mexico86.co.uk"  )
+  ;;                    (user-full-name . "Matthew Ryall" )
+  ;;                    (mu4e-sent-folder . "/MXCO86/sent")
+  ;;                    (mu4e-drafts-folder . "/MXCO86/drafts")
+  ;;                    (user-mail-address . "matthew@mexico86.co.uk")
+  ;;                    (smtpmail-default-smtp-server . "smtp.gmail.com")
+  ;;                    (smtpmail-local-domain . "gmail.com")
+  ;;                    (smtpmail-smtp-user . "matthew@mexico86.co.uk")
+  ;;                    (smtpmail-smtp-server . "smtp.gmail.com")
+  ;;                    (smtpmail-stream-type . starttls)
+  ;;                    (smtpmail-smtp-service . 587)
+  ;;                    (mu4e-compose-signature . (concat "Matthew Ryall\n"
+  ;;                                                      "mexico86 Ltd\n"
+  ;;                                                      "Regd. Office: 118 Millhouses Lane, Sheffield, S7 2HB\n"
+  ;;                                                      "Company Registration Number: 10374093\n"))))))
 
-  ;; start with the first (default) context;
-  ;; default is to ask-if-none (ask when there's no context yet, and none match)
-  (setq mu4e-context-policy 'pick-first)
+  ;; ;; start with the first (default) context;
+  ;; ;; default is to ask-if-none (ask when there's no context yet, and none match)
+  ;; (setq mu4e-context-policy 'pick-first)
 
-  ;; compose with the current context is no context matches;
-  ;; default is to ask
-  (setq mu4e-compose-context-policy nil)
+  ;; ;; compose with the current context is no context matches;
+  ;; ;; default is to ask
+  ;; (setq mu4e-compose-context-policy nil)
 
-  ;; Add org-mode support
-  (require 'org-mu4e)
+  ;; ;; Add org-mode support
+  ;; (require 'org-mu4e)
 
-  (setq mu4e-org-contacts-file  "~/Org/Documents/org/contacts.org")
-  (add-to-list 'mu4e-headers-actions
-               '("org-contact-add" . mu4e-action-add-org-contact) t)
-  (add-to-list 'mu4e-view-actions
-               '("org-contact-add" . mu4e-action-add-org-contact) t)
+  ;; (setq mu4e-org-contacts-file  "~/Org/Documents/org/contacts.org")
+  ;; (add-to-list 'mu4e-headers-actions
+  ;;              '("org-contact-add" . mu4e-action-add-org-contact) t)
+  ;; (add-to-list 'mu4e-view-actions
+  ;;              '("org-contact-add" . mu4e-action-add-org-contact) t)
 
-  ;; Confirm before sending mail
-  (add-hook 'message-send-hook
-            (lambda () (unless (yes-or-no-p "Sure you want to send this?")
-                    (signal 'quit nil))))
+  ;; ;; Confirm before sending mail
+  ;; (add-hook 'message-send-hook
+  ;;           (lambda () (unless (yes-or-no-p "Sure you want to send this?")
+  ;;                   (signal 'quit nil))))
   #+END_SRC
