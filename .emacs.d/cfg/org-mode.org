@@ -98,6 +98,10 @@
           org-edit-src-persistent-message nil
           org-src-strip-leading-and-trailing-blank-lines t)
 
+    ;; Add packages for org-babel languages
+    (use-package ob-kotlin)
+    (use-package ob-typescript)
+
     (org-babel-do-load-languages 'org-babel-load-languages
                                  '((shell . t)
                                    (haskell . t)
