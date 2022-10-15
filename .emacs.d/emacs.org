@@ -214,7 +214,6 @@
 *** Dired Configuration
     #+begin_src emacs-lisp
     (use-package dired
-      :ensure nil
       :config
       (setq dired-create-destination-dirs 'ask
             dired-kill-when-opening-new-dired-buffer t

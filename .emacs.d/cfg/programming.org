@@ -121,7 +121,6 @@
 *** Emacs Lisp
     #+begin_src emacs-lisp
     (use-package elisp-mode
-      :ensure nil
       :config
       (bind-key "RET" 'comment-indent-new-line emacs-lisp-mode-map)
       (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode))
@@ -157,7 +156,6 @@
 *** Shell Script
     #+begin_src emacs-lisp
     (use-package sh-script
-      :ensure nil
       :hook (sh-mode . eglot-ensure)
       :config
       (setq sh-basic-offset 2))
