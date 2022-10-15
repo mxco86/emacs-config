@@ -17,9 +17,6 @@
             magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
             git-commit-major-mode 'git-commit-mode))
 
-    (use-package libgit :after magit)
-    (use-package magit-libgit :after (magit libgit))
-
     (use-package forge :after magit)
 
     (use-package git-timemachine)
