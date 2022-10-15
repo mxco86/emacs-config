@@ -8,7 +8,8 @@
         - [[#backups-and-autosaves][Backups and Autosaves]]
         - [[#scrolling][Scrolling]]
         - [[#settings-to-make-things-a-bit-nicer][Settings to Make Things a Bit Nicer]]
-    - [[#editing-packages][Editing Packages]]
+    - [[#emacs-package-management][Emacs Package Management]]
+    - [[#text-editing][Text Editing]]
     - [[#font-and-display][Font and Display]]
     - [[#environment-variables][Environment Variables]]
     - [[#macos-specific-configuration][MacOS Specific Configuration]]
@@ -23,17 +24,25 @@
     - [[#footer][Footer]]
 
 *** Use Package
+    Where possible I configure everything via the ~use-package~ macro.
+    This helps to keep everything consistent and makes code execution order
+    and dependencies between packages explicit. Also, I need as much help as I
+    can get to keep things from getting all tangled up. We have to load it
+    first…
+
     #+begin_src emacs-lisp
     (unless (package-installed-p 'use-package)
       (package-refresh-contents)
       (package-install 'use-package))
 
-    (eval-when-compile
-      (require 'use-package))
+    (eval-when-compile (require 'use-package))
     (setq use-package-always-ensure t)
     #+end_src
 
 *** General Configuration
+    It's possible to use ~use-package~ to configure 'emacs' as it is defined
+    as a feature. I use this to keep global settings together.
+
     #+begin_src emacs-lisp
     (use-package emacs
       :bind
@@ -48,19 +57,27 @@
       ("C-x f" . find-file)
      #+end_src
 ***** Hooks
+      Always, always delete trailing whitespace
+
       #+begin_src emacs-lisp
       :hook (before-save . delete-trailing-whitespace)
       #+end_src
+
 ***** Initial Setup
+      Don't mess about with anything at start up - just start up. Put any
+      custom variables in their own file. I don't use custom on purpose but
+      sometimes things end up in here by magic
+
       #+begin_src emacs-lisp
       :config
-      (setq inhibit-startup-message  t)
+      (setq inhibit-startup-message t)
       (setq custom-file "~/.emacs.d/custom.el")
       (load custom-file 'noerror)
       #+end_src
 
 ***** Personal Details
-      This does some more stuff
+      All about little ol' me
+
       #+begin_src emacs-lisp
       (setq user-full-name "Matthew Ryall"
             user-mail-address "matthew@mexico86.co.uk")
@@ -78,6 +95,8 @@
       #+end_src
 
 ***** Backups and Autosaves
+      Keep both backup and autosave files in their own directories rather than
+      in the directory of the file being edited
       #+begin_src emacs-lisp
       (setq backup-dir "~/.emacs.d/.backups/")
       (make-directory backup-dir t)
@@ -127,8 +146,17 @@
       (global-unset-key "\C-z")
       (global-unset-key "\C-x\C-z"))
       #+end_src
-
-*** Editing Packages
+*** Emacs Package Management
+    Paradox enhances the package list with some extra bits, including GitHub
+    stars and a link to the package home page, which gives some indication of
+    rating and more detailed info
+    #+begin_src emacs-lisp
+    (use-package paradox :config (paradox-enable))
+    #+end_src
+*** Text Editing
+    Amazingly useful unfill functions. I use these all the time to remove line
+    breaks when writing in org-mode and then pasting into other systems like
+    Slack
     #+begin_src emacs-lisp
     (use-package unfill)
     #+end_src
