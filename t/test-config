@@ -1,9 +1,8 @@
 #!/bin/bash -e
 
-SCRIPT_DIR="$( cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HOME="$SCRIPT_DIR"/..
 
-mkdir -p $HOME/Org/Documents/notebooks
+mkdir -p "$HOME/Org/Documents/notebooks"
 
-emacs -Q -batch -l $HOME/.emacs
-
+emacs -Q -batch -l "$HOME/.emacs"
