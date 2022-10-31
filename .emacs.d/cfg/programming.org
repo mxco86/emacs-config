@@ -326,3 +326,8 @@
     :init
     (add-hook 'flycheck-mode-hook 'flycheck-rust-setup))
   #+end_src
+
+*** Just
+    #+begin_src emacs-lisp
+    (use-package just-mode)
+    #+end_src
