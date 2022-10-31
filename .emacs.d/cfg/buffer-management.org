@@ -129,7 +129,9 @@
     (use-package undo-tree
       :config
       (global-undo-tree-mode)
-      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
+      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+      (setq undo-tree-visualizer-timestamps t
+            undo-tree-visualizer-diff t))
     #+end_src
 
 *** Colour Theme
