@@ -1,13 +1,22 @@
 * Completion
   #+begin_src emacs-lisp
   (use-package corfu
-    :init
-    (global-corfu-mode)
+    :init (global-corfu-mode)
+    :bind (:map corfu-map ("M-m" . corfu-move-to-minibuffer))
     :config
+
+    (defun corfu-move-to-minibuffer ()
+      (interactive)
+      (let ((completion-extra-properties corfu--extra)
+            completion-cycle-threshold completion-cycling)
+        (apply #'consult-completion-in-region completion-in-region--data)))
+
     (setq corfu-auto t
           tab-always-indent 'complete
           corfu-auto-prefix 2
           corfu-auto-delay 0.25
+          corfu-max-width 40
+          corfu-min-width corfu-max-width
           corfu-separator ?\s
           corfu-quit-no-match 'separator))
 
@@ -40,5 +49,5 @@
     ;;(add-to-list 'completion-at-point-functions #'cape-dict)
     ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
     ;;(add-to-list 'completion-at-point-functions #'cape-line)
-  )
+    )
   #+end_src
