@@ -53,3 +53,17 @@
 
     (eval-after-load "diff-mode" '(update-diff-colors))
     #+end_src
+
+*** EDiff
+    #+begin_src emacs-lisp
+    (use-package ediff
+      :init
+      (defun mjr/ediff-before-setup () (select-frame (make-frame)))
+      (defun mjr/ediff-after-quit () (delete-frame))
+      :hook ((ediff-before-setup . mjr/ediff-before-setup)
+             (ediff-quit . mjr/ediff-after-quit)
+             (magit-ediff-quit . mjr/ediff-after-quit))
+      :config
+      (setq ediff-window-setup-function 'ediff-setup-windows-plain
+            ediff-split-window-function 'split-window-horizontally))
+    #+end_src
