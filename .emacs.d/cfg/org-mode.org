@@ -35,6 +35,11 @@
     (setq org-insert-heading-respect-content t)
     (setq org-startup-folded 'content)
     (setq org-adapt-indentation t)
+    (setq org-link-frame-setup '((vm . vm-visit-folder-other-frame)
+                                 (vm-imap . vm-visit-imap-folder-other-frame)
+                                 (gnus . org-gnus-no-new-news)
+                                 (file . find-file)
+                                 (wl . wl-other-frame)))
     #+end_src
 
 *** Keybindings
@@ -138,39 +143,67 @@
 
 *** Org-Roam
     #+begin_src emacs-lisp
-    (use-package org-roam
-      :bind (("C-c n l" . org-roam-buffer-toggle)
-             ("C-c n s" . org-store-link)
-             ("C-c n i" . org-roam-node-insert)
-             ("C-c n d" . org-roam-dailies-goto-today)
-             ("C-c n f" . org-roam-node-find))
-      :init
-      (setq org-roam-v2-ack t)
-      :config
-      (setq org-roam-directory "~/Org/Documents/org-roam"
-            org-roam-node-display-template "${hierarchy:*} ${tags:20}"
-            org-id-link-to-org-use-id 'create-if-interactive
-            org-roam-completion-everywhere t
-            org-roam-mode-section-functions (list #'org-roam-backlinks-section
-                                                  #'org-roam-reflinks-section
-                                                  #'org-roam-unlinked-references-section))
+      (use-package org-roam
+        :bind (("C-c n l" . org-roam-buffer-toggle)
+               ("C-c n s" . org-store-link)
+               ("C-c n i" . org-roam-node-insert)
+               ("C-c n d" . org-roam-dailies-goto-today)
+               ("C-c n f" . org-roam-node-find)
+               :map org-roam-preview-map
+               ("<return>" . mjr/org-roam-preview-visit)
+               :map org-roam-node-map
+               ("<return>" . mjr/org-roam-node-visit)
+               :map org-roam-grep-map
+               ("<return>" . mjr/org-roam-grep-visit))
+        :init
+        (setq org-roam-v2-ack t)
+        :config
 
-      (cl-defmethod org-roam-node-filetitle ((node org-roam-node))
-        "Return the file TITLE for the node."
-        (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
+        (setq org-roam-directory "~/Org/Documents/org-roam"
+              org-roam-node-display-template "${hierarchy:*} ${tags:20}"
+              org-id-link-to-org-use-id 'create-if-interactive
+              org-roam-completion-everywhere t
+              org-roam-mode-section-functions (list #'org-roam-backlinks-section
+                                                    #'org-roam-reflinks-section
+                                                    #'org-roam-unlinked-references-section))
 
-      (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
-        "Return the hierarchy for the node."
-        (let ((title (org-roam-node-title node))
-              (olp (org-roam-node-olp node))
-              (level (org-roam-node-level node))
-              (filetitle (org-roam-node-filetitle node)))
-          (concat
-           (if (> level 0) (concat filetitle " > "))
-           (if (> level 1) (concat (string-join olp " > ") " > "))
-           title)))
+        (defun mjr/org-roam-preview-visit (file point)
+          (interactive (list (org-roam-buffer-file-at-point 'assert)
+                             (oref (magit-current-section) point)))
+          (let ((current-prefix-arg 4))
+            (call-interactively 'org-roam-preview-visit (vector file point))))
 
-      (org-roam-setup))
+        (defun mjr/org-roam-node-visit (file)
+          (interactive (list (org-roam-node-at-point t)))
+          (let ((current-prefix-arg 4))
+            (call-interactively 'org-roam-node-visit (vector file))))
+
+        (defun mjr/org-roam-grep-visit (file prefix row col)
+          (interactive (list (org-roam-buffer-file-at-point t)
+                             current-prefix-arg
+                             (oref (magit-current-section) row)
+                             (oref (magit-current-section) col)))
+          (let ((current-prefix-arg 4))
+            (call-interactively 'org-roam-grep-visit (vector file current-prefix-arg row col))))
+
+        (cl-defmethod org-roam-node-filetitle ((node org-roam-node))
+          "Return the file TITLE for the node."
+          (org-roam-get-keyword "TITLE" (org-roam-node-file node)))
+
+        (cl-defmethod org-roam-node-hierarchy ((node org-roam-node))
+          "Return the hierarchy for the node."
+          (let ((title (org-roam-node-title node))
+                (olp (org-roam-node-olp node))
+                (level (org-roam-node-level node))
+                (filetitle (org-roam-node-filetitle node)))
+            (concat
+             (if (> level 0) (concat filetitle " > "))
+             (if (> level 1) (concat (string-join olp " > ") " > "))
+             title)))
+
+        (org-roam-setup))
+
+
     #+end_src
 *** Org-Download
     #+begin_src emacs-lisp
