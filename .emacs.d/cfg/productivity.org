@@ -35,7 +35,8 @@
 
 * Terminal Emulation
   #+begin_src emacs-lisp
-  (use-package vterm)
+  (use-package eat)
+  (setq explicit-shell-file-name "~/.nix-profile/bin/zsh")
   #+end_src
 
 
