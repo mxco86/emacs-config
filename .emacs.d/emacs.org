@@ -8,7 +8,6 @@
         - [[#backups-and-autosaves][Backups and Autosaves]]
         - [[#scrolling][Scrolling]]
         - [[#settings-to-make-things-a-bit-nicer][Settings to Make Things a Bit Nicer]]
-    - [[#emacs-package-management][Emacs Package Management]]
     - [[#text-editing][Text Editing]]
     - [[#font-and-display][Font and Display]]
     - [[#environment-variables][Environment Variables]]
@@ -146,13 +145,6 @@
       (global-unset-key "\C-z")
       (global-unset-key "\C-x\C-z"))
       #+end_src
-*** Emacs Package Management
-    Paradox enhances the package list with some extra bits, including GitHub
-    stars and a link to the package home page, which gives some indication of
-    rating and more detailed info
-    #+begin_src emacs-lisp
-    (use-package paradox :config (paradox-enable))
-    #+end_src
 *** Text Editing
     Amazingly useful unfill functions. I use these all the time to remove line
     breaks when writing in org-mode and then pasting into other systems like
