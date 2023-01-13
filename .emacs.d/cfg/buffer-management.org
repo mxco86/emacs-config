@@ -1,72 +1,10 @@
 * Buffer Management Configuration
 *** Buffer Selection
-    IBuffer provides a nice overview interface of open buffers
-
-    - https://www.emacswiki.org/emacs/IbufferMode
-
     #+begin_src emacs-lisp
-
-    (use-package ibuffer
-      :commands (ibuffer)
+    (use-package bufler
+      :commands (bufler)
       :init
-      (bind-key "C-x C-b" 'ibuffer)
-      :config
-      (setq ibuffer-saved-filter-groups
-            (quote (("default"
-                     ("Emacs"
-                      (or
-                       (mode . help-mode)
-                       (mode . grep-mode)
-                       (mode . completion-list-mode)
-                       (mode . emacs-lisp-mode)
-                       (name . "\\*scratch\\*")
-                       (name . "\\*Messages\\*")))
-                     ("Org"
-                      (mode . org-mode))
-                     ("Code Review"
-                      (or
-                       (mode . github-review-mode)))
-                     ("Programming"
-                      (or
-                       (name . "\\*inferior-lisp\\*")
-                       (name . "*slime*")
-                       (mode . perl-mode)
-                       (mode . cperl-mode)
-                       (mode . java-mode)
-                       (mode . python-mode)
-                       (mode . c-mode)
-                       (mode . lisp-mode)
-                       (mode . js2-mode)
-                       (mode . typescript-mode)
-                       (mode . js-mode)
-                       (mode . nix-mode)
-                       (mode . kotlin-mode)
-                       (mode . web-mode)))
-                     ("Data/Config"
-                      (or
-                       (name . "JSON")
-                       (name . "YAML")))
-                     ("Source Ctrl"
-                      (or
-                       (mode . magit-mode)
-                       (mode . magit-cherry-mode)
-                       (mode . magit-diff-mode)
-                       (mode . magit-log-mode)
-                       (mode . magit-log-select-mode)
-                       (mode . magit-merge-preview-mode)
-                       (mode . magit-process-mode)
-                       (mode . magit-refs-mode)
-                       (mode . magit-reflog-mode)
-                       (mode . magit-revision-mode)
-                       (mode . magit-stash-mode)
-                       (mode . magit-stashes-mode)
-                       (mode . magit-status-mode))))))))
-
-      (setq ibuffer-show-empty-filter-groups nil)
-
-      (add-hook 'ibuffer-mode-hook
-                (lambda ()
-                  (ibuffer-switch-to-saved-filter-groups "default")))
+      (bind-key "C-x C-b" 'bufler))
     #+end_src
 
 *** Folding
