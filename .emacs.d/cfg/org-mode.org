@@ -35,6 +35,7 @@
     (setq org-insert-heading-respect-content t)
     (setq org-startup-folded 'content)
     (setq org-adapt-indentation t)
+    (setq org-hide-emphasis-markers t)
     (setq org-link-frame-setup '((vm . vm-visit-folder-other-frame)
                                  (vm-imap . vm-visit-imap-folder-other-frame)
                                  (gnus . org-gnus-no-new-news)
@@ -214,8 +215,12 @@
     #+end_src
 *** Colours
     #+begin_src emacs-lisp
+    (set-face-attribute 'org-document-title nil :weight 'bold :foreground "#eee8d5" :background "#002b36" :inverse-video nil :weight 'bold :height 1.6)
+    (set-face-attribute 'org-level-1 nil :inverse-video t :weight 'bold)
+    (set-face-attribute 'org-level-2 nil :weight 'bold)
+
     (set-face-attribute 'org-block-begin-line nil :background "#002b36")
-    (set-face-attribute 'org-block nil :background "#073642")
+    (set-face-attribute 'org-block nil :background "#002b36")
     (set-face-attribute 'org-block-end-line nil :background "#002b36")
     #+end_src
 *** Org-Id
