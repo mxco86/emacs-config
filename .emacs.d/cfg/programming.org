@@ -157,10 +157,8 @@
 *** Shell Script
     #+begin_src emacs-lisp
     (use-package sh-script
-      :hook ((sh-mode . eglot-ensure)
-             (typescript-mode . tree-sitter-hl-mode))
-      :config
-      (setq sh-basic-offset 2))
+      :hook ((sh-mode . eglot-ensure))
+      :config (setq sh-basic-offset 2))
     #+end_src
 
 *** YAML
