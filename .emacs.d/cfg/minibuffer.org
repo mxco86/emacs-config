@@ -5,6 +5,9 @@
     #+begin_src emacs-lisp
     (use-package vertico
       :init (vertico-mode)
+      :bind (:map vertico-map
+                  ("<up>" . nil)
+                  ("<down>" . nil))
       :config
       (setq vertico-cycle nil))
     #+end_src
