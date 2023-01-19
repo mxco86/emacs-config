@@ -15,6 +15,7 @@
     - [[#org-download][Org-Download]]
     - [[#colours][Colours]]
     - [[#org-id][Org-Id]]
+    - [[#presentation][Presentation]]
 
 *** List Setup
     Extend the sub-items bullet count by two (1,3,5 characters etc.) to give a
@@ -227,4 +228,12 @@
     #+begin_src emacs-lisp
     (setq org-id-extra-files
           (directory-files-recursively "~/Org/Documents/notebooks" ".*"))
+    #+end_src
+*** Presentation
+    #+begin_src emacs-lisp
+    (use-package org-present)
+
+    (use-package visual-fill-column
+      :config
+      (setq visual-fill-column-center-text t))
     #+end_src
