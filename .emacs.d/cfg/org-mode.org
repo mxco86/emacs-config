@@ -231,9 +231,26 @@
     #+end_src
 *** Presentation
     #+begin_src emacs-lisp
-    (use-package org-present)
-
-    (use-package visual-fill-column
+    (use-package org-present
       :config
-      (setq visual-fill-column-center-text t))
+      (setq org-present-text-scale 3))
+
+    (use-package visual-fill-column)
+
+    (defun mjr/org-present-start ()
+      (visual-fill-column-mode 1)
+      (visual-line-mode 1)
+      (hl-line-mode -1)
+      (setq visual-fill-column-center-text t)
+      (setq visual-fill-column-width 100)
+      (setq header-line-format " "))
+
+    (defun mjr/org-present-end ()
+      (visual-fill-column-mode 0)
+      (visual-line-mode 0)
+      (hl-line-mode 1)
+      (setq header-line-format nil))
+
+    (add-hook 'org-present-mode-hook 'mjr/org-present-start)
+    (add-hook 'org-present-mode-quit-hook 'mjr/org-present-end)
     #+end_src
