@@ -232,6 +232,9 @@
 *** Presentation
     #+begin_src emacs-lisp
     (use-package org-present
+      :bind (:map org-present-mode-keymap
+                  ("C-c C-=" . mjr/org-present-big)
+                  ("C-c C--" . mjr/org-present-small))
       :config
       (setq org-present-text-scale 3))
 
@@ -242,7 +245,7 @@
       (visual-line-mode 1)
       (hl-line-mode -1)
       (setq visual-fill-column-center-text t)
-      (setq visual-fill-column-width 100)
+      (setq visual-fill-column-width 80)
       (setq header-line-format " "))
 
     (defun mjr/org-present-end ()
@@ -250,6 +253,21 @@
       (visual-line-mode 0)
       (hl-line-mode 1)
       (setq header-line-format nil))
+
+    (defun mjr/org-present-big ()
+      "Make font size larger."
+      (interactive)
+      (text-scale-increase 0)
+      (text-scale-increase org-present-text-scale)
+      (setq visual-fill-column-width 72)
+      (visual-fill-column-mode 1))
+
+    (defun mjr/org-present-small ()
+      "Change font size back to original."
+      (interactive)
+      (text-scale-increase 0)
+      (setq visual-fill-column-width 80)
+      (visual-fill-column-mode 1))
 
     (add-hook 'org-present-mode-hook 'mjr/org-present-start)
     (add-hook 'org-present-mode-quit-hook 'mjr/org-present-end)
