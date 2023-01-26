@@ -66,3 +66,26 @@
     ("C-c e o" . link-hint-open-link)
     ("C-c e c" . link-hint-copy-link))
   #+end_src
+
+
+* Browser Text
+  Start a server for editing browser text fields…
+
+  #+begin_src emacs-lisp
+  (use-package atomic-chrome
+    :config
+    (setq atomic-chrome-url-major-mode-alist
+          '(("github" . gfm-mode))
+          atomic-chrome-extension-type-list '(ghost-text))
+    (atomic-chrome-start-server))
+  #+end_src
+
+
+* Server
+  …and start a server for editing everything else
+
+  #+begin_src emacs-lisp
+  (use-package server
+    :config
+    (unless (server-running-p) (server-start)))
+  #+end_src
