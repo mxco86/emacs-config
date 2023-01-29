@@ -27,23 +27,14 @@
     #+end_src
 
 *** Window Navigation
-    Windmove allows navigation between windows using arrow keys which is
-    useful for quickly switching between a couple of active windows. Ace
-    Window allows jumping between numbered windows which is useful when there
-    are more to navigate
+    Ace Window allows jumping between numbered windows which is useful when
+    there are more than a couple to navigate.
 
     #+begin_src emacs-lisp
     (use-package ace-window
       :bind ("C-x o" . ace-window)
       :config
       (ace-window-display-mode))
-
-    (use-package windmove
-      :config
-      (global-set-key (kbd "C-c <left>")  'windmove-left)
-      (global-set-key (kbd "C-c <right>") 'windmove-right)
-      (global-set-key (kbd "C-c <up>")    'windmove-up)
-      (global-set-key (kbd "C-c <down>")  'windmove-down))
     #+end_src
 
 *** PDF Buffers
