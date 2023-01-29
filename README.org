@@ -27,3 +27,5 @@
     - https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org
     - https://pages.sachachua.com/.emacs.d/Sacha.html
     - https://github.com/danielmai/.emacs.d
+    - https://github.com/patrickt/emacs
+    - https://panadestein.github.io/emacsd/
