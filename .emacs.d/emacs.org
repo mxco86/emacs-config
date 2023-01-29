@@ -109,10 +109,8 @@
 
 ***** Scrolling
       #+begin_src emacs-lisp
-      (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-      (setq mouse-wheel-progressive-speed nil)
-      (setq mouse-wheel-follow-mouse 't)
       (setq scroll-step 1)
+      (pixel-scroll-precision-mode)
       #+end_src
 
 ***** Settings to Make Things a Bit Nicer
@@ -155,7 +153,9 @@
       (global-unset-key (kbd "<M-left>"))
       (global-unset-key (kbd "<M-right>"))
       (global-unset-key (kbd "<M-up>"))
-      (global-unset-key (kbd "<M-down>")))
+      (global-unset-key (kbd "<M-down>"))
+      (global-unset-key (kbd "<C-wheel-down>"))
+      (global-unset-key (kbd "<C-wheel-up>")))
       #+end_src
 *** Text Editing
     Amazingly useful unfill functions. I use these all the time to remove line
