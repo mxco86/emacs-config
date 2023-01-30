@@ -49,7 +49,6 @@
       ("C-x C-k" . kill-region)
       ("C-c C-k" . kill-region)
       ("C-x r" . query-replace-regexp)
-      ("C-x l" . goto-line)
       ("C-c b" . bury-buffer)
       ("C-c f" . revert-buffer)
       ("C-x C-m" . execute-extended-command)

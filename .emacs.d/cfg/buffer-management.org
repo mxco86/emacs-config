@@ -7,6 +7,7 @@
       (bind-key "C-x C-b" 'bufler))
     #+end_src
 
+
 *** Folding
     Vimish-fold allows creation of arbitrary in-buffer folds based on the selected region
 
@@ -48,9 +49,9 @@
 *** Buffer Navigation
     #+begin_src emacs-lisp
     (use-package avy
-      :bind (("C-c l" . #'avy-goto-line)
-             ("C-c j" . #'avy-goto-char-timer)
-             ("C-c v" . #'avy-goto-word-1)))
+      :bind (("C-x l" . #'avy-goto-line)
+             ("C-x j" . #'avy-goto-char-timer)
+             ("C-x v" . #'avy-goto-word-1)))
     #+end_src
 
 *** Undo
