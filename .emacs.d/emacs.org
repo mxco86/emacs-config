@@ -123,6 +123,7 @@
       (setq help-window-select t)
       (setq completions-detailed t)
 
+      (setq use-short-answers t)
       (fset 'yes-or-no-p 'y-or-n-p)
 
       (scroll-bar-mode -1)
