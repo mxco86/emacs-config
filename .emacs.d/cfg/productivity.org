@@ -63,8 +63,8 @@
   #+begin_src emacs-lisp
   (use-package link-hint
     :bind
-    ("C-c e o" . link-hint-open-link)
-    ("C-c e c" . link-hint-copy-link))
+    ("C-c l o" . link-hint-open-link)
+    ("C-c l c" . link-hint-copy-link))
   #+end_src
 
 
