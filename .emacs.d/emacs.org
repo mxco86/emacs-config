@@ -175,7 +175,8 @@
 
     (defun mjr/set-font (size)
       (interactive "nSize: ")
-      (mjr/init-font-size (selected-frame) "Hack" size))
+      (mjr/init-font-size (selected-frame) "Hack" size)
+      (when (fboundp 'kind-icon-reset-cache) (kind-icon-reset-cache)))
 
     (defun mjr/approprate-font-size ()
       (if (> (display-pixel-width) 3000)
