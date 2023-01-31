@@ -1,6 +1,13 @@
 * Minibuffer Configuration
   Everything about the minibuffer in here
 
+
+*** Recursive Minibuffers
+    #+begin_src emacs-lisp
+    (setq enable-recursive-minibuffers t)
+    (minibuffer-depth-indicate-mode 1)
+    #+end_src
+
 *** Vertical Completion UI
     #+begin_src emacs-lisp
     (use-package vertico
