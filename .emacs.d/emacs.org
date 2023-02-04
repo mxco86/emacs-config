@@ -227,9 +227,11 @@
 
 *** MacOS Specific Configuration
     #+begin_src emacs-lisp
-    (setq mac-command-modifier 'meta)
-    (setq mac-option-modifier 'meta)
-    (setq ns-pop-up-frames nil)
+    (if (eq system-type "darwin")
+      (setq mac-command-modifier 'meta)
+      (setq mac-option-modifier 'meta)
+      (setq ns-pop-up-frames nil)
+      (add-to-list 'default-frame-alist '(undecorated . t)))
     #+end_src
 
 *** Dired Configuration
