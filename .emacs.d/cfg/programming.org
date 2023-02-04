@@ -55,7 +55,10 @@
     :config
     (setq eglot-autoshutdown t
           completion-category-overrides '((eglot (styles orderless))))
-    (add-to-list 'eglot-server-programs '(terraform-mode "terraform-ls" "serve")))
+    (setq eglot-server-programs
+          (append eglot-server-programs
+                  '((terraform-mode "terraform-ls" "serve")
+                    (typescript-ts-mode "typescript-language-server" "--stdio")))))
 
   (use-package consult-eglot :after eglot)
   #+end_src
@@ -66,13 +69,6 @@
   (use-package eldoc
     :pin gnu
     :custom (eldoc-echo-area-prefer-doc-buffer 'maybe))
-  #+end_src
-
-
-* Tree Sitter
-  #+begin_src emacs-lisp
-  (use-package tree-sitter)
-  (use-package tree-sitter-langs :after tree-sitter)
   #+end_src
 
 
@@ -194,22 +190,28 @@
     #+begin_src emacs-lisp
     (use-package add-node-modules-path
       :commands (add-node-modules-path)
-      :init
-      (add-hook 'typescript-mode-hook #'add-node-modules-path)
-      (add-hook 'js2-mode-hook #'add-node-modules-path)
-      (add-hook 'web-mode-hook #'add-node-modules-path))
+      :hook ((typescript-mode . add-node-modules-path)
+             (typescript-ts-mode-hook . add-node-modules-path)
+             (js2-mode-hook . add-node-modules-path)
+             (web-mode-hook . add-node-modules-path)))
 
     (use-package npm-mode
       :commands (npm-mode)
-      :init
-      (add-hook 'typescript-mode-hook #'npm-mode))
+      :hook ((typescript-mode . npm-mode)
+             (typescript-ts-mode-hook . npm-mode)))
     #+end_src
 
 *** Typescript
     #+begin_src emacs-lisp
     (use-package typescript-mode
-      :hook ((typescript-mode . eglot-ensure)
-             (typescript-mode . tree-sitter-hl-mode))
+      :hook ((typescript-mode . eglot-ensure))
+      :config
+      (setq typescript-indent-level 2))
+
+    (use-package typescript-ts-mode
+      :hook ((typescript-ts-mode . eglot-ensure))
+      :init
+      (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
       :config
       (setq typescript-indent-level 2))
     #+end_src
