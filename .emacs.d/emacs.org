@@ -166,8 +166,6 @@
     #+end_src
 
 *** Font and Display
-    Use the 'Hack' font which is designed for source code and also includes
-    powerline glyphs which I use on the mode line
     #+begin_src emacs-lisp
     (defun mjr/init-font-size (frame font value)
       (set-frame-parameter frame 'font
@@ -175,7 +173,7 @@
 
     (defun mjr/set-font (size)
       (interactive "nSize: ")
-      (mjr/init-font-size (selected-frame) "Hack" size)
+      (mjr/init-font-size (selected-frame) "Fira Code" size)
       (when (fboundp 'kind-icon-reset-cache) (kind-icon-reset-cache)))
 
     (defun mjr/approprate-font-size ()
@@ -198,6 +196,24 @@
 
     (mjr/set-font (mjr/approprate-font-size))
     (toggle-frame-maximized)
+
+    (use-package ligature
+      :config
+      (ligature-set-ligatures 't '("www"))
+      (ligature-set-ligatures 'prog-mode '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                           ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                           "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                           "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                           "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                           "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                           "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                           "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                           ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                           "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                           "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                           "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                           "\\\\" "://"))
+      (global-ligature-mode t))
     #+end_src
 
 *** Environment Variables
