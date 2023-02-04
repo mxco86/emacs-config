@@ -129,6 +129,7 @@
       (scroll-bar-mode -1)
       (tool-bar-mode -1)
       (menu-bar-mode -1)
+      (blink-cursor-mode -1)
       (mouse-avoidance-mode 'exile)
       (column-number-mode)
       (line-number-mode)
