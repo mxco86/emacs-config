@@ -29,3 +29,4 @@
     - https://github.com/danielmai/.emacs.d
     - https://github.com/patrickt/emacs
     - https://panadestein.github.io/emacsd/
+    - https://github.com/danielmai/.emacs.d/blob/master/config.org
