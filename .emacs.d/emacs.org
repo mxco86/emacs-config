@@ -178,9 +178,13 @@
       (when (fboundp 'kind-icon-reset-cache) (kind-icon-reset-cache)))
 
     (defun mjr/approprate-font-size ()
-      (if (> (display-pixel-width) 3000)
-          16
-        (if (<= (display-pixel-height) 900) 16 10)))
+      (let ((dpi (floor (/ (display-pixel-width) (/ (display-mm-width) 25.4))))
+            (mm-width (cadr (assoc 'mm-size (car (display-monitor-attributes-list))))))
+        (cond ((and (equal dpi 92) (and (< mm-width 300) (> mm-width 200))) 16)
+              ((and (equal dpi 92) (and (< mm-width 610) (> mm-width 300))) 20)
+              ((equal dpi 96) 12)
+              ((equal dpi 210) 10)
+              (16))))
 
     (use-package all-the-icons :if (display-graphic-p))
 
