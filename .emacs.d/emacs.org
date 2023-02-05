@@ -228,7 +228,7 @@
 
 *** MacOS Specific Configuration
     #+begin_src emacs-lisp
-    (if (eq system-type "darwin")
+    (when (eq system-type "darwin")
       (setq mac-command-modifier 'meta)
       (setq mac-option-modifier 'meta)
       (setq ns-pop-up-frames nil)
