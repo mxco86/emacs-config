@@ -15,7 +15,7 @@
           tab-always-indent 'complete
           corfu-auto-prefix 2
           corfu-auto-delay 0.25
-          corfu-max-width 40
+          corfu-max-width 78
           corfu-min-width corfu-max-width
           corfu-separator ?\s
           corfu-quit-no-match 'separator))
