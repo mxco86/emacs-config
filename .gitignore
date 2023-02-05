@@ -35,3 +35,8 @@ network-security.data
 /.emacs.d/vimish-fold/
 /.emacs.d/code-review-db-file.sqlite
 /.emacs.d/projects
+/.emacs.d/tree-sitter/
+/.envrc
+/.direnv/
+/.emacs.d/eshell/
+/.emacs.d/multisession/
