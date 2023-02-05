@@ -50,8 +50,8 @@ Productivity tools and other things to help generally get things done.
 * Terminal Emulation
 
   I generally prefer using an dedicated terminal application but using
-  [Eat](https://codeberg.org/akib/emacs-eat) gets pretty close to that within
-  Emacs and using it is a very nice experience.
+  [[https://codeberg.org/akib/emacs-eat][Eat]] gets pretty close to that within Emacs and using it is a very nice
+  experience.
 
   #+begin_src emacs-lisp
   (use-package eat
@@ -83,10 +83,9 @@ Productivity tools and other things to help generally get things done.
 
 * In-Buffer Links
 
-  [Link Hint](https://github.com/noctuid/link-hint.el) enables opening all
-  kinds of links in the appropriate manner (browser etc.). It has an avy-like
-  interface for selecting the link you want to operate on. I just used it to
-  open the github README from this org file.
+  [[https://github.com/noctuid/link-hint.el][Link Hint]] enables opening all kinds of links in the appropriate manner
+  (browser etc.). It has an avy-like interface for selecting the link you want
+  to operate on. I just used it to open the github README from this org file.
 
   #+begin_src emacs-lisp
   (use-package link-hint
