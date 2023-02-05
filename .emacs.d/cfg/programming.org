@@ -141,7 +141,10 @@
     #+begin_src emacs-lisp
     (use-package terraform-mode
       :config
-      :hook (terraform-mode . eglot-ensure))
+      (defun mjr/terraform-mode-hook ()
+        (setq-local create-lockfiles nil)
+        (eglot-ensure))
+      :hook (terraform-mode . mjr/terraform-mode-hook))
     #+end_src
 
 *** Nix
