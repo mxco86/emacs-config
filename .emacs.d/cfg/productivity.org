@@ -1,20 +1,29 @@
+
+Productivity tools and other things to help generally get things done.
+
 * Text Snippets
+
+  I mainly use this to insert org source blocks which seems like ridiculous
+  overkill to include this whole package for, but maybe one day I will expand
+  my usage (heh!).
+
   #+begin_src emacs-lisp
-  (use-package yasnippet
-    :config
-    (yas-global-mode t))
+  (use-package yasnippet :config (yas-global-mode t))
   #+end_src
 
 
 * Spell Check
-  Enable spell check on all text buffers. Flyspell for other modes is added
-  in the specific mode configuration. We don't defer loading of Flyspell as
-  it has some interactions with org-mode (setting flyspell-delayed-commands)
-  that cause intermittent start up errors when loading is deferred
+
+  Enable spell check on all text buffers, which includes ~org-mode~. Flyspell
+  for other modes is added in the specific mode configuration. Don't defer
+  loading of Flyspell as it has some interactions with org-mode (setting
+  ~flyspell-delayed-commands~) that cause intermittent start up errors when
+  loading is deferred. I wrote this in the distant past and have no idea if
+  it is still true.
 
   #+begin_src emacs-lisp
   (use-package flyspell
-    :hook  (text-mode . turn-on-flyspell)
+    :hook (text-mode . turn-on-flyspell)
     :init
     (bind-key "C-c cw" 'flyspell-auto-correct-word)
     :config
@@ -25,6 +34,11 @@
 
 
 * File and Directory Search
+
+  Mode for searching using ripgrep. It's very fast but I'm not sure I like the
+  user interface very much. I mainly use ~consult-ripgrep~ for this anyway but
+  keep this around for use with ~project.el~ and for searching special occasions.
+
   #+begin_src emacs-lisp
   (use-package rg
     :config
@@ -34,6 +48,11 @@
 
 
 * Terminal Emulation
+
+  I generally prefer using an dedicated terminal application but using
+  [Eat](https://codeberg.org/akib/emacs-eat) gets pretty close to that within
+  Emacs and using it is a very nice experience.
+
   #+begin_src emacs-lisp
   (use-package eat
     :config
@@ -42,7 +61,10 @@
 
 
 * Projects
-  Project context and organisation tools
+
+  Project context and organisation tools which help when switching around and
+  focusing relevant buffers and files.
+
   #+begin_src emacs-lisp
   (use-package project
     :pin gnu
@@ -60,6 +82,12 @@
 
 
 * In-Buffer Links
+
+  [Link Hint](https://github.com/noctuid/link-hint.el) enables opening all
+  kinds of links in the appropriate manner (browser etc.). It has an avy-like
+  interface for selecting the link you want to operate on. I just used it to
+  open the github README from this org file.
+
   #+begin_src emacs-lisp
   (use-package link-hint
     :bind
@@ -69,6 +97,7 @@
 
 
 * Browser Text
+
   Start a server for editing browser text fields…
 
   #+begin_src emacs-lisp
