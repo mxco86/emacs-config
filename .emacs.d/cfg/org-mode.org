@@ -82,9 +82,7 @@
     #+begin_src emacs-lisp
 
     (add-hook 'org-mode-hook
-              '(lambda ()
-                 (turn-on-flyspell)
-                 (auto-fill-mode t)))
+              '(lambda () (auto-fill-mode t)))
     #+end_src
 
     Add a before-save-hook that's specific to org-mode files
