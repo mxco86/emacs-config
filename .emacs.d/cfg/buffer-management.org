@@ -1,90 +1,101 @@
-* Buffer Management Configuration
-*** Buffer Selection
-    #+begin_src emacs-lisp
-    (use-package bufler
-      :commands (bufler)
-      :init
-      (bind-key "C-x C-b" 'bufler))
-    #+end_src
+#+TITLE: Buffer Management
+
+Listing buffers, opening buffers, moving around buffers, colours of buffers,
+other things about buffers. And undo for some reason…
+
+* Buffer List
+
+  List buffers using [[https://github.com/alphapapa/bufler.el][Bufler]] which groups buffers by project without any extra
+  configuration which is great. It also uses Magit keybindings for navigation.
+
+  #+begin_src emacs-lisp
+  (use-package bufler
+    :commands (bufler)
+    :init
+    (bind-key "C-x C-b" 'bufler))
+  #+end_src
 
 
-*** Folding
-    Vimish-fold allows creation of arbitrary in-buffer folds based on the selected region
+* Controlling New Buffers
 
-    #+begin_src emacs-lisp
+  Controlling what happens when a buffer is popped up ventures into swiis-army
+  chainsaw territory. It explained really well in the 'Controlling Buffer and
+  Window Display' section of [[https://www.masteringemacs.org/article/demystifying-emacs-window-manager][this excellent article]]. Currently just ensure
+  help windows don't pop up all over the place.
 
-    (use-package vimish-fold
-      :commands (vimish-fold-toggle vimish-fold)
-      :init
-      (vimish-fold-global-mode 1))
-    #+end_src
+  #+begin_src emacs-lisp
+  (setq display-buffer-alist '((eq major-mode "helpful-mode")
+                               (display-buffer-reuse-mode-window)))
+  #+end_src
 
-*** Popup Buffers
-    #+begin_src emacs-lisp
-    (use-package shackle
-      :config
-      (setq shackle-rules '((compilation-mode :noselect t))
-            shackle-default-rule '(:select t)))
-    #+end_src
 
-*** Window Navigation
-    Ace Window allows jumping between numbered windows which is useful when
-    there are more than a couple to navigate.
+* Window Navigation
 
-    #+begin_src emacs-lisp
-    (use-package ace-window
-      :bind ("C-x o" . ace-window)
-      :config
-      (ace-window-display-mode))
-    #+end_src
+  Ace Window allows jumping between numbered windows which is useful when
+  there are more than a couple to navigate.
 
-*** PDF Buffers
-    #+begin_src emacs-lisp
-    (use-package pdf-tools
-      :config
-      (pdf-tools-install :no-query)
-      (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
-    #+end_src
+  #+begin_src emacs-lisp
+  (use-package ace-window
+    :bind ("C-x o" . ace-window)
+    :config
+    (ace-window-display-mode))
+  #+end_src
 
-*** Buffer Navigation
-    #+begin_src emacs-lisp
-    (use-package avy
-      :bind (("C-x l" . #'avy-goto-line)
-             ("C-x j" . #'avy-goto-char-timer)
-             ("C-x v" . #'avy-goto-word-1)))
-    #+end_src
 
-*** Undo
-    #+begin_src emacs-lisp
-    (use-package undo-tree
-      :init
-      (global-undo-tree-mode)
-      :config
-      (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
-      (setq undo-tree-visualizer-timestamps t
-            undo-tree-visualizer-diff t))
-    #+end_src
+* PDF Buffers
 
-*** Colour Theme
-    - Use the base16-emacs theme implementation
-    - https://github.com/belak/base16-emacs
-    - This has a version of solarized-dark which is the theme I generally use
-    - The theme is loaded and then a few minor tweaks applied before reloading
-      to apply these
-    - The cursor colour is also changed after loading as it's set to a horrible
-      red by default
+  #+begin_src emacs-lisp
+  (use-package pdf-tools
+    :config
+    (pdf-tools-install :no-query)
+    (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
+  #+end_src
 
-    #+begin_src emacs-lisp
-    (use-package base16-theme
-      :init
-      (load-theme 'base16-solarized-dark t)
-      :config
-      (setq base16-solarized-dark-theme-colors
-            (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
-      (load-theme 'base16-solarized-dark t)
-      (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
-      (set-face-attribute 'mode-line nil :background (plist-get base16-solarized-dark-theme-colors ':base01))
-      (face-spec-set 'font-lock-variable-name-face
-                     `((t :foreground ,(plist-get base16-solarized-dark-theme-colors ':base06)))
-                     'face-override-spec))
-    #+end_src
+
+* Buffer Navigation
+
+  #+begin_src emacs-lisp
+  (use-package avy
+    :bind (("C-x l" . #'avy-goto-line)
+           ("C-x j" . #'avy-goto-char-timer)
+           ("C-x v" . #'avy-goto-word-1)))
+  #+end_src
+
+
+* Colour Theme
+
+  I find themes fiddly so just stick with using solarized dark mostly.
+  [[https://github.com/belak/base16-emacs][Base 16 Emacs]] has a version which is nice enough. I apply a few minor
+  tweaks to it, like changing the horrible red cursor to something less
+  scary. The changes only seem to work on startup so if I do change theme
+  while running (I quite like the modus ones sometimes) then I can't change
+  back without the red cursor returning from the depths to haunt me once
+  again.
+
+  #+begin_src emacs-lisp
+  (use-package base16-theme
+    :init
+    (load-theme 'base16-solarized-dark t)
+    :config
+    (setq base16-solarized-dark-theme-colors
+          (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
+    (load-theme 'base16-solarized-dark t)
+    (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
+    (set-face-attribute 'mode-line nil :background (plist-get base16-solarized-dark-theme-colors ':base01))
+    (face-spec-set 'font-lock-variable-name-face
+                   `((t :foreground ,(plist-get base16-solarized-dark-theme-colors ':base06)))
+                   'face-override-spec))
+  #+end_src
+
+
+* Undo
+
+  #+begin_src emacs-lisp
+  (use-package undo-tree
+    :init
+    (global-undo-tree-mode)
+    :config
+    (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+    (setq undo-tree-visualizer-timestamps t
+          undo-tree-visualizer-diff t))
+  #+end_src
