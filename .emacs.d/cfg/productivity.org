@@ -23,7 +23,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* File and Directory Search
+* File and Directory Search                                               :_:
 
   Mode for searching using ripgrep. It's very fast but I'm not sure I like the
   user interface very much. I mainly use ~consult-ripgrep~ for this anyway but
@@ -37,7 +37,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Terminal Emulation
+* Terminal Emulation                                                      :_:
 
   I generally prefer using an dedicated terminal application but using
   [[https://codeberg.org/akib/emacs-eat][Eat]] gets pretty close to that within Emacs and using it is a very nice
@@ -50,7 +50,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Projects
+* Projects                                                                :_:
 
   Project context and organisation tools which help when switching around and
   focusing relevant buffers and files.
@@ -71,7 +71,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* In-Buffer Links
+* In-Buffer Links                                                         :_:
 
   [[https://github.com/noctuid/link-hint.el][Link Hint]] enables opening all kinds of links in the appropriate manner
   (browser etc.). It has an avy-like interface for selecting the link you want
@@ -85,7 +85,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Browser Text
+* Browser Text                                                            :_:
 
   Start a server for editing browser text fields…
 
@@ -99,7 +99,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Server
+* Server                                                                  :_:
   …and start a server for editing everything else
 
   #+begin_src emacs-lisp

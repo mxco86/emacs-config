@@ -3,7 +3,7 @@
 Listing buffers, opening buffers, moving around buffers, colours of buffers,
 other things about buffers. And undo for some reason…
 
-* Buffer List
+* Buffer List                                                             :_:
 
   List buffers using [[https://github.com/alphapapa/bufler.el][Bufler]] which groups buffers by project without any extra
   configuration which is great. It also uses Magit keybindings for navigation.
@@ -16,9 +16,9 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Controlling New Buffers
+* Controlling New Buffers                                                 :_:
 
-  Controlling what happens when a buffer is popped up ventures into swiis-army
+  Controlling what happens when a buffer is popped up ventures into swiss-army
   chainsaw territory. It explained really well in the 'Controlling Buffer and
   Window Display' section of [[https://www.masteringemacs.org/article/demystifying-emacs-window-manager][this excellent article]]. Currently just ensure
   help windows don't pop up all over the place.
@@ -29,7 +29,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Window Navigation
+* Window Navigation                                                       :_:
 
   Ace Window allows jumping between numbered windows which is useful when
   there are more than a couple to navigate.
@@ -42,7 +42,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* PDF Buffers
+* PDF Buffers                                                             :_:
 
   #+begin_src emacs-lisp
   (use-package pdf-tools
@@ -52,7 +52,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Buffer Navigation
+* Buffer Navigation                                                       :_:
 
   #+begin_src emacs-lisp
   (use-package avy
@@ -62,7 +62,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Colour Theme
+* Colour Theme                                                            :_:
 
   I find themes fiddly so just stick with using solarized dark mostly.
   [[https://github.com/belak/base16-emacs][Base 16 Emacs]] has a version which is nice enough. I apply a few minor
@@ -88,7 +88,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Undo
+* Undo                                                                    :_:
 
   #+begin_src emacs-lisp
   (use-package undo-tree
