@@ -1,7 +1,6 @@
 * Minibuffer Configuration
   Everything about the minibuffer in here
 
-
 *** Recursive Minibuffers
     #+begin_src emacs-lisp
     (setq enable-recursive-minibuffers t)
@@ -9,6 +8,7 @@
     #+end_src
 
 *** Vertical Completion UI
+    - https://github.com/minad/vertico/
     #+begin_src emacs-lisp
     (use-package vertico
       :init (vertico-mode)
@@ -19,40 +19,8 @@
       (setq vertico-cycle nil))
     #+end_src
 
-*** Completion Style
-    #+begin_src emacs-lisp
-    (use-package orderless
-      :init
-      (setq completion-styles '(orderless basic)
-            completion-category-defaults nil
-            completion-category-overrides '((file (styles partial-completion)))))
-
-    (use-package savehist :init (savehist-mode))
-    (use-package recentf :init (recentf-mode))
-    #+end_src
-
-*** Completing Read Functions
-    #+begin_src emacs-lisp
-    (use-package consult
-      :bind
-      (("C-s" . consult-line)
-       ("C-S-g" . consult-ripgrep)
-       ("C-x b" . consult-buffer)
-       ("C-x 4 b" . consult-buffer-other-window)
-       ("C-x 5 b" . consult-buffer-other-frame)
-       ("M-g o" . consult-outline))
-      :config
-      (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number .")
-      (if (eq system-type 'darwin) (setq consult-locate-args "mdfind -name")))
-
-    (use-package consult-dir
-      :bind (("C-x d" . consult-dir)
-             :map vertico-map
-             ("C-x d" . consult-dir)
-             ("C-x C-j" . consult-dir-jump-file)))
-    #+end_src
-
 *** Command Execution
+    - https://github.com/oantolin/embark
     #+begin_src emacs-lisp
     (use-package embark
       :bind
@@ -68,6 +36,7 @@
     #+end_src
 
 *** Annotations / Help
+    - https://github.com/minad/marginalia
     #+begin_src emacs-lisp
     (use-package marginalia
       :bind ("M-A" . marginalia-cycle)

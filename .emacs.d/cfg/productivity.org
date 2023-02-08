@@ -2,18 +2,7 @@
 
 Productivity tools and other things to help generally get things done.
 
-* Text Snippets
-
-  I mainly use this to insert org source blocks which seems like ridiculous
-  overkill to include this whole package for, but maybe one day I will expand
-  my usage (heh!).
-
-  #+begin_src emacs-lisp
-  (use-package yasnippet :config (yas-global-mode t))
-  #+end_src
-
-
-* Spell Check
+* Spell Check                                                             :_:
 
   Enable spell check on all text buffers, which includes ~org-mode~. Flyspell
   for other modes is added in the specific mode configuration. Don't defer

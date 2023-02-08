@@ -1,34 +1,62 @@
-* Completion
+#+TITLE: Completion
+
+Packages related to in-buffer completion
+
+* Completion UI                                                           :_:
+
+  Pop up a list of completion candidates using [[https://github.com/minad/corfu][Corfu]]
+
   #+begin_src emacs-lisp
-  (use-package corfu
-    :init (global-corfu-mode)
-    :bind (:map corfu-map ("M-m" . corfu-move-to-minibuffer))
-    :config
+    (use-package corfu
+      :init (global-corfu-mode)
+      :bind (:map corfu-map ("M-m" . corfu-move-to-minibuffer))
+      :config
 
-    (defun corfu-move-to-minibuffer ()
-      (interactive)
-      (let ((completion-extra-properties corfu--extra)
-            completion-cycle-threshold completion-cycling)
-        (apply #'consult-completion-in-region completion-in-region--data)))
+      (defun corfu-move-to-minibuffer ()
+        (interactive)
+        (let ((completion-extra-properties corfu--extra)
+              completion-cycle-threshold completion-cycling)
+          (apply #'consult-completion-in-region completion-in-region--data)))
 
-    (setq corfu-auto t
-          tab-always-indent 'complete
-          corfu-auto-prefix 2
-          corfu-auto-delay 0.25
-          corfu-max-width 78
-          corfu-min-width corfu-max-width
-          corfu-separator ?\s
-          corfu-quit-no-match 'separator))
+      (setq corfu-auto t
+            tab-always-indent 'complete
+            corfu-auto-prefix 2
+            corfu-auto-delay 0.25
+            corfu-max-width 78
+            corfu-min-width corfu-max-width
+            corfu-separator ?\s
+            corfu-quit-no-match 'separator))
+  #+end_src
 
-  (use-package dabbrev)
 
+* Completion Icons                                                        :_:
+
+  #+begin_src emacs-lisp
   (use-package kind-icon
     :after corfu
     :custom
     (kind-icon-default-face 'corfu-default)
     :config
     (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+  #+end_src
 
+
+* Completion Candidates                                                   :_:
+
+  Packages to help with completion candidates
+
+  #+begin_src emacs-lisp
+  (use-package dabbrev)
+  (use-package savehist :init (savehist-mode))
+  (use-package recentf :init (recentf-mode))
+  #+end_src
+
+
+* Completion at Point Functions                                           :_:
+
+  https://github.com/minad/cape
+
+  #+begin_src emacs-lisp
   (use-package cape
     :bind (("C-c p p" . completion-at-point) ;; capf
            ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
@@ -50,4 +78,70 @@
     ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
     ;;(add-to-list 'completion-at-point-functions #'cape-line)
     )
+  #+end_src
+
+
+* Completion Style                                                        :_:
+
+  - https://github.com/oantolin/orderless
+
+  #+begin_src emacs-lisp
+  (use-package orderless
+    :init
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil
+          completion-category-overrides '((file (styles partial-completion)))))
+  #+end_src
+
+
+* Completing Read Functions                                               :_:
+
+  - https://github.com/minad/consult
+
+  #+begin_src emacs-lisp
+  (use-package consult
+    :bind
+    (("C-s" . consult-line)
+     ("C-S-g" . consult-ripgrep)
+     ("C-x b" . consult-buffer)
+     ("C-x 4 b" . consult-buffer-other-window)
+     ("C-x 5 b" . consult-buffer-other-frame)
+     ("M-g o" . consult-outline))
+    :config
+    (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number .")
+    (if (eq system-type 'darwin) (setq consult-locate-args "mdfind -name")))
+  #+end_src
+
+  - https://github.com/karthink/consult-dir
+
+  #+begin_src emacs-lisp
+  (use-package consult-dir
+    :bind (("C-x d" . consult-dir)
+           :map vertico-map
+           ("C-x d" . consult-dir)
+           ("C-x C-j" . consult-dir-jump-file)))
+  #+end_src
+
+
+* Templates                                                               :_:
+
+  I mainly use templates to insert org source blocks which seems like
+  ridiculous overkill to include a whole package for, but maybe one day I will
+  expand my usage (heh).
+
+  #+begin_src emacs-lisp
+  (use-package tempel
+    :bind (("M-+" . tempel-complete)
+           ("M-*" . tempel-insert))
+    :hook ((prog-mode . tempel-setup-capf)
+           (text-mode . tempel-setup-capf))
+    :init
+    ;; Setup completion at point
+    (defun tempel-setup-capf ()
+      (setq-local completion-at-point-functions
+                  (cons #'tempel-expand completion-at-point-functions)))
+    :config
+    (setq tempel-trigger-prefix "<"))
+
+  (use-package tempel-collection)
   #+end_src
