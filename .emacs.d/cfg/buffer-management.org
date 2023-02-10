@@ -99,3 +99,26 @@ other things about buffers. And undo for some reason…
     (setq undo-tree-visualizer-timestamps t
           undo-tree-visualizer-diff t))
   #+end_src
+
+
+* Icons                                                                   :_:
+
+  Add icons so we can pretend we live in the modern world. We can also use
+  these in completion candidates which is configured [[file:completion.org::*Completion Icons][here]]
+
+  #+begin_src emacs-lisp
+    (use-package all-the-icons :if (display-graphic-p))
+
+    (use-package all-the-icons-dired
+      :after all-the-icons
+      :hook (dired-mode . all-the-icons-dired-mode))
+  #+end_src
+
+
+* Emojis                                                                  :_:
+
+  https://github.com/iqbalansari/emacs-emojify
+
+  #+begin_src emacs-lisp
+  (use-package emojify :hook (after-init . global-emojify-mode))
+  #+end_src

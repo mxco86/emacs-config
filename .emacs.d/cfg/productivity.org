@@ -107,17 +107,3 @@ Productivity tools and other things to help generally get things done.
     :config
     (unless (server-running-p) (server-start)))
   #+end_src
-
-
-* Icons                                                                   :_:
-
-  Add icons so we can pretend we live in the modern world. We can also use
-  these in completion candidates which is configured [[file:completion.org::*Completion Icons][here]]
-
-  #+begin_src emacs-lisp
-    (use-package all-the-icons :if (display-graphic-p))
-
-    (use-package all-the-icons-dired
-      :after all-the-icons
-      :hook (dired-mode . all-the-icons-dired-mode))
-  #+end_src
