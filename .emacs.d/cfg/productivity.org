@@ -53,7 +53,9 @@ Productivity tools and other things to help generally get things done.
 * Projects                                                                :_:
 
   Project context and organisation tools which help when switching around and
-  focusing relevant buffers and files.
+  focusing relevant buffers and files. Adding the extra config for the local
+  project roots means I can use non-vc directories as projects by adding an
+  empty '.project' file.
 
   #+begin_src emacs-lisp
   (use-package project
@@ -61,6 +63,7 @@ Productivity tools and other things to help generally get things done.
     :config
     (add-to-list 'project-switch-commands '(magit-project-status "Magit" ?g))
     (add-to-list 'project-switch-commands '(rg "ripgrep" ?h))
+    (setq project-vc-extra-root-markers '(".project"))
 
     (defun mjr/project-find-file-from-diff ()
       "Find and open a project file from a diff string"
