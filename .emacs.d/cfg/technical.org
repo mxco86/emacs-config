@@ -1,0 +1,9 @@
+#+title: Technical
+
+* RFCs                                                                    :_:
+  #+begin_src emacs-lisp
+  (use-package rfc-mode
+  :init
+  (setq rfc-mode-directory (expand-file-name "~/.emacs.d/rfc/")
+        rfc-mode-index-path (concat rfc-mode-directory"rfc-index.txt")))
+  #+end_src

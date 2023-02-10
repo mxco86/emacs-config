@@ -122,6 +122,7 @@
       (setq truncate-string-ellipsis "…")
       (setq help-window-select t)
       (setq completions-detailed t)
+      (setq enable-recursive-minibuffers t)
 
       (setq use-short-answers t)
       (fset 'yes-or-no-p 'y-or-n-p)
@@ -140,6 +141,7 @@
       (global-hl-line-mode)
       (global-prettify-symbols-mode)
       (global-subword-mode)
+      (minibuffer-depth-indicate-mode 1)
 
       (global-unset-key "\C-z")
       (global-unset-key "\C-x\C-z")
@@ -187,19 +189,6 @@
                 ((equal dpi 96) 12)
                 ((equal dpi 210) 10)
                 (16)))))
-
-    (use-package all-the-icons :if (display-graphic-p))
-
-    (use-package all-the-icons-dired
-      :after all-the-icons
-      :hook (dired-mode . all-the-icons-dired-mode))
-
-    (use-package all-the-icons-completion
-      :after all-the-icons
-      :hook (dired-mode . all-the-icons-dired-mode)
-      :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
-      :init
-      (all-the-icons-completion-mode))
 
     (mjr/set-font (mjr/approprate-font-size))
     (toggle-frame-maximized)
@@ -342,10 +331,10 @@
     - [[file:cfg/completion.org]]
     - [[file:cfg/email.org]]
     - [[file:cfg/lsp.org]]
-    - [[file:cfg/minibuffer.org]]
     - [[file:cfg/org-mode.org]]
     - [[file:cfg/productivity.org]]
     - [[file:cfg/programming.org]]
+    - [[file:cfg/technical.org]]
     - [[file:cfg/vcs.org]]
 
 *** Directory Environment

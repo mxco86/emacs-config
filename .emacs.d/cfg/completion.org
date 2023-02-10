@@ -3,10 +3,25 @@
 Packages related to in-buffer completion
 
 * Completion UI                                                           :_:
+*** Primary Completion UI
 
-  Pop up a list of completion candidates using [[https://github.com/minad/corfu][Corfu]]
+    Vertical completion UI using [[https://github.com/minad/vertico/][Vertico]]
 
-  #+begin_src emacs-lisp
+    #+begin_src emacs-lisp
+    (use-package vertico
+      :init (vertico-mode)
+      :bind (:map vertico-map
+                  ("<up>" . nil)
+                  ("<down>" . nil))
+      :config
+      (setq vertico-cycle nil))
+    #+end_src
+
+*** Completion Popup
+
+    Pop up a list of completion candidates using [[https://github.com/minad/corfu][Corfu]]
+
+    #+begin_src emacs-lisp
     (use-package corfu
       :init (global-corfu-mode)
       :bind (:map corfu-map ("M-m" . corfu-move-to-minibuffer))
@@ -26,24 +41,48 @@ Packages related to in-buffer completion
             corfu-min-width corfu-max-width
             corfu-separator ?\s
             corfu-quit-no-match 'separator))
-  #+end_src
+    #+end_src
 
+*** Annotations / Help
 
-* Completion Icons                                                        :_:
+    https://github.com/minad/marginalia
 
-  #+begin_src emacs-lisp
-  (use-package kind-icon
-    :after corfu
-    :custom
-    (kind-icon-default-face 'corfu-default)
-    :config
-    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
-  #+end_src
+    #+begin_src emacs-lisp
+    (use-package marginalia
+      :bind ("M-A" . marginalia-cycle)
+      :init
+      (marginalia-mode)
+      :config
+      (setq marginalia-align 'left))
+
+    (use-package which-key :config (which-key-mode))
+    #+end_src
+
+*** Icons
+
+    Add icons to completion in Corfu overlay and for completion candidates in
+    the minibuffer
+
+    #+begin_src emacs-lisp
+    (use-package kind-icon
+      :after corfu
+      :custom
+      (kind-icon-default-face 'corfu-default)
+      :config
+      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+    (use-package all-the-icons-completion
+      :after all-the-icons
+      :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+      :init
+      (all-the-icons-completion-mode))
+    #+end_src
 
 
 * Completion Candidates                                                   :_:
 
-  Packages to help with completion candidates
+  Packages to help with providing completion candidates from previous sessions
+  and activity in this session
 
   #+begin_src emacs-lisp
   (use-package dabbrev)
@@ -54,36 +93,24 @@ Packages related to in-buffer completion
 
 * Completion at Point Functions                                           :_:
 
-  https://github.com/minad/cape
+  Add extra completion at point functions using [[https://github.com/minad/cape][Cape]]. Adding too many of these
+  clutters up the completions list but file paths and Dabbrev are both useful
+  for general usage.
 
   #+begin_src emacs-lisp
   (use-package cape
-    :bind (("C-c p p" . completion-at-point) ;; capf
-           ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
-           ("C-c p f" . cape-file)
-           ;; ("C-c p h" . cape-history)
-           ;; ("C-c p k" . cape-keyword)
-           ;; ("C-c p i" . cape-ispell)
-           ;; ("C-c p w" . cape-dict)
-           ;; ("C-c p s" . cape-symbol)
-           ;; ("C-c p l" . cape-line)
-           )
+    :bind (("C-c p p" . completion-at-point)
+           ("C-c p d" . cape-dabbrev)
+           ("C-c p f" . cape-file))
     :init
     (add-to-list 'completion-at-point-functions #'cape-file)
-    (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-    ;;(add-to-list 'completion-at-point-functions #'cape-history)
-    ;;(add-to-list 'completion-at-point-functions #'cape-keyword)
-    ;;(add-to-list 'completion-at-point-functions #'cape-ispell)
-    ;;(add-to-list 'completion-at-point-functions #'cape-dict)
-    ;;(add-to-list 'completion-at-point-functions #'cape-symbol)
-    ;;(add-to-list 'completion-at-point-functions #'cape-line)
-    )
+    (add-to-list 'completion-at-point-functions #'cape-dabbrev))
   #+end_src
 
 
 * Completion Style                                                        :_:
 
-  - https://github.com/oantolin/orderless
+  https://github.com/oantolin/orderless
 
   #+begin_src emacs-lisp
   (use-package orderless
@@ -96,7 +123,7 @@ Packages related to in-buffer completion
 
 * Completing Read Functions                                               :_:
 
-  - https://github.com/minad/consult
+  https://github.com/minad/consult
 
   #+begin_src emacs-lisp
   (use-package consult
@@ -144,4 +171,23 @@ Packages related to in-buffer completion
     (setq tempel-trigger-prefix "<"))
 
   (use-package tempel-collection)
+  #+end_src
+
+
+* Command Execution
+
+  https://github.com/oantolin/embark
+
+  #+begin_src emacs-lisp
+  (use-package embark
+    :bind
+    (("C-." . embark-act))
+    :init
+    (setq prefix-help-command #'embark-prefix-help-command))
+
+  (use-package embark-consult
+    :after (embark consult)
+    :demand t
+    :hook
+    (embark-collect-mode . consult-preview-at-point-mode))
   #+end_src
