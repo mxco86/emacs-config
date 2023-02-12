@@ -1,69 +1,76 @@
-* VCS Configuration
-*** Magit
-    - Magit is a Git porcelain which makes working with repositories much
-      easier
-    - Makes some quite advanced git operations simple and intuitive
-    - Overall Magit is so good it's worth learning Emacs solely to use it
-    - https://magit.vc/
+#+title: VCS Configuration
 
-    #+begin_src emacs-lisp
-    (use-package magit
-      :commands (magit-status magit-dispatch-popup)
-      :bind (("C-x g" . magit-status)
-             ("C-x M-g" . magit-dispatch-popup))
-      :hook (git-commit-setup . git-commit-turn-on-flyspell)
-      :config
-      (setq magit-save-repository-buffers 'dontask
-            magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
-            git-commit-major-mode 'git-commit-mode))
+* Magit
 
-    (use-package forge :after magit)
+  I use [[https://github.com/magit/magit][Magit]] pretty much constantly for interacting with git repositories -
+  it's amazing.
 
-    (use-package git-timemachine)
+  #+begin_src emacs-lisp
+  (use-package magit
+    :commands (magit-status magit-dispatch-popup)
+    :bind (("C-x g" . magit-status)
+           ("C-x M-g" . magit-dispatch-popup))
+    :hook (git-commit-setup . git-commit-turn-on-flyspell)
+    :config
+    (setq magit-save-repository-buffers 'dontask
+          magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
+          git-commit-major-mode 'git-commit-mode))
+  #+end_src
 
-    (use-package code-review
-      :after magit
-      :bind (:map forge-topic-mode-map ("C-c r" . #'code-review-forge-pr-at-point))
-      :bind (:map code-review-mode-map (("C-c n" . #'code-review-comment-jump-next)
-                                     ("C-c p" . #'code-review-comment-jump-previous)))
-      :config
-      (setq code-review-auth-login-marker 'forge))
-    #+end_src
 
-*** Diff Mode
-    #+begin_src emacs-lisp
-    (defun update-diff-colors ()
-      "update the colors for diff faces"
-      (set-face-attribute 'diff-added nil
-                          :foreground "#cceecc" :background "#336633")
-      (set-face-attribute 'diff-removed nil
-                          :foreground "#cceecc" :background "#663333")
-      (set-face-attribute 'diff-refine-added nil
-                          :background "#336633")
-      (set-face-attribute 'diff-refine-removed nil
-                          :background "#663333")
-      (set-face-attribute 'diff-changed nil
-                          :foreground "#cceecc" :background "#268bd2")
-      (set-face-attribute 'diff-indicator-changed nil
-                          :foreground "#cceecc")
-      (set-face-attribute 'diff-indicator-added nil
-                          :foreground "#cceecc")
-      (set-face-attribute 'diff-indicator-removed nil
-                          :foreground "#cceecc"))
+* Code Review
 
-    (eval-after-load "diff-mode" '(update-diff-colors))
-    #+end_src
+  Feels like I should use [[https://github.com/magit/forge][Forge]] more. Haven't got it yet. [[https://github.com/wandersoncferreira/code-review][Code Review]] too.
 
-*** EDiff
-    #+begin_src emacs-lisp
-    (use-package ediff
-      :init
-      (defun mjr/ediff-before-setup () (select-frame (make-frame)))
-      (defun mjr/ediff-after-quit () (delete-frame))
-      :hook ((ediff-before-setup . mjr/ediff-before-setup)
-             (ediff-quit . mjr/ediff-after-quit)
-             (magit-ediff-quit . mjr/ediff-after-quit))
-      :config
-      (setq ediff-window-setup-function 'ediff-setup-windows-plain
-            ediff-split-window-function 'split-window-horizontally))
-    #+end_src
+  #+begin_src emacs-lisp
+  (use-package forge :after magit)
+
+  (use-package code-review
+    :after magit
+    :bind (:map forge-topic-mode-map ("C-c r" . #'code-review-forge-pr-at-point))
+    :bind (:map code-review-mode-map (("C-c n" . #'code-review-comment-jump-next)
+                                      ("C-c p" . #'code-review-comment-jump-previous)))
+    :config
+    (setq code-review-auth-login-marker 'forge))
+  #+end_src
+
+
+* Git Tools
+
+  #+begin_src emacs-lisp
+  (use-package git-timemachine)
+  #+end_src
+
+
+* Diff Mode
+
+  #+begin_src emacs-lisp
+  (defun update-diff-colors ()
+    "update the colors for diff faces"
+    (set-face-attribute 'diff-added nil :foreground "#cceecc" :background "#336633")
+    (set-face-attribute 'diff-removed nil :foreground "#cceecc" :background "#663333")
+    (set-face-attribute 'diff-refine-added nil :background "#336633")
+    (set-face-attribute 'diff-refine-removed nil :background "#663333")
+    (set-face-attribute 'diff-changed nil :foreground "#cceecc" :background "#268bd2")
+    (set-face-attribute 'diff-indicator-changed nil :foreground "#cceecc")
+    (set-face-attribute 'diff-indicator-added nil :foreground "#cceecc")
+    (set-face-attribute 'diff-indicator-removed nil :foreground "#cceecc"))
+
+  (eval-after-load "diff-mode" '(update-diff-colors))
+  #+end_src
+
+
+* EDiff
+
+  #+begin_src emacs-lisp
+  (use-package ediff
+    :init
+    (defun mjr/ediff-before-setup () (select-frame (make-frame)))
+    (defun mjr/ediff-after-quit () (delete-frame))
+    :hook ((ediff-before-setup . mjr/ediff-before-setup)
+           (ediff-quit . mjr/ediff-after-quit)
+           (magit-ediff-quit . mjr/ediff-after-quit))
+    :config
+    (setq ediff-window-setup-function 'ediff-setup-windows-plain
+          ediff-split-window-function 'split-window-horizontally))
+  #+end_src
