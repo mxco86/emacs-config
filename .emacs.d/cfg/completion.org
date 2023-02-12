@@ -69,7 +69,11 @@ Packages related to in-buffer completion
       :custom
       (kind-icon-default-face 'corfu-default)
       :config
-      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+      (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+
+      ;; Set fonts and frame size after icons are loaded
+      (mjr/set-font (mjr/approprate-font-size))
+      (toggle-frame-maximized))
 
     (use-package all-the-icons-completion
       :after all-the-icons

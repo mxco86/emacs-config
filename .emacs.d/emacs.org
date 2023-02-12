@@ -198,9 +198,6 @@
                 ((equal dpi 210) 10)
                 (16)))))
 
-    (mjr/set-font (mjr/approprate-font-size))
-    (toggle-frame-maximized)
-
     (use-package ligature
       :config
       (ligature-set-ligatures 't '("www"))
