@@ -178,12 +178,19 @@
     (defun mjr/set-font (size)
       (interactive "nSize: ")
       (mjr/init-font-size (selected-frame) "Fira Code" size)
-      (when (fboundp 'kind-icon-reset-cache) (kind-icon-reset-cache)))
+      (when (fboundp 'kind-icon-reset-cache)
+        (when (<= size 12)
+          (setq kind-icon-default-style
+                '(:padding -1 :stroke 0 :margin 0 :radius 0 :height 0.5 :scale 1.0)))
+        (kind-icon-reset-cache)))
+
+    (defun dpi ()
+      (floor (/ (display-pixel-width) (/ (display-mm-width) 25.4))))
 
     (defun mjr/approprate-font-size ()
       (if (not (display-graphic-p))
           10
-        (let ((dpi (floor (/ (display-pixel-width) (/ (display-mm-width) 25.4))))
+        (let ((dpi (dpi))
               (mm-width (cadr (assoc 'mm-size (car (display-monitor-attributes-list))))))
           (cond ((and (equal dpi 92) (and (< mm-width 300) (> mm-width 200))) 16)
                 ((and (equal dpi 92) (and (< mm-width 610) (> mm-width 300))) 20)
