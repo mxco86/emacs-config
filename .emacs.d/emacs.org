@@ -171,6 +171,7 @@
 *** Font and Display
     #+begin_src emacs-lisp
     (defun mjr/init-font-size (frame font value)
+      (set-face-attribute 'default nil :height (* value 10))
       (set-frame-parameter frame 'font
                            (concat font "-" (number-to-string value))))
 
