@@ -19,6 +19,13 @@
   #+begin_src emacs-lisp
   (use-package format-all
     :config
+    (define-format-all-formatter ktlint
+                                 (:executable "ktlint")
+                                 (:install "")
+                                 (:languages "Kotlin")
+                                 (:features)
+                                 (:format (format-all--buffer-easy executable "--format" "--stdin" "--log-level=none")))
+
     :hook ((prog-mode . format-all-mode)
            (prog-mode . format-all-ensure-formatter)
            (yaml-mode . format-all-mode)
