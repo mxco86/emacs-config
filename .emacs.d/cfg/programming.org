@@ -74,8 +74,9 @@
 * Documentation
   #+begin_src emacs-lisp
   (use-package eldoc
-    :pin gnu
-    :custom (eldoc-echo-area-prefer-doc-buffer 'maybe))
+    :config
+    (setq eldoc-echo-area-prefer-doc-buffer 'maybe
+          eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
   #+end_src
 
 
