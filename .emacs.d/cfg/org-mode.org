@@ -212,16 +212,6 @@
         :config
         (setq-default org-download-image-dir "~/Org/Documents/org-roam/files"))
     #+end_src
-*** Colours
-    #+begin_src emacs-lisp
-    (set-face-attribute 'org-document-title nil :weight 'bold :foreground "#eee8d5" :background "#002b36" :inverse-video nil :weight 'bold :height 1.6)
-    (set-face-attribute 'org-level-1 nil :inverse-video t :weight 'bold)
-    (set-face-attribute 'org-level-2 nil :weight 'bold)
-
-    (set-face-attribute 'org-block-begin-line nil :background "#002b36")
-    (set-face-attribute 'org-block nil :background "#002b36")
-    (set-face-attribute 'org-block-end-line nil :background "#002b36")
-    #+end_src
 *** Org-Id
     #+begin_src emacs-lisp
     (setq org-id-extra-files

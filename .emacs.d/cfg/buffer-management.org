@@ -77,18 +77,49 @@ other things about buffers. And undo for some reason…
     :init
     (load-theme 'base16-solarized-dark t)
     :config
-    (setq base16-solarized-dark-theme-colors
-          (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
-    (load-theme 'base16-solarized-dark t)
-    (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
-    (set-face-attribute 'mode-line nil :background (plist-get base16-solarized-dark-theme-colors ':base01))
-    (face-spec-set 'font-lock-variable-name-face
-                   `((t :foreground ,(plist-get base16-solarized-dark-theme-colors ':base06)))
-                   'face-override-spec))
+
+    (defun mjr/load-base16-solarized-dark ()
+      (setq base16-theme-distinct-fringe-background nil)
+      (setq base16-solarized-dark-theme-colors
+            (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
+      (load-theme 'base16-solarized-dark t)
+      (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
+      (set-face-attribute 'mode-line nil :background
+                          (plist-get base16-solarized-dark-theme-colors ':base01))
+      (face-spec-set 'font-lock-variable-name-face
+                     `((t :foreground ,(plist-get base16-solarized-dark-theme-colors ':base06))) 'face-override-spec)
+      (set-face-attribute 'org-document-title nil :weight 'bold :foreground "#eee8d5" :background "#002b36" :inverse-video nil :weight 'bold :height 1.5)
+      (set-face-attribute 'org-level-1 nil :inverse-video t :weight 'semibold)
+      (set-face-attribute 'org-level-2 nil :weight 'semibold)
+
+      (set-face-attribute 'org-block-begin-line nil :background "#002b36")
+      (set-face-attribute 'org-block nil :background "#002b36")
+      (set-face-attribute 'org-block-end-line nil :background "#002b36"))
+
+    (mjr/load-base16-solarized-dark))
+
+  (use-package modus-themes
+    :config
+    (setq modus-themes-org-blocks 'gray-background
+          modus-themes-bold-constructs t
+          modus-themes-italic-constructs t
+          modus-themes-mixed-fonts t)
+
+    (setq modus-themes-headings
+          '((0 . (1.2))
+            (1 . (1))
+            (2 . (semibold))))
+
+    (setq modus-vivendi-tinted-palette-overrides
+          '((border-mode-line-active unspecified)
+            (border-mode-line-inactive unspecified)
+            (bg-main "#1e1e1e")
+            (bg-heading-1 blue-faint)
+            (fg-heading-1 bg-main))))
   #+end_src
 
 
-* Undo                                                                    :_:
+* Undo                                                               :_:
 
   #+begin_src emacs-lisp
   (use-package undo-tree
