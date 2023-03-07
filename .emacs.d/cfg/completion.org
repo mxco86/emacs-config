@@ -1,12 +1,10 @@
 #+TITLE: Completion
 
-Packages related to in-buffer completion
-
 * Completion UI                                                           :_:
+
 *** Primary Completion UI
 
     Vertical completion UI using [[https://github.com/minad/vertico/][Vertico]]
-
     #+begin_src emacs-lisp
     (use-package vertico
       :init (vertico-mode)
@@ -20,7 +18,6 @@ Packages related to in-buffer completion
 *** Completion Popup
 
     Pop up a list of completion candidates using [[https://github.com/minad/corfu][Corfu]]
-
     #+begin_src emacs-lisp
     (use-package corfu
       :init (global-corfu-mode)

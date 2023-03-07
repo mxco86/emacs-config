@@ -15,7 +15,6 @@
     - [[#exports][Exports]]
     - [[#org-roam][Org-Roam]]
     - [[#org-download][Org-Download]]
-    - [[#colours][Colours]]
     - [[#org-id][Org-Id]]
     - [[#presentation][Presentation]]
 

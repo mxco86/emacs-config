@@ -1,9 +1,9 @@
-#+TITLE: Buffer Management
+#+TITLE: Buffers and Navigation
 
 Listing buffers, opening buffers, moving around buffers, colours of buffers,
 other things about buffers. And undo for some reason…
 
-* Buffer List                                                             :_:
+* Buffer List                                                        :_:
 
   List buffers using [[https://github.com/alphapapa/bufler.el][Bufler]] which groups buffers by project without any extra
   configuration which is great. It also uses Magit keybindings for navigation.
@@ -16,7 +16,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Controlling New Buffers                                                 :_:
+* Controlling New Buffers                                            :_:
 
   Controlling what happens when a buffer is popped up ventures into swiss-army
   chainsaw territory. It explained really well in the 'Controlling Buffer and
@@ -29,7 +29,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Window Navigation                                                       :_:
+* Window Navigation                                                  :_:
 
   Ace Window allows jumping between numbered windows which is useful when
   there are more than a couple to navigate.
@@ -42,7 +42,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* PDF Buffers                                                             :_:
+* PDF Buffers                                                        :_:
 
   #+begin_src emacs-lisp
   (use-package pdf-tools
@@ -52,7 +52,10 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Buffer Navigation                                                       :_:
+* Buffer Navigation                                                  :_:
+
+  - https://github.com/abo-abo/avy
+  - https://karthinks.com/software/avy-can-do-anything/
 
   #+begin_src emacs-lisp
   (use-package avy
@@ -62,7 +65,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Colour Theme                                                            :_:
+* Colour Theme                                                       :_:
 
   I find themes fiddly so just stick with using solarized dark mostly.
   [[https://github.com/belak/base16-emacs][Base 16 Emacs]] has a version which is nice enough. I apply a few minor
@@ -132,7 +135,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Icons                                                                   :_:
+* Icons                                                              :_:
 
   Add icons so we can pretend we live in the modern world. We can also use
   these in completion candidates which is configured [[file:completion.org::*Completion Icons][here]]
@@ -146,7 +149,7 @@ other things about buffers. And undo for some reason…
   #+end_src
 
 
-* Emojis                                                                  :_:
+* Emojis                                                             :_:
 
   https://github.com/iqbalansari/emacs-emojify
 
