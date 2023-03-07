@@ -1,5 +1,7 @@
+#+TITLE: Org Mode Configuration
 
-* Org-Mode Configuration                                              :TOC_3:
+
+* Org-Mode Configuration                                         :TOC_3:
     - [[#list-setup][List Setup]]
     - [[#behaviours][Behaviours]]
     - [[#keybindings][Keybindings]]
@@ -234,12 +236,16 @@
       (hl-line-mode -1)
       (setq visual-fill-column-center-text t)
       (setq visual-fill-column-width 80)
+      (setq org-tags-column -80)
+      (org-align-tags t)
       (setq header-line-format " "))
 
     (defun mjr/org-present-end ()
       (visual-fill-column-mode 0)
       (visual-line-mode 0)
       (hl-line-mode 1)
+      (setq org-tags-column -72)
+      (org-align-tags t)
       (setq header-line-format nil))
 
     (defun mjr/org-present-big ()
@@ -247,7 +253,9 @@
       (interactive)
       (text-scale-increase 0)
       (text-scale-increase org-present-text-scale)
-      (setq visual-fill-column-width 72)
+      (setq visual-fill-column-width 76)
+      (setq org-tags-column -72)
+      (org-align-tags t)
       (visual-fill-column-mode 1))
 
     (defun mjr/org-present-small ()
@@ -255,6 +263,8 @@
       (interactive)
       (text-scale-increase 0)
       (setq visual-fill-column-width 80)
+      (setq org-tags-column -80)
+      (org-align-all-tags)
       (visual-fill-column-mode 1))
 
     (add-hook 'org-present-mode-hook 'mjr/org-present-start)
