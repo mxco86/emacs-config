@@ -7,12 +7,19 @@
     Vertical completion UI using [[https://github.com/minad/vertico/][Vertico]]
     #+begin_src emacs-lisp
     (use-package vertico
-      :init (vertico-mode)
+      :init
+      (vertico-mode)
+      (vertico-multiform-mode)
       :bind (:map vertico-map
                   ("<up>" . nil)
                   ("<down>" . nil))
       :config
-      (setq vertico-cycle nil))
+      (setq vertico-cycle nil)
+      (setq vertico-multiform-commands
+            '((consult-ripgrep buffer)))
+
+      (setq vertico-multiform-categories
+            '((org-roam-node buffer indexed))))
     #+end_src
 
 *** Completion Popup
