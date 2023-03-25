@@ -7,3 +7,13 @@
   (setq rfc-mode-directory (expand-file-name "~/.emacs.d/rfc/")
         rfc-mode-index-path (concat rfc-mode-directory"rfc-index.txt")))
   #+end_src
+
+
+* ChatGPT                                                                 :_:
+  #+begin_src emacs-lisp
+  (use-package gptel
+    :hook (gptel-mode . visual-line-mode)
+    :config
+    (setq gptel-default-mode 'org-mode)
+    (setq gptel-api-key (password-store-get-field "web/services/auth0.openai.com" "api-key")))
+  #+end_src
