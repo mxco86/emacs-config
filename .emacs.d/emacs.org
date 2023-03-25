@@ -13,6 +13,7 @@
     - [[#environment-variables][Environment Variables]]
     - [[#macos-specific-configuration][MacOS Specific Configuration]]
     - [[#dired-configuration][Dired Configuration]]
+    - [[#authentication][Authentication]]
     - [[#mode-line-configuration][Mode line Configuration]]
         - [[#minor-modes][Minor Modes]]
         - [[#mood-line][Mood Line]]
@@ -244,6 +245,13 @@
             dired-kill-when-opening-new-dired-buffer t
             dired-do-revert-buffer t
             dired-mark-region t))
+    #+end_src
+*** Authentication
+    Use Pass to store all secrets
+    #+begin_src emacs-lisp
+    (use-package auth-source
+      :config
+      (setq auth-sources '(password-store)))
     #+end_src
 
 *** Mode line Configuration
