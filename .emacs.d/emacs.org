@@ -176,17 +176,18 @@
       (set-frame-parameter frame 'font
                            (concat font "-" (number-to-string value))))
 
+    (defun dpi ()
+      "The dots-per-inch of the display."
+      (floor (/ (display-pixel-width) (/ (display-mm-width) 25.4))))
+
     (defun mjr/set-font (size)
       (interactive "nSize: ")
       (mjr/init-font-size (selected-frame) "Fira Code" size)
       (when (fboundp 'kind-icon-reset-cache)
-        (when (<= size 12)
+        (when (<= 96 (dpi))
           (setq kind-icon-default-style
                 '(:padding -1 :stroke 0 :margin 0 :radius 0 :height 0.5 :scale 1.0)))
         (kind-icon-reset-cache)))
-
-    (defun dpi ()
-      (floor (/ (display-pixel-width) (/ (display-mm-width) 25.4))))
 
     (defun mjr/approprate-font-size ()
       (if (not (display-graphic-p))
