@@ -81,12 +81,13 @@
 
 
 * Linting
-  Enable linting on all buffers using the appropriate linter/compiler/syntax
-  checker
+  We may want to lint buffers using the appropriate linter/compiler/syntax
+  checker, although having moved to eglot which uses Flymake by default I'm
+  not enabling this for programming modes by default any more.
 
   #+begin_src emacs-lisp
   (use-package flycheck
-    :hook (after-init . global-flycheck-mode))
+    :hook (text-mode . flycheck-mode))
   #+end_src
 
 
