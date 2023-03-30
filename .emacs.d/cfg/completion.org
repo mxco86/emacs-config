@@ -16,7 +16,8 @@
       :config
       (setq vertico-cycle nil)
       (setq vertico-multiform-commands
-            '((consult-ripgrep buffer)))
+            '((consult-ripgrep buffer)
+              (consult-org-roam-search buffer)))
 
       (setq vertico-multiform-categories
             '((org-roam-node buffer indexed))))

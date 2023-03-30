@@ -204,6 +204,12 @@
 
         (org-roam-setup))
 
+    (use-package consult-org-roam
+      :after org-roam
+      :init (consult-org-roam-mode)
+      :bind ("C-c n g" . consult-org-roam-search)
+      :config
+      (setq consult-org-roam-grep-func 'consult-ripgrep))
 
     #+end_src
 *** Org-Download
