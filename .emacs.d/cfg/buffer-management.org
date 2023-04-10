@@ -68,25 +68,23 @@ other things about buffers. And undo for some reason…
 * Colour Theme                                                       :_:
 
   I find themes fiddly so just stick with using solarized dark mostly.
-  [[https://github.com/belak/base16-emacs][Base 16 Emacs]] has a version which is nice enough. I apply a few minor
-  tweaks to it, like changing the horrible red cursor to something less
-  scary. The changes only seem to work on startup so if I do change theme
-  while running (I quite like the modus ones sometimes) then I can't change
-  back without the red cursor returning from the depths to haunt me once
-  again.
+  [[https://github.com/belak/base16-emacs][Base 16 Emacs]] has a version which is nice enough. I apply a few minor tweaks
+  to it, like changing the horrible red cursor to something less scary. The
+  config is in a function so if I do change theme while running (I quite like
+  the modus ones sometimes and I've just discovered the Nord colour scheme) I
+  can change back without the red cursor returning from the depths to haunt me
+  once again.
 
   #+begin_src emacs-lisp
   (use-package base16-theme
     :init
     (load-theme 'base16-solarized-dark t)
     :config
-
-    (defun mjr/load-base16-solarized-dark ()
+    (defun mjr/configure-base16-solarized-dark ()
+      (interactive)
       (setq base16-theme-distinct-fringe-background nil)
       (setq base16-solarized-dark-theme-colors
             (plist-put base16-solarized-dark-theme-colors ':base09 "#586e75"))
-      (load-theme 'base16-solarized-dark t)
-      (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02))
       (set-face-attribute 'mode-line nil :background
                           (plist-get base16-solarized-dark-theme-colors ':base01))
       (face-spec-set 'font-lock-variable-name-face
@@ -94,12 +92,12 @@ other things about buffers. And undo for some reason…
       (set-face-attribute 'org-document-title nil :weight 'bold :foreground "#eee8d5" :background "#002b36" :inverse-video nil :weight 'bold :height 1.5)
       (set-face-attribute 'org-level-1 nil :inverse-video t :weight 'semibold)
       (set-face-attribute 'org-level-2 nil :weight 'semibold)
-
       (set-face-attribute 'org-block-begin-line nil :background "#002b36")
       (set-face-attribute 'org-block nil :background "#002b36")
-      (set-face-attribute 'org-block-end-line nil :background "#002b36"))
+      (set-face-attribute 'org-block-end-line nil :background "#002b36")
+      (set-cursor-color (plist-get base16-solarized-dark-theme-colors ':base02)))
 
-    (mjr/load-base16-solarized-dark))
+    (mjr/configure-base16-solarized-dark))
 
   (use-package modus-themes
     :config
