@@ -59,6 +59,12 @@
   (eval-after-load "diff-mode" '(update-diff-colors))
   #+end_src
 
+  #+begin_src emacs-lisp
+  (use-package diff-hl
+    :init
+    (global-diff-hl-mode)
+    (diff-hl-dired-mode))
+  #+end_src
 
 * EDiff
 
