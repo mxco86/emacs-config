@@ -28,7 +28,9 @@
     Pop up a list of completion candidates using [[https://github.com/minad/corfu][Corfu]]
     #+begin_src emacs-lisp
     (use-package corfu
-      :init (global-corfu-mode)
+      :init
+      (global-corfu-mode)
+      (corfu-popupinfo-mode)
       :bind (:map corfu-map ("M-m" . corfu-move-to-minibuffer))
       :config
 
@@ -45,8 +47,7 @@
             corfu-max-width 78
             corfu-min-width corfu-max-width
             corfu-separator ?\s
-            corfu-quit-no-match 'separator)
-      (corfu-popupinfo-mode))
+            corfu-quit-no-match 'separator))
     #+end_src
 
 *** Annotations / Help
