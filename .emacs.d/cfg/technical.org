@@ -17,3 +17,10 @@
     (setq gptel-default-mode 'org-mode)
     (setq gptel-api-key (password-store-get-field "web/services/auth0.openai.com" "api-key")))
   #+end_src
+
+* Markdown
+  #+begin_src emacs-lisp
+  (use-package markdown-mode
+    :hook (markdown-mode . visual-line-mode)
+    :mode ("\\.markdown\\'" "\\.md\\'" "\\.md\\.erb\\'"))
+  #+end_src
