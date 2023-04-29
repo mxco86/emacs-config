@@ -250,6 +250,7 @@
 *** Authentication
     Use Pass to store all secrets
     #+begin_src emacs-lisp
+    (use-package password-store :ensure nil)
     (use-package auth-source
       :config
       (setq auth-sources '(password-store)))
