@@ -40,3 +40,5 @@ network-security.data
 /.direnv/
 /.emacs.d/eshell/
 /.emacs.d/multisession/
+/.emacs.d/emojis/
+/.emacs.d/rfc/
