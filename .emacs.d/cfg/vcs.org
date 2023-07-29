@@ -10,7 +10,6 @@
     :commands (magit-status magit-dispatch-popup)
     :bind (("C-x g" . magit-status)
            ("C-x M-g" . magit-dispatch-popup))
-    :hook (git-commit-setup . git-commit-turn-on-flyspell)
     :config
     (setq magit-save-repository-buffers 'dontask
           magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1

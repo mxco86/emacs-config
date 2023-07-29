@@ -4,22 +4,14 @@ Productivity tools and other things to help generally get things done.
 
 * Spell Check                                                        :_:
 
-  Enable spell check on all text buffers, which includes ~org-mode~. Flyspell
-  for other modes is added in the specific mode configuration. Don't defer
-  loading of Flyspell as it has some interactions with org-mode (setting
-  ~flyspell-delayed-commands~) that cause intermittent start up errors when
-  loading is deferred. I wrote this in the distant past and have no idea if
-  it is still true.
+  Enable spell check on all text buffers, which includes ~org-mode~.
 
   #+begin_src emacs-lisp
-  (use-package flyspell
-    :hook (text-mode . turn-on-flyspell)
-    :init
-    (bind-key "C-c cw" 'flyspell-auto-correct-word)
-    :config
-    (setq ispell-program-name "aspell"
-          ispell-dictionary   "british"
-          flyspell-prog-text-faces '(font-lock-comment-face font-lock-doc-face)))
+  (use-package jinx
+    :hook ((text-mode . jinx-mode)
+           (prog-mode . jinx-mode)
+           (conf-mode . jinx-mode))
+    :bind ("C-;" . jinx-correct))
   #+end_src
 
 

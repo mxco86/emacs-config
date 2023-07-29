@@ -128,8 +128,7 @@
     (use-package elisp-mode
       :ensure nil
       :config
-      (bind-key "RET" 'comment-indent-new-line emacs-lisp-mode-map)
-      (add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode))
+      (bind-key "RET" 'comment-indent-new-line emacs-lisp-mode-map))
     #+end_src
 
 *** Haskell
@@ -175,8 +174,7 @@
     (use-package yaml-mode
       :commands (yaml-mode)
       :init
-      (add-hook 'yaml-mode-hook 'flycheck-mode)
-      (add-hook 'yaml-mode-hook 'flyspell-prog-mode))
+      (add-hook 'yaml-mode-hook 'flycheck-mode))
 
     (use-package flycheck-yamllint
       :after yaml-mode
