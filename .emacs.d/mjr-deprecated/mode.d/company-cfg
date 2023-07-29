@@ -1,3 +1,0 @@
-; -*- mode: Emacs-Lisp;-*-
-
-(add-hook 'after-init-hook 'global-company-mode)

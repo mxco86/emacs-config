@@ -1,3 +1,0 @@
-; -*- mode: Emacs-Lisp;-*-
-
-(setq woman-use-own-frame nil)

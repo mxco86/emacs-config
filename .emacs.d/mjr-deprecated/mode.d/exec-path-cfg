@@ -1,3 +1,0 @@
-; -*- mode: Emacs-Lisp;-*-
-
-(exec-path-from-shell-initialize)

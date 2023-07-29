@@ -1,5 +1,0 @@
-; -*- mode: Emacs-Lisp;-*-
-
-(require 'yasnippet)
-(yas/initialize)
-;;(yas/load-directory "~/.emacs.d/utils/yasnippet/snippets")
