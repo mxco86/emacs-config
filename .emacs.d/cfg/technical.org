@@ -15,12 +15,27 @@
     :hook (gptel-mode . visual-line-mode)
     :config
     (setq gptel-default-mode 'org-mode)
-    (setq gptel-api-key (password-store-get-field "web/services/auth0.openai.com" "api-key")))
+    (setq gptel-api-key (password-store-get-field "web/services/auth0.openai.com" "api-key"))
+    (setq-default gptel-backend (gptel-make-openai "llama-cpp"
+                                                   :stream t
+                                                   :protocol "http"
+                                                   :host "rossi:2080"
+                                                   :models '("llama-cpp-model"))
+                  gptel-model   "llama-cpp-model"))
   #+end_src
+
 
 * Markdown
   #+begin_src emacs-lisp
   (use-package markdown-mode
     :hook (markdown-mode . visual-line-mode)
     :mode ("\\.markdown\\'" "\\.md\\'" "\\.md\\.erb\\'"))
+  #+end_src
+
+
+* Remote Files                                                            :_:
+  #+begin_src emacs-lisp
+  (use-package tramp
+    :config
+    (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
   #+end_src
