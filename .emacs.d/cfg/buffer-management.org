@@ -133,6 +133,8 @@ other things about buffers. And undo for some reason…
   (use-package undo-tree
     :init
     (global-undo-tree-mode)
+    :bind
+    ("M-/" . undo-tree-redo)
     :config
     (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
     (setq undo-tree-visualizer-timestamps t
