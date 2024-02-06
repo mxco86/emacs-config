@@ -189,7 +189,7 @@
                 '(:padding -1 :stroke 0 :margin 0 :radius 0 :height 0.5 :scale 1.0)))
         (kind-icon-reset-cache)))
 
-    (defun mjr/approprate-font-size ()
+    (defun mjr/appropriate-font-size ()
       (if (not (display-graphic-p))
           10
         (let ((dpi (dpi))
