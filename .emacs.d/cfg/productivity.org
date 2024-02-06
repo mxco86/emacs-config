@@ -11,7 +11,9 @@ Productivity tools and other things to help generally get things done.
     :hook ((text-mode . jinx-mode)
            (prog-mode . jinx-mode)
            (conf-mode . jinx-mode))
-    :bind ("C-;" . jinx-correct))
+    :bind ("C-x C-l" . jinx-correct)
+    :config
+    (setq jinx-languages "en_GB"))
   #+end_src
 
 
