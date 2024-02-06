@@ -118,12 +118,6 @@ other things about buffers. And undo for some reason…
             (bg-heading-1 blue-faint)
             (fg-heading-1 bg-main))))
 
-  ;; Colour fixes for terminal
-  (set-face-attribute 'line-number nil :foreground "#56697A" :background "#002b36" :weight 'normal)
-  (set-face-attribute 'markdown-code-face nil)
-  (set-face-attribute 'org-done nil :background "#002b36" :weight 'bold)
-  (set-face-attribute 'org-todo nil :foreground "#859900" :background "#002b36" :weight 'bold)
-  (set-face-attribute 'hl-line nil :background "#002b36")
   #+end_src
 
 

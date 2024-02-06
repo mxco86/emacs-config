@@ -159,7 +159,14 @@
       (global-unset-key (kbd "<M-up>"))
       (global-unset-key (kbd "<M-down>"))
       (global-unset-key (kbd "<C-wheel-down>"))
-      (global-unset-key (kbd "<C-wheel-up>")))
+      (global-unset-key (kbd "<C-wheel-up>"))
+
+      ;; Colour fixes for terminal
+      (set-face-attribute 'line-number nil :foreground "#56697A" :background "#002b36" :weight 'normal)
+      (set-face-attribute 'markdown-code-face nil)
+      (set-face-attribute 'org-done nil :background "#002b36" :weight 'bold)
+      (set-face-attribute 'org-todo nil :foreground "#859900" :background "#002b36" :weight 'bold)
+      (set-face-attribute 'hl-line nil :background "#002b36"))
       #+end_src
 *** Text Editing
     Amazingly useful unfill functions. I use these all the time to remove line
@@ -182,7 +189,7 @@
 
     (defun mjr/set-font (size)
       (interactive "nSize: ")
-      (mjr/init-font-size (selected-frame) "Fira Code" size)
+      (mjr/init-font-size (selected-frame) "Iosevka" size)
       (when (fboundp 'kind-icon-reset-cache)
         (when (<= 96 (dpi))
           (setq kind-icon-default-style
@@ -197,8 +204,8 @@
           (cond ((and (equal dpi 92) (and (< mm-width 300) (> mm-width 200))) 16)
                 ((and (equal dpi 92) (and (< mm-width 610) (> mm-width 300))) 20)
                 ((equal dpi 96) 12)
-                ((equal dpi 210) 10)
-                (16)))))
+                ((equal dpi 209) 12)
+                (12)))))
 
     (use-package ligature
       :config
@@ -250,7 +257,7 @@
 *** Authentication
     Use Pass to store all secrets
     #+begin_src emacs-lisp
-    (use-package password-store :ensure nil)
+    (use-package password-store)
     (use-package auth-source
       :config
       (setq auth-sources '(password-store)))
