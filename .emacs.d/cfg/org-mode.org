@@ -51,7 +51,7 @@
     #+BEGIN_SRC emacs-lisp
     (define-key global-map "\C-ca" 'org-agenda)
 
-    (bind-key "\M-2" 'org-global-cycle org-mode-map)
+    (bind-key "M-2" 'org-global-cycle org-mode-map)
     (bind-key "C-c k" 'org-cut-subtree org-mode-map)
     #+END_SRC
 
@@ -67,6 +67,8 @@
     (setq org-agenda-files
           '("~/Org/Documents/org"
             "~/Org/Documents/org-roam"))
+
+    (setq org-agenda-window-setup 'only-window)
 
     (setq org-agenda-prefix-format
           '((agenda . " %i %s %-12:c")
