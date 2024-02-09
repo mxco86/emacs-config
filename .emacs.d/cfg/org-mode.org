@@ -45,6 +45,8 @@
                                  (file . find-file)
                                  (wl . wl-other-frame)))
     (setq org-yank-adjusted-subtrees t)
+    (setq org-image-actual-width nil)
+    (setq org-tags-column -80)
     #+end_src
 
 *** Keybindings
@@ -64,23 +66,28 @@
 *** Org-Agenda
     #+BEGIN_SRC emacs-lisp
 
-    (setq org-agenda-files
-          '("~/Org/Documents/org"
-            "~/Org/Documents/org-roam"))
+    (setq org-agenda-files '("~/Org/Documents/org-moj/meeting-notes/"))
+    (setq org-archive-location "~/Org/Documents/org-moj/task-archive.org::* From %s ")
 
     (setq org-agenda-window-setup 'only-window)
 
     (setq org-agenda-prefix-format
           '((agenda . " %i %s %-12:c")
-            (todo . " %b ")
-            (tags . " %i %-12:c")
-            (search . " %i %-12:c")))
+            (todo . " %i %b ")
+            (tags . " %i %b ")
+            (search . " %i %b ")))
 
     (setq org-agenda-custom-commands
-          '(("n" todo "NEXT")))
+          '(("n" todo "NEXT")
+            ("g" tags "type=\"GOAL\"")))
 
     (setq org-refile-targets
           '(("~/Org/Documents/org-roam/task-archive.org" :maxlevel . 2)))
+
+    (defun org-search-goal ()
+      (let ((goal (thing-at-point 'line t)))
+        (org-search-view t (replace-regexp-in-string "^*+" "" (replace-regexp-in-string "\n\\'" "" goal)))))
+
     #+END_SRC
 
 *** Hooks
@@ -108,7 +115,8 @@
           org-edit-src-content-indentation 0
           org-src-window-setup 'current-window
           org-edit-src-persistent-message nil
-          org-src-strip-leading-and-trailing-blank-lines t)
+          org-src-strip-leading-and-trailing-blank-lines t
+          org-confirm-babel-evaluate nil)
 
     ;; Add packages for org-babel languages
     (use-package ob-kotlin)
@@ -146,6 +154,8 @@
 *** Exports
     #+begin_src emacs-lisp
     ;; (use-package ox-hugo :after ox)
+    (use-package ox-jira :after ox)
+    (use-package ox-gfm :after ox)
     #+end_src
 
 *** Org-Roam
@@ -166,7 +176,7 @@
         (setq org-roam-v2-ack t)
         :config
 
-        (setq org-roam-directory "~/Org/Documents/org-roam"
+        (setq org-roam-directory "~/Org/Documents/org-roam-moj"
               org-roam-node-display-template "${hierarchy:*} ${tags:20}"
               org-id-link-to-org-use-id 'create-if-interactive
               org-roam-completion-everywhere nil
@@ -216,7 +226,6 @@
       :bind ("C-c n g" . consult-org-roam-search)
       :config
       (setq consult-org-roam-grep-func 'consult-ripgrep))
-
     #+end_src
 *** Org-Download
     #+begin_src emacs-lisp
@@ -228,7 +237,8 @@
 *** Org-Id
     #+begin_src emacs-lisp
     (setq org-id-extra-files
-          (directory-files-recursively "~/Org/Documents/notebooks" ".*"))
+          (append (directory-files-recursively "~/Org/Documents/notebooks" ".*")
+                  (directory-files-recursively "~/Org/Documents/org-moj" ".*")))
     #+end_src
 *** Presentation
     #+begin_src emacs-lisp
@@ -245,18 +255,16 @@
       (visual-fill-column-mode 1)
       (visual-line-mode 1)
       (hl-line-mode -1)
+      (org-present-hide-cursor)
       (setq visual-fill-column-center-text t)
       (setq visual-fill-column-width 80)
-      (setq org-tags-column -80)
-      (org-align-tags t)
-      (setq header-line-format " "))
+      (setq header-line-format "| "))
 
     (defun mjr/org-present-end ()
       (visual-fill-column-mode 0)
       (visual-line-mode 0)
       (hl-line-mode 1)
-      (setq org-tags-column -72)
-      (org-align-tags t)
+      (org-present-show-cursor)
       (setq header-line-format nil))
 
     (defun mjr/org-present-big ()
@@ -264,9 +272,7 @@
       (interactive)
       (text-scale-increase 0)
       (text-scale-increase org-present-text-scale)
-      (setq visual-fill-column-width 76)
-      (setq org-tags-column -72)
-      (org-align-tags t)
+      (setq visual-fill-column-width 110)
       (visual-fill-column-mode 1))
 
     (defun mjr/org-present-small ()
@@ -274,12 +280,11 @@
       (interactive)
       (text-scale-increase 0)
       (setq visual-fill-column-width 80)
-      (setq org-tags-column -80)
-      (org-align-all-tags)
       (visual-fill-column-mode 1))
 
     (add-hook 'org-present-mode-hook 'mjr/org-present-start)
     (add-hook 'org-present-mode-quit-hook 'mjr/org-present-end)
+    (setq org-present-after-navigate-functions '((lambda (a b) (org-align-all-tags))))
     #+end_src
 
 *** Org Capture
