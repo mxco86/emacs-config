@@ -1,6 +1,6 @@
 #+title: VCS Configuration
 
-* Magit
+* Magit                                                                      :_:
 
   I use [[https://github.com/magit/magit][Magit]] pretty much constantly for interacting with git repositories -
   it's amazing.
@@ -17,31 +17,23 @@
   #+end_src
 
 
-* Code Review
+* Code Review                                                                :_:
 
-  Feels like I should use [[https://github.com/magit/forge][Forge]] more. Haven't got it yet. [[https://github.com/wandersoncferreira/code-review][Code Review]] too.
+  Feels like I should use [[https://github.com/magit/forge][Forge]] more. Haven't got it yet.
 
   #+begin_src emacs-lisp
   (use-package forge :after magit)
-
-  (use-package code-review
-    :after magit
-    :bind (:map forge-topic-mode-map ("C-c r" . #'code-review-forge-pr-at-point))
-    :bind (:map code-review-mode-map (("C-c n" . #'code-review-comment-jump-next)
-                                      ("C-c p" . #'code-review-comment-jump-previous)))
-    :config
-    (setq code-review-auth-login-marker 'forge))
   #+end_src
 
 
-* Git Tools
+* Git Tools                                                                  :_:
 
   #+begin_src emacs-lisp
   (use-package git-timemachine)
   #+end_src
 
 
-* Diff Mode
+* Diff Mode                                                                  :_:
 
   #+begin_src emacs-lisp
   (defun update-diff-colors ()
@@ -65,7 +57,8 @@
     (diff-hl-dired-mode))
   #+end_src
 
-* EDiff
+
+* EDiff                                                                      :_:
 
   #+begin_src emacs-lisp
   (use-package ediff
