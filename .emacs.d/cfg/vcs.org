@@ -30,6 +30,10 @@
 
   #+begin_src emacs-lisp
   (use-package git-timemachine)
+
+  (use-package git-link
+    :config
+    (setq git-link-open-in-browser t))
   #+end_src
 
 
