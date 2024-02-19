@@ -128,6 +128,8 @@ other things about buffers. And undo for some reason…
     :init
     (global-undo-tree-mode)
     :config
+    ("C-_" . undo-tree-undo)
+    ("M-_" . undo-tree-redo)
     (unbind-key "C-/" undo-tree-map)
     (unbind-key "C-/" global-map)
     (unbind-key "C-?" undo-tree-map)
