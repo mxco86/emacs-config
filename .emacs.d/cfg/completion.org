@@ -141,10 +141,9 @@
   (use-package consult
     :bind
     (("C-s" . consult-line)
-     ("C-x C-g" . consult-ripgrep)
+     ("C-x C-r" . consult-ripgrep)
      ("C-x b" . consult-buffer)
      ("C-x 4 b" . consult-buffer-other-window)
-     ("C-x 5 b" . consult-buffer-other-frame)
      ("M-g o" . consult-outline))
     :config
     (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number .")
@@ -186,7 +185,7 @@
   #+end_src
 
 
-* Command Execution
+* Command Execution                                                          :_:
 
   https://github.com/oantolin/embark
 
