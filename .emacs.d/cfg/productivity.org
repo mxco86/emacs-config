@@ -103,5 +103,6 @@ Productivity tools and other things to help generally get things done.
   #+begin_src emacs-lisp
   (use-package server
     :config
-    (unless (server-running-p) (server-start)))
+    (if (display-graphic-p)
+        (unless (server-running-p) (server-start))))
   #+end_src
