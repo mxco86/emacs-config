@@ -17,19 +17,9 @@
 
 * Code Formatting
   #+begin_src emacs-lisp
-  (use-package format-all
+  (use-package apheleia
     :config
-    (define-format-all-formatter ktlint
-                                 (:executable "ktlint")
-                                 (:install "")
-                                 (:languages "Kotlin")
-                                 (:features)
-                                 (:format (format-all--buffer-easy executable "--format" "--stdin" "--log-level=none")))
-
-    :hook ((prog-mode . format-all-mode)
-           (prog-mode . format-all-ensure-formatter)
-           (yaml-mode . format-all-mode)
-           (yaml-mode . format-all-ensure-formatter)))
+    (apheleia-global-mode +1))
   #+end_src
 
 
@@ -140,6 +130,15 @@
     #+begin_src emacs-lisp
     (use-package python-mode
       :hook (python-mode . eglot-ensure)
+      :config
+      (setq eglot-workspace-configuration
+            '((:pyright . ((useLibraryCodeForTypes . t))))))
+
+    (use-package python-ts-mode
+      :ensure nil
+      :hook ((python-ts-mode . eglot-ensure))
+      :init
+      (push '(python-mode . python-ts-mode) major-mode-remap-alist)
       :config
       (setq eglot-workspace-configuration
             '((:pyright . ((useLibraryCodeForTypes . t))))))
