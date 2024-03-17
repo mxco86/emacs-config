@@ -7,7 +7,9 @@ elpa
 /.emacs.d/ido.last
 /.cask
 network-security.data
-/.emacs.d/**/*.el
+/.emacs.d/custom.el
+/.emacs.d/emacs.el
+/.emacs.d/cfg/**/*.el
 /.emacs.d/history
 /.emacs.d/recentf
 /.emacs.d/.backups
