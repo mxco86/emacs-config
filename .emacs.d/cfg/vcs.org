@@ -25,6 +25,10 @@
   (use-package forge :after magit)
   #+end_src
 
+  #+begin_src emacs-lisp
+  (use-package pr-review)
+  #+end_src
+
 
 * Git Tools                                                                  :_:
 
