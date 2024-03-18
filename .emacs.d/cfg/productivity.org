@@ -67,7 +67,7 @@ Productivity tools and other things to help generally get things done.
         (find-file (concat project-dir "/" diff-filename)))))
 
   (use-package project-x
-    :load-path "~/.emacs.d/elisp/project-x.el"
+    :load-path "~/.emacs.d/elisp/"
     :after project
     :config
     (setq project-x-save-interval 600)    ;Save project state every 10 min
