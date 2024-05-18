@@ -14,6 +14,13 @@
     (setq magit-save-repository-buffers 'dontask
           magit-display-buffer-function 'magit-display-buffer-fullframe-status-v1
           git-commit-major-mode 'git-commit-mode))
+
+  (use-package magit-section
+    :bind (:map magit-section-mode-map
+                  ("M-1". nil)
+                  ("M-2". nil)
+                  ("M-3". nil)
+                  ("M-4". nil)))
   #+end_src
 
 

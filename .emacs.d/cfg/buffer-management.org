@@ -35,10 +35,15 @@ other things about buffers. And undo for some reason…
   there are more than a couple to navigate.
 
   #+begin_src emacs-lisp
-  (use-package ace-window
-    :bind ("C-x o" . ace-window)
+  (use-package ace-window :bind ("C-x o" . ace-window))
+
+  (use-package winum
+    :bind (("M-1" . winum-select-window-1)
+           ("M-2" . winum-select-window-2)
+           ("M-3" . winum-select-window-3)
+           ("M-4" . winum-select-window-4))
     :config
-    (ace-window-display-mode))
+    (winum-mode))
   #+end_src
 
 

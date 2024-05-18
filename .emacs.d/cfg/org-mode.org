@@ -58,7 +58,6 @@
     #+BEGIN_SRC emacs-lisp
     (define-key global-map "\C-ca" 'org-agenda)
 
-    (bind-key "M-2" 'org-global-cycle org-mode-map)
     (bind-key "C-c k" 'org-cut-subtree org-mode-map)
     #+END_SRC
 
@@ -181,7 +180,7 @@
         (setq org-roam-v2-ack t)
         :config
 
-        (setq org-roam-directory "~/Org/Documents/org-roam-moj"
+        (setq org-roam-directory "~/Org/Documents/org-roam"
               org-roam-node-display-template "${hierarchy:*} ${tags:20}"
               org-id-link-to-org-use-id 'create-if-interactive
               org-roam-completion-everywhere nil
