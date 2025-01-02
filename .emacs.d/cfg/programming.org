@@ -1,4 +1,4 @@
-* Programming Settings
+* Programming settings                                                       :_:
   #+begin_src emacs-lisp
   (defun mjr/prog-mode-hook ()
     (display-line-numbers-mode))
@@ -7,7 +7,7 @@
   #+end_src
 
 
-* Editor Settings
+* Editor settings                                                            :_:
   #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
   :config
@@ -15,7 +15,7 @@
   #+END_SRC
 
 
-* Code Formatting
+* Code formatting                                                            :_:
   #+begin_src emacs-lisp
   (use-package apheleia
     :config
@@ -23,7 +23,7 @@
   #+end_src
 
 
-* Compilation
+* Compilation                                                                :_:
   #+begin_src emacs-lisp
   (require 'ansi-color)
   (defun mjr/colorize-compilation ()
@@ -36,7 +36,7 @@
   #+end_src
 
 
-* Code Navigation
+* Code navigation                                                            :_:
   #+begin_src emacs-lisp
   (use-package dumb-jump
     :config
@@ -46,7 +46,7 @@
   #+end_src
 
 
-* Language Server Integration
+* Language server integration                                                :_:
   #+begin_src emacs-lisp
   (use-package eglot
     :config
@@ -61,7 +61,7 @@
   #+end_src
 
 
-* Documentation
+* Documentation                                                              :_:
   #+begin_src emacs-lisp
   (use-package eldoc
     :config
@@ -70,18 +70,7 @@
   #+end_src
 
 
-* Linting
-  We may want to lint buffers using the appropriate linter/compiler/syntax
-  checker, although having moved to eglot which uses Flymake by default I'm
-  not enabling this for programming modes by default any more.
-
-  #+begin_src emacs-lisp
-  (use-package flycheck
-    :hook (text-mode . flycheck-mode))
-  #+end_src
-
-
-* Paredit Mode
+* Paredit mode                                                               :_:
   - Structured editing of S-expression data
   - https://www.emacswiki.org/emacs/ParEdit
   - Use Paredit mode for all lisp programming buffers
@@ -99,7 +88,7 @@
   #+end_src
 
 
-* Docker Tools
+* Docker tools                                                               :_:
   #+begin_src emacs-lisp
   (use-package docker
     :commands (docker))
@@ -112,8 +101,8 @@
   #+end_src
 
 
-* Language Configuration
-*** Emacs Lisp
+* Language configuration                                                     :_:
+*** Emacs lisp
     #+begin_src emacs-lisp
     (use-package elisp-mode
       :ensure nil
@@ -156,11 +145,10 @@
 
 *** Nix
     #+begin_src emacs-lisp
-    (use-package nix-mode
-      :hook (nix-mode . eglot-ensure))
+    (use-package nix-mode :hook (nix-mode . eglot-ensure))
     #+end_src
 
-*** Shell Script
+*** Shell script
     #+begin_src emacs-lisp
     (use-package sh-script
       :hook ((sh-mode . eglot-ensure))
@@ -184,7 +172,6 @@
 
 *** JSON
     #+begin_src emacs-lisp
-
     (use-package json-mode
       :commands (json-mode)
       :init
@@ -234,7 +221,7 @@
       (setq js-indent-level 2))
     #+end_src
 
-*** Web (Multi-Lang)
+*** Web (multi-lang)
     #+begin_src emacs-lisp
     (use-package web-mode
       :mode (("\\.html?\\'" . web-mode)

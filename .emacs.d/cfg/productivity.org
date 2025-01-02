@@ -1,9 +1,8 @@
 #+TITLE: Productivity
 
-Productivity tools and other things to help generally get things done.
+Productivity tools and other things to help get things done.
 
-* Spell Check                                                        :_:
-
+* Spell check                                                                :_:
   Enable spell check on all text buffers, which includes ~org-mode~.
 
   #+begin_src emacs-lisp
@@ -17,10 +16,24 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* File and Directory Search                                          :_:
+* Linting                                                                    :_:
+  Use Vale to lint prose in text modes via Flymake
 
-  Mode for searching using ripgrep. It's very fast but I'm not sure I like the
-  user interface very much. I mainly use ~consult-ripgrep~ for this anyway but
+  #+begin_src emacs-lisp
+  (use-package flymake-vale
+    :load-path "~/.emacs.d/elisp/flymake-vale/"
+    :config
+    (add-hook 'text-mode-hook #'flymake-vale-load)
+    (add-hook 'org-mode-hook #'flymake-vale-load)
+    (add-hook 'markdown-mode-hook #'flymake-vale-load))
+
+  (use-package flymake-cursor)
+  #+end_src
+
+
+* File and directory search                                                  :_:
+  Mode for searching using ripgrep. Fast but not sure the user interface is
+  particularly nice. I mainly use ~consult-ripgrep~ for this anyway but
   keep this around for use with ~project.el~ and for searching special occasions.
 
   #+begin_src emacs-lisp
@@ -31,11 +44,9 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Terminal Emulation                                                 :_:
-
-  I generally prefer using an dedicated terminal application but using
-  [[https://codeberg.org/akib/emacs-eat][Eat]] gets pretty close to that within Emacs and using it is a very nice
-  experience.
+* Terminal emulation                                                         :_:
+  I prefer using an dedicated terminal application but using [[https://codeberg.org/akib/emacs-eat][Eat]] gets pretty
+  close to that within Emacs
 
   #+begin_src emacs-lisp
   (use-package eat
@@ -45,7 +56,6 @@ Productivity tools and other things to help generally get things done.
 
 
 * Projects                                                           :_:
-
   Project context and organisation tools which help when switching around and
   focusing relevant buffers and files. Adding the extra config for the local
   project roots means I can use non-vc directories as projects by adding an
@@ -70,13 +80,12 @@ Productivity tools and other things to help generally get things done.
     :load-path "~/.emacs.d/elisp/"
     :after project
     :config
-    (setq project-x-save-interval 600)    ;Save project state every 10 min
+    (setq project-x-save-interval 600)
     (project-x-mode 1))
   #+end_src
 
 
-* In-Buffer Links                                                    :_:
-
+* In-buffer links                                                            :_:
   [[https://github.com/noctuid/link-hint.el][Link Hint]] enables opening all kinds of links in the appropriate manner
   (browser etc.). It has an avy-like interface for selecting the link you want
   to operate on. I just used it to open the github README from this org file.
@@ -89,8 +98,7 @@ Productivity tools and other things to help generally get things done.
   #+end_src
 
 
-* Browser Text                                                       :_:
-
+* Browser text                                                               :_:
   Start a server for editing browser text fields…
 
   #+begin_src emacs-lisp
