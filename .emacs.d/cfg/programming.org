@@ -19,6 +19,8 @@
   #+begin_src emacs-lisp
   (use-package apheleia
     :config
+    (push '(alejandra . ("alejandra")) apheleia-formatters)
+    (push '(nix-mode . alejandra) apheleia-mode-alist)
     (apheleia-global-mode +1))
   #+end_src
 
