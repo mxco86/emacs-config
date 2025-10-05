@@ -147,7 +147,7 @@
      ("C-x 4 b" . consult-buffer-other-window)
      ("M-g o" . consult-outline))
     :config
-    (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number .")
+    (setq consult-ripgrep-args "rg --hidden --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --line-number")
     (if (eq system-type 'darwin) (setq consult-locate-args "mdfind -name")))
   #+end_src
 
