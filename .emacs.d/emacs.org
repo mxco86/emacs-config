@@ -188,7 +188,7 @@
 
     (defun mjr/set-font (size)
       (interactive "nSize: ")
-      (mjr/init-font-size (selected-frame) "Iosevka" size)
+      (mjr/init-font-size (selected-frame) "IosevkaCurly" size)
       (when (fboundp 'kind-icon-reset-cache)
         (when (<= 96 (dpi))
           (setq kind-icon-default-style
