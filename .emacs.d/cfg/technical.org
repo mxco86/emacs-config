@@ -37,5 +37,9 @@
   #+begin_src emacs-lisp
   (use-package tramp
     :config
-    (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+    (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+    (add-hook 'find-file-hook
+              (lambda ()
+                (when (file-remote-p default-directory)
+                  (setq-local epa-pinentry-mode 'loopback)))))
   #+end_src
