@@ -19,6 +19,7 @@
     - [[#org-id][Org-Id]]
     - [[#presentation][Presentation]]
     - [[#org-capture][Org Capture]]
+    - [[#user-interface][User Interface]]
 
 *** Locations
     #+begin_src emacs-lisp
@@ -299,4 +300,14 @@
              "* %^{Title} %u\n  - %:link \n  #+BEGIN_QUOTE\n  %i\n  #+END_QUOTE\n")
             ("L" "Protocol Link" entry (file+headline ,(concat org-directory "/inbox.org") "Inbox")
              "* %:description\n  - %U\n  - %:link\n")))
+    #+end_src
+
+*** User Interface
+    #+begin_src emacs-lisp
+    (use-package org-modern
+      :ensure nil
+      :config
+      (eval-after-load 'org (global-org-modern-mode))
+      (setq org-pretty-entities t
+            org-ellipsis "…"))
     #+end_src
